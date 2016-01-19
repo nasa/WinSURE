@@ -1,6 +1,6 @@
 # WinSURE
 
-SURE is a reliability analysis program used for calculating upper and
+WinSURE is a reliability analysis program used for calculating upper and
 lower bounds on for the operational and death state probabilities for
 a large class of semi-Markov models.  The program is especially suited
 for the analysis of fault-tolerant reconfigurable systems.  The
