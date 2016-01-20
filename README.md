@@ -11,3 +11,5 @@ consequently computationally efficient even for large and complex
 systems.  SURE can optionally regard a specified parameter as a
 variable over a range of values, enabling an automatic sensitivity
 analysis.
+
+The WinSURE program is written in Java and has been tested on Linux, Mac, and Windows operating systems.
