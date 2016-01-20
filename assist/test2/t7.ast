@@ -1,0 +1,9 @@
+SPACE = (NC: ARRAY[1..6]);
+START = (0,1,2,3,4,5);
+DEATHIF NC[1] > 10;
+FOR I = 1,3;
+   FOR J = 0,1;
+   IF NC[(J*3)+I] = 0 TRANTO (20,J,J,I,I,I) BY (J*3)+I; 
+   ENDFOR;
+(* IF NC[1] < 10 TRANTO NC[1] = NC[1]+2,NC[I]=NC[I]+2; *)
+ENDFOR;

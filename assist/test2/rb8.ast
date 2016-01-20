@@ -1,0 +1,6 @@
+SPACE = (X:0..5,Y:0..5);
+START = (0,0);
+IF X=0 TRANTO (1,Y) BY 1;
+IF X>0 TRANTO (1,0) BY 2;
+IF X=1 AND Y<3 TRANTO (X,Y+1) BY 3;
+IF X=0 TRANTO (1,Y) BY 4;

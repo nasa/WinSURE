@@ -1,0 +1,27 @@
+ex26.ast    9/02/97 2:46:36 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): (* THIS FILE POINTS OUT TWO BUGS IN ASSIST --
+(0002)X    A3 WON'T TAKE THE -6 IN THE START STATEMENT, (LOOPS FOREVER!!)
+(0003)X    AND WHEN THE -6 IS REPLACED BY NP, IT SAYS NOT IN DEFINED SPACE,
+(0004)X    BUT, IF THE DEFAULT SPACE IS USED, THEN THE BUGS WORK OUT OKAY. *)
+(0005): 
+(0006): NP = -6;   (* number of processors initially *)
+(0007): LAMBDA = 1E-4;  (* fault arrival rate *)
+(0008): DELTA = 3.6E3;  (* recovery rate *)
+(0009): SPACE = (NC: -6..0,  NF: -6..0);
+                     <-^ [ERROR] NEGATIVE VALUES NOT ALLOWED. USE A WHOLE NUMBER:  -6 
+                                 IS THE COMPUTED VALUE.
+                                 <-^ [ERROR] NEGATIVE VALUES NOT ALLOWED. USE A WHOLE 
+                                             NUMBER:  -6 IS THE COMPUTED VALUE.
+
+(0010): START = (-6,0);
+                 <-^ [ERROR] NEGATIVE VALUES NOT ALLOWED. USE A WHOLE NUMBER:  -6 IS 
+                             THE COMPUTED VALUE.
+
+(0011): DEATHIF 2*NF <= NC;
+(0012): IF NC < 0 TRANTO (NC,NF-1)  BY (NF-(NC))*LAMBDA; (* fault arrivals *)
+(0013): IF NF < 0 TRANTO (NC+1, NF+1) BY <1/(-(NF)*DELTA),1/(-(NF)*DELTA)>;
+(0014):     (* systen recovery *)
+
+
+0003 ERRORS.

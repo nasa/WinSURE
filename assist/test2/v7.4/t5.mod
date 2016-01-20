@@ -1,0 +1,9 @@
+N_P = 6;
+FOO_1_ = 1;
+FOO_2_ = 2;
+LAMB_D_A = 1E-4;
+DEL_TA_ = 3.6E3;
+
+CANNOT RUN DUE TO ERRORS !!!!!
+
+(* 0001 ERROR *)

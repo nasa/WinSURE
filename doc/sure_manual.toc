@@ -1,0 +1,59 @@
+\contentsline {section}{\numberline {1}Introduction}{4}
+\contentsline {subsection}{\numberline {1.1}Basic Program Concept}{4}
+\contentsline {subsection}{\numberline {1.2}SURE Syntax By Way Of Example}{5}
+\contentsline {section}{\numberline {2}The SURE Input Language }{6}
+\contentsline {subsection}{\numberline {2.1}Model-Definition Syntax }{6}
+\contentsline {subsubsection}{\numberline {2.1.1}Lexical Details}{6}
+\contentsline {subsubsection}{\numberline {2.1.2}Constant definitions}{7}
+\contentsline {subsubsection}{\numberline {2.1.3}Variable definition}{8}
+\contentsline {subsubsection}{\numberline {2.1.4}Expressions}{9}
+\contentsline {subsubsection}{\numberline {2.1.5}Slow transition description}{9}
+\contentsline {subsubsection}{\numberline {2.1.6}Fast transition description}{10}
+\contentsline {subsubsection}{\numberline {2.1.7}FAST exponential transition description}{11}
+\contentsline {subsection}{\numberline {2.2}SURE Commands }{12}
+\contentsline {subsubsection}{\numberline {2.2.1}EXIT command}{12}
+\contentsline {subsubsection}{\numberline {2.2.2}READ/READ0 command}{13}
+\contentsline {subsubsection}{\numberline {2.2.3}INPUT command}{13}
+\contentsline {subsubsection}{\numberline {2.2.4}RUN command}{13}
+\contentsline {subsubsection}{\numberline {2.2.5}ECHO constant}{14}
+\contentsline {subsubsection}{\numberline {2.2.6}LIST constant}{14}
+\contentsline {subsubsection}{\numberline {2.2.7}POINTS constant}{14}
+\contentsline {subsubsection}{\numberline {2.2.8}START constant}{15}
+\contentsline {subsubsection}{\numberline {2.2.9}TIME constant}{15}
+\contentsline {subsubsection}{\numberline {2.2.10}ORPROB command}{15}
+\contentsline {subsubsection}{\numberline {2.2.11}PLOT command}{15}
+\contentsline {subsubsection}{\numberline {2.2.12}QTCALC constant}{16}
+\contentsline {subsubsection}{\numberline {2.2.13}Pruning and Loop Truncation Method}{16}
+\contentsline {subsubsection}{\numberline {2.2.14}A Warning About Fast Loops}{17}
+\contentsline {subsubsection}{\numberline {2.2.15}AUTOPRUNE constant}{17}
+\contentsline {subsubsection}{\numberline {2.2.16}PRUNE constant}{17}
+\contentsline {subsubsection}{\numberline {2.2.17}Initialization of State Probabilities}{18}
+\contentsline {subsubsection}{\numberline {2.2.18}Computing Operational State Probabilities}{18}
+\contentsline {subsubsection}{\numberline {2.2.19}SHOW command}{18}
+\contentsline {subsubsection}{\numberline {2.2.20}IF command}{19}
+\contentsline {subsubsection}{\numberline {2.2.21}CALC command}{19}
+\contentsline {subsubsection}{\numberline {2.2.22}LINEAR command}{20}
+\contentsline {subsubsection}{\numberline {2.2.23}AUTOFAST constant}{20}
+\contentsline {subsubsection}{\numberline {2.2.24}LEE command}{20}
+\contentsline {subsection}{\numberline {2.3}ASSIST PRUNE States}{20}
+\contentsline {section}{\numberline {3}The STEM and PAWS Programs}{21}
+\contentsline {section}{\numberline {4}New Model Display Capability: MODDISP}{22}
+\contentsline {section}{\numberline {5}New Plotting Capability}{22}
+\contentsline {section}{\numberline {6}Examples SURE Sessions}{23}
+\contentsline {subsection}{\numberline {6.1}Outline of a Typical Session }{23}
+\contentsline {subsection}{\numberline {6.2}Example 1 }{23}
+\contentsline {subsection}{\numberline {6.3}Example 2 }{24}
+\contentsline {subsection}{\numberline {6.4}Example 3}{26}
+\contentsline {subsection}{\numberline {6.5}Example 4 }{28}
+\contentsline {subsection}{\numberline {6.6}Example 5 }{29}
+\contentsline {subsection}{\numberline {6.7}Example 6 }{31}
+\contentsline {subsection}{\numberline {6.8}Example 7 }{32}
+\contentsline {subsection}{\numberline {6.9}Example 8 }{33}
+\contentsline {subsection}{\numberline {6.10}Example 9 }{34}
+\contentsline {subsection}{\numberline {6.11}Example 10}{35}
+\contentsline {subsection}{\numberline {6.12}Example 11}{36}
+\contentsline {section}{\numberline {A}Appendix A --- Phased Missions}{38}
+\contentsline {subsection}{\numberline {A.1}Phased Missions}{38}
+\contentsline {subsection}{\numberline {A.2}Non-Constant Failure Rates}{42}
+\contentsline {subsection}{\numberline {A.3}Continuously Varying Failure Rates}{46}
+\contentsline {section}{\numberline {B}Appendix B: Error Messages}{47}

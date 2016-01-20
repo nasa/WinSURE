@@ -1,0 +1,11 @@
+TRUNC = 5 TO 25 BY 5;
+LIST = 2;
+A = 1E-3;
+MU = 1E-4;
+P = 0.1;
+0,1 = FAST 1/MU;
+1,2 = 1E-4;
+2,5 = FAST 1/MU;
+2,4 = FAST 3/MU;
+5,2 = FAST 2/MU;
+2,3 = A;

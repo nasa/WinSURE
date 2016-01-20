@@ -1,0 +1,536 @@
+ a1.mod
+1c1
+< a1.ast    8/15/01 11:06:16 a.m.                         ASSIST 7.3, NASA LaRC    Page 1
+---
+> a1.ast    9/02/97 2:46:22 p.m.                          ASSIST 7.1, NASA LaRC    Page 1
+13,14c13,14
+< PARSING TIME = 0.00 sec.
+< RULE GENERATION TIME = 0.36 sec.
+---
+> PARSING TIME = 0.09 sec.
+> RULE GENERATION TIME = 0.01 sec.
+ a2.mod
+1c1
+< a2.ast    8/15/01 11:06:17 a.m.                         ASSIST 7.3, NASA LaRC    Page 1
+---
+> a2.ast    9/02/97 2:46:22 p.m.                          ASSIST 7.1, NASA LaRC    Page 1
+13,14c13,14
+< PARSING TIME = 0.00 sec.
+< RULE GENERATION TIME = 0.21 sec.
+---
+> PARSING TIME = 0.06 sec.
+> RULE GENERATION TIME = 0.00 sec.
+ a3.mod
+1c1
+< a3.ast    8/15/01 11:06:17 a.m.                         ASSIST 7.3, NASA LaRC    Page 1
+---
+> a3.ast    9/02/97 2:46:22 p.m.                          ASSIST 7.1, NASA LaRC    Page 1
+8,9c8,9
+< PARSING TIME = 0.01 sec.
+< RULE GENERATION TIME = 0.24 sec.
+---
+> PARSING TIME = 0.05 sec.
+> RULE GENERATION TIME = 0.00 sec.
+ abug2.mod
+1c1
+< abug2.ast    8/15/01 11:06:17 a.m.                      ASSIST 7.3, NASA LaRC    Page 1
+---
+> abug2.ast    9/02/97 2:46:23 p.m.                       ASSIST 7.1, NASA LaRC    Page 1
+ abugbig.mod
+1c1
+< abugbig.ast    8/15/01 11:06:17 a.m.                    ASSIST 7.3, NASA LaRC    Page 1
+---
+> abugbig.ast    9/02/97 2:46:23 p.m.                     ASSIST 7.1, NASA LaRC    Page 1
+58c58
+< abugbig.ast    8/15/01 11:06:17 a.m.                    ASSIST 7.3, NASA LaRC    Page 2
+---
+> abugbig.ast    9/02/97 2:46:23 p.m.                     ASSIST 7.1, NASA LaRC    Page 2
+115c115
+< abugbig.ast    8/15/01 11:06:17 a.m.                    ASSIST 7.3, NASA LaRC    Page 3
+---
+> abugbig.ast    9/02/97 2:46:23 p.m.                     ASSIST 7.1, NASA LaRC    Page 3
+ allan.mod
+1c1
+< allan.ast    8/15/01 11:06:17 a.m.                      ASSIST 7.3, NASA LaRC    Page 1
+---
+> allan.ast    9/02/97 2:46:23 p.m.                       ASSIST 7.1, NASA LaRC    Page 1
+60c60
+< allan.ast    8/15/01 11:06:17 a.m.                      ASSIST 7.3, NASA LaRC    Page 2
+---
+> allan.ast    9/02/97 2:46:23 p.m.                       ASSIST 7.1, NASA LaRC    Page 2
+ allan2.mod
+1c1
+< allan2.ast    8/15/01 11:06:18 a.m.                     ASSIST 7.3, NASA LaRC    Page 1
+---
+> allan2.ast    9/02/97 2:46:24 p.m.                      ASSIST 7.1, NASA LaRC    Page 1
+60c60
+< allan2.ast    8/15/01 11:06:18 a.m.                     ASSIST 7.3, NASA LaRC    Page 2
+---
+> allan2.ast    9/02/97 2:46:24 p.m.                      ASSIST 7.1, NASA LaRC    Page 2
+ ex1.mod
+1c1
+< ex1.ast    8/15/01 11:06:18 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex1.ast    9/02/97 2:46:24 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+13,14c13,14
+< PARSING TIME = 0.00 sec.
+< RULE GENERATION TIME = 0.14 sec.
+---
+> PARSING TIME = 0.07 sec.
+> RULE GENERATION TIME = 0.01 sec.
+ ex10.mod
+1c1
+< ex10.ast    8/15/01 11:06:18 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex10.ast    9/02/97 2:46:24 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+11,12c11,12
+< PARSING TIME = 0.01 sec.
+< RULE GENERATION TIME = 0.14 sec.
+---
+> PARSING TIME = 0.07 sec.
+> RULE GENERATION TIME = 0.01 sec.
+ ex11.mod
+1c1
+< ex11.ast    8/15/01 11:06:18 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex11.ast    9/02/97 2:46:25 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+13,14c13,14
+< PARSING TIME = 0.00 sec.
+< RULE GENERATION TIME = 0.13 sec.
+---
+> PARSING TIME = 0.07 sec.
+> RULE GENERATION TIME = 0.01 sec.
+ ex12.mod
+1c1
+< ex12.ast    8/15/01 11:06:18 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex12.ast    9/02/97 2:46:25 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+17,18c17,18
+< PARSING TIME = 0.01 sec.
+< RULE GENERATION TIME = 0.21 sec.
+---
+> PARSING TIME = 0.08 sec.
+> RULE GENERATION TIME = 0.01 sec.
+ ex13.mod
+1c1
+< ex13.ast    8/15/01 11:06:18 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex13.ast    9/02/97 2:46:25 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+ ex14.mod
+1c1
+< ex14.ast    8/15/01 11:06:18 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex14.ast    9/02/97 2:46:25 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+15,16c15,16
+< PARSING TIME = 0.01 sec.
+< RULE GENERATION TIME = 0.15 sec.
+---
+> PARSING TIME = 0.05 sec.
+> RULE GENERATION TIME = 0.03 sec.
+ ex15.mod
+1c1
+< ex15.ast    8/15/01 11:06:19 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex15.ast    9/02/97 2:46:25 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+13,14c13,14
+< PARSING TIME = 0.00 sec.
+< RULE GENERATION TIME = 0.18 sec.
+---
+> PARSING TIME = 0.06 sec.
+> RULE GENERATION TIME = 0.00 sec.
+ ex16.mod
+1c1
+< ex16.ast    8/15/01 11:06:19 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex16.ast    9/02/97 2:46:26 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+17,18c17,18
+< PARSING TIME = 0.00 sec.
+< RULE GENERATION TIME = 0.14 sec.
+---
+> PARSING TIME = 0.08 sec.
+> RULE GENERATION TIME = 0.00 sec.
+ ex17.mod
+1c1
+< ex17.ast    8/15/01 11:06:19 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex17.ast    9/02/97 2:46:26 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+32c32
+< PARSING TIME = 0.02 sec.
+---
+> PARSING TIME = 0.17 sec.
+81c81
+< RULE GENERATION TIME = 0.27 sec.
+---
+> RULE GENERATION TIME = 0.84 sec.
+ ex18.mod
+1c1
+< ex18.ast    8/15/01 11:06:20 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex18.ast    9/02/97 2:46:28 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+20,21c20,21
+< PARSING TIME = 0.02 sec.
+< RULE GENERATION TIME = 0.20 sec.
+---
+> PARSING TIME = 0.10 sec.
+> RULE GENERATION TIME = 0.00 sec.
+ ex19.mod
+1c1
+< ex19.ast    8/15/01 11:06:20 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex19.ast    9/02/97 2:46:28 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+ ex2.mod
+1c1
+< ex2.ast    8/15/01 11:06:20 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex2.ast    9/02/97 2:46:28 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+34,35c34,35
+< PARSING TIME = 0.01 sec.
+< RULE GENERATION TIME = 0.17 sec.
+---
+> PARSING TIME = 0.10 sec.
+> RULE GENERATION TIME = 0.05 sec.
+ ex20.mod
+1c1
+< ex20.ast    8/15/01 11:06:20 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex20.ast    9/02/97 2:46:28 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+13,14c13,14
+< PARSING TIME = 0.01 sec.
+< RULE GENERATION TIME = 0.32 sec.
+---
+> PARSING TIME = 0.06 sec.
+> RULE GENERATION TIME = 0.17 sec.
+ ex21.mod
+1c1
+< ex21.ast    8/15/01 11:06:20 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex21.ast    9/02/97 2:46:29 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+10c10
+< PARSING TIME = 0.00 sec.
+---
+> PARSING TIME = 0.08 sec.
+13c13
+< RULE GENERATION TIME = 0.16 sec.
+---
+> RULE GENERATION TIME = 0.01 sec.
+ ex22.mod
+1c1
+< ex22.ast    8/15/01 11:06:21 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex22.ast    9/02/97 2:46:29 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+13,14c13,14
+< PARSING TIME = 0.01 sec.
+< RULE GENERATION TIME = 0.29 sec.
+---
+> PARSING TIME = 0.09 sec.
+> RULE GENERATION TIME = 0.00 sec.
+ ex23.mod
+1c1
+< I = 3;
+---
+> I = 4;
+5,6c5
+<      2(* 6,5,4 *),     3(* 6,5,5 *)        = I*LAMBDA;
+<      3(* 6,5,5 *),     1(* 6,5,6 DEATH  *) = I*LAMBDA;
+---
+> *** ERROR *** model file is erroneous.
+8,10c7,11
+< (* NUMBER OF STATES IN MODEL = 3 *)
+< (* NUMBER OF TRANSITIONS IN MODEL = 2 *)
+< (* 1 DEATH STATES AGGREGATED INTO STATE 1 *)
+---
+> (* NUMBER OF STATES IN MODEL = 1 *)
+> (* NUMBER OF TRANSITIONS IN MODEL = 0 *)
+> (* 0 DEATH STATES AGGREGATED INTO STATE 1 *)
+> (* 0001 ERROR *)
+> (* 0001 WARNING *)
+1c1,4
+< ex23.ast    8/15/01 11:06:21 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex23.ast    9/02/97 2:46:29 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+> 
+> (0001): input i;
+> I? 4;
+3d5
+< (0001): I = 3;
+10,14c12,19
+< PARSING TIME = 0.00 sec.
+< RULE GENERATION TIME = 0.20 sec.
+< NUMBER OF STATES IN MODEL = 3
+< NUMBER OF TRANSITIONS IN MODEL = 2
+< 1 DEATH STATES AGGREGATED INTO STATE 1
+---
+> PARSING TIME = 0.08 sec.
+>         [ERROR] ARRAY DIMENSION OUT OF BOUNDS: (expression on line#5)
+>                 NF[4]
+>         [WARNING] NO TRANSITIONS GENERATED USING TRANTO ON LINE : 6
+> RULE GENERATION TIME = 0.02 sec.
+> NUMBER OF STATES IN MODEL = 1
+> NUMBER OF TRANSITIONS IN MODEL = 0
+> 0 DEATH STATES AGGREGATED INTO STATE 1
+15a21,22
+> 0001 ERROR.
+> 0001 WARNING.
+ ex24.mod
+1c1
+< ex24.ast    8/15/01 11:06:21 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex24.ast    9/02/97 2:46:34 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+15,16c15,16
+< PARSING TIME = 0.00 sec.
+< RULE GENERATION TIME = 0.23 sec.
+---
+> PARSING TIME = 0.06 sec.
+> RULE GENERATION TIME = 0.00 sec.
+ ex25.mod
+1c1
+< ex25.ast    8/15/01 11:06:23 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex25.ast    9/02/97 2:46:36 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+31,32c31,32
+< PARSING TIME = 0.01 sec.
+< RULE GENERATION TIME = 0.17 sec.
+---
+> PARSING TIME = 0.11 sec.
+> RULE GENERATION TIME = 0.05 sec.
+ ex26.mod
+1c1
+< ex26.ast    8/15/01 11:06:23 a.m.                       ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex26.ast    9/02/97 2:46:36 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+ ex4.mod
+1c1
+< ex4.ast    8/15/01 11:06:23 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex4.ast    9/02/97 2:46:36 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+14,15c14,15
+< PARSING TIME = 0.00 sec.
+< RULE GENERATION TIME = 0.16 sec.
+---
+> PARSING TIME = 0.06 sec.
+> RULE GENERATION TIME = 0.01 sec.
+ ex5.mod
+1c1
+< ex5.ast    8/15/01 11:06:23 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex5.ast    9/02/97 2:46:37 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+12,13c12,13
+< PARSING TIME = 0.00 sec.
+< RULE GENERATION TIME = 0.13 sec.
+---
+> PARSING TIME = 0.09 sec.
+> RULE GENERATION TIME = 0.01 sec.
+ ex6.mod
+1c1
+< ex6.ast    8/15/01 11:06:23 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex6.ast    9/02/97 2:46:37 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+ ex7.mod
+1c1
+< ex7.ast    8/15/01 11:06:24 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex7.ast    9/02/97 2:46:37 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+ ex8.mod
+1c1
+< ex8.ast    8/15/01 11:06:24 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex8.ast    9/02/97 2:46:38 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+ ex9.mod
+1c1
+< ex9.ast    8/15/01 11:06:24 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> ex9.ast    9/02/97 2:46:39 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+13,14c13,14
+< PARSING TIME = 0.01 sec.
+< RULE GENERATION TIME = 0.17 sec.
+---
+> PARSING TIME = 0.09 sec.
+> RULE GENERATION TIME = 0.01 sec.
+ rb2.mod
+1c1
+< rb2.ast    8/15/01 11:06:24 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> rb2.ast    9/02/97 2:46:40 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+9c9
+< PARSING TIME = 0.02 sec.
+---
+> PARSING TIME = 0.10 sec.
+12c12
+< RULE GENERATION TIME = 0.13 sec.
+---
+> RULE GENERATION TIME = 0.02 sec.
+ rb3.mod
+1c1
+< rb3.ast    8/15/01 11:06:25 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> rb3.ast    9/02/97 2:46:41 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+10c10
+< PARSING TIME = 0.01 sec.
+---
+> PARSING TIME = 0.09 sec.
+13c13
+< RULE GENERATION TIME = 0.29 sec.
+---
+> RULE GENERATION TIME = 0.02 sec.
+ rb4.mod
+1c1
+< rb4.ast    8/15/01 11:06:25 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> rb4.ast    9/02/97 2:46:41 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+9,10c9,10
+< PARSING TIME = 0.02 sec.
+< RULE GENERATION TIME = 0.13 sec.
+---
+> PARSING TIME = 0.07 sec.
+> RULE GENERATION TIME = 0.00 sec.
+ rb5.mod
+1c1
+< rb5.ast    8/15/01 11:06:25 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> rb5.ast    9/02/97 2:46:42 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+ rb6.mod
+1c1
+< rb6.ast    8/15/01 11:06:25 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> rb6.ast    9/02/97 2:46:42 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+8c8
+< PARSING TIME = 0.01 sec.
+---
+> PARSING TIME = 0.08 sec.
+11c11
+< RULE GENERATION TIME = 0.23 sec.
+---
+> RULE GENERATION TIME = 0.02 sec.
+ rb7.mod
+1c1
+< rb7.ast    8/15/01 11:06:26 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> rb7.ast    9/02/97 2:46:42 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+9,10c9,10
+< PARSING TIME = 0.01 sec.
+< RULE GENERATION TIME = 0.14 sec.
+---
+> PARSING TIME = 0.06 sec.
+> RULE GENERATION TIME = 0.00 sec.
+ rb8.mod
+1c1
+< rb8.ast    8/15/01 11:06:26 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> rb8.ast    9/02/97 2:46:43 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+11,12c11,12
+< PARSING TIME = 0.01 sec.
+< RULE GENERATION TIME = 0.13 sec.
+---
+> PARSING TIME = 0.07 sec.
+> RULE GENERATION TIME = 0.01 sec.
+ rbx.mod
+1c1
+< rbx.ast    8/15/01 11:06:26 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> rbx.ast    9/02/97 2:46:43 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+ t1.mod
+1c1
+< t1.ast    8/15/01 11:06:26 a.m.                         ASSIST 7.3, NASA LaRC    Page 1
+---
+> t1.ast    9/02/97 2:46:43 p.m.                          ASSIST 7.1, NASA LaRC    Page 1
+12c12
+< ON;
+---
+> off;
+ t10.mod
+1c1
+< t10.ast    8/15/01 11:06:28 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> t10.ast    9/02/97 2:46:50 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+ t11.mod
+1c1
+< t11.ast    8/15/01 11:06:28 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> t11.ast    9/02/97 2:46:50 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+22c22
+< PARSING TIME = 0.01 sec.
+---
+> PARSING TIME = 0.07 sec.
+24c24
+< RULE GENERATION TIME = 0.26 sec.
+---
+> RULE GENERATION TIME = 0.01 sec.
+ t12.mod
+1c1
+< t12.ast    8/15/01 11:06:28 a.m.                        ASSIST 7.3, NASA LaRC    Page 1
+---
+> t12.ast    9/02/97 2:46:50 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+23c23
+< PARSING TIME = 0.01 sec.
+---
+> PARSING TIME = 0.09 sec.
+25c25
+< RULE GENERATION TIME = 0.33 sec.
+---
+> RULE GENERATION TIME = 0.01 sec.
+ t2.mod
+1c1
+< t2.ast    8/15/01 11:06:29 a.m.                         ASSIST 7.3, NASA LaRC    Page 1
+---
+> t2.ast    9/02/97 2:46:51 p.m.                          ASSIST 7.1, NASA LaRC    Page 1
+ t3.mod
+1c1
+< t3.ast    8/15/01 11:06:29 a.m.                         ASSIST 7.3, NASA LaRC    Page 1
+---
+> t3.ast    9/02/97 2:46:51 p.m.                          ASSIST 7.1, NASA LaRC    Page 1
+ t4.mod
+1c1
+< t4.ast    8/15/01 11:06:29 a.m.                         ASSIST 7.3, NASA LaRC    Page 1
+---
+> t4.ast    9/02/97 2:46:51 p.m.                          ASSIST 7.1, NASA LaRC    Page 1
+ t5.mod
+1c1
+< t5.ast    8/15/01 11:06:29 a.m.                         ASSIST 7.3, NASA LaRC    Page 1
+---
+> t5.ast    9/02/97 2:46:51 p.m.                          ASSIST 7.1, NASA LaRC    Page 1
+ t6.mod
+1c1
+< t6.ast    8/15/01 11:06:31 a.m.                         ASSIST 7.3, NASA LaRC    Page 1
+---
+> t6.ast    9/02/97 2:46:55 p.m.                          ASSIST 7.1, NASA LaRC    Page 1
+13,14c13,14
+< PARSING TIME = 0.01 sec.
+< RULE GENERATION TIME = 0.30 sec.
+---
+> PARSING TIME = 0.08 sec.
+> RULE GENERATION TIME = 0.01 sec.
+ t7.mod
+1c1
+< t7.ast    8/15/01 11:06:31 a.m.                         ASSIST 7.3, NASA LaRC    Page 1
+---
+> t7.ast    9/02/97 2:46:56 p.m.                          ASSIST 7.1, NASA LaRC    Page 1
+13,14c13,14
+< PARSING TIME = 0.01 sec.
+< RULE GENERATION TIME = 0.31 sec.
+---
+> PARSING TIME = 0.07 sec.
+> RULE GENERATION TIME = 0.01 sec.
+ t8.mod
+1c1
+< t8.ast    8/15/01 11:06:32 a.m.                         ASSIST 7.3, NASA LaRC    Page 1
+---
+> t8.ast    9/02/97 2:46:56 p.m.                          ASSIST 7.1, NASA LaRC    Page 1
+13,14c13,14
+< PARSING TIME = 0.01 sec.
+< RULE GENERATION TIME = 0.29 sec.
+---
+> PARSING TIME = 0.07 sec.
+> RULE GENERATION TIME = 0.01 sec.
+ t9.mod
+1c1
+< t9.ast    8/15/01 11:06:32 a.m.                         ASSIST 7.3, NASA LaRC    Page 1
+---
+> t9.ast    9/02/97 2:46:56 p.m.                          ASSIST 7.1, NASA LaRC    Page 1
+15c15
+< PARSING TIME = 0.01 sec.
+---
+> PARSING TIME = 0.08 sec.
+18c18
+< RULE GENERATION TIME = 0.29 sec.
+---
+> RULE GENERATION TIME = 0.02 sec.

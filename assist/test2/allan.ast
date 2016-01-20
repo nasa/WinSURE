@@ -1,0 +1,87 @@
+lambda=1;
+tau=3600*24*365;
+delta=36000*24*365;
+epsilon=730;
+alpha=10**8;
+beta=10**8;
+
+space=(fb1:0..1,
+       fa1:0..1,
+       fs1:0..1,
+       tb1:0..1,
+       wg1:0..1,
+       cf1:0..1,
+
+       fb2:0..1,
+       fa2:0..1,
+       fs2:0..1,
+       tb2:0..1,
+       wg2:0..1,
+       cf2:0..1,
+
+       fb3:0..1,
+       fa3:0..1,
+       fs3:0..1,
+       tb3:0..1,
+       wg3:0..1,
+       cf3:0..1,
+
+       fb4:0..1,
+       fa4:0..1,
+       fs4:0..1,
+       tb4:0..1,
+       wg4:0..1,
+       cf4:0..1);
+
+start=(0,0,0,0,1,0,
+       0,0,0,0,1,0,
+       0,0,0,0,1,0,
+       0,0,0,0,1,0);
+
+deathif ((fa1+fs1)*wg1
+         +(fa2+fs2)*wg2
+         +(fa3+fs3)*wg3
+         +(fa4+fs4)*wg4)
+
+         >= ((wg1+wg2+wg3+wg4)/2);
+
+if fb1+fa1+fs1+tb1+cf1=0 then tranto fb1=1 by lambda;
+if fb2+fa2+fs2+tb2+cf2=0 then tranto fb2=1 by lambda;
+if fb3+fa3+fs3+tb3+cf3=0 then tranto fb3=1 by lambda;
+if fb4+fa4+fs4+tb4+cf4=0 then tranto fb4=1 by lambda;
+
+if fb1=1 then tranto fb1=0, fa1=1 by beta;
+if fb2=1 then tranto fb2=0, fa2=1 by beta;
+if fb3=1 then tranto fb3=0, fa3=1 by beta;
+if fb4=1 then tranto fb4=0, fa4=1 by beta;
+
+if fa1=1 then tranto fa1=0, fs1=1 by tau;
+if fa2=1 then tranto fa2=0, fs2=1 by tau;
+if fa3=1 then tranto fa3=0, fs3=1 by tau;
+if fa4=1 then tranto fa4=0, fs4=1 by tau;
+
+if fa1=1 then tranto fa1=0, tb1=1 by alpha;
+if fa2=1 then tranto fa2=0, tb2=1 by alpha;
+if fa3=1 then tranto fa3=0, tb3=1 by alpha;
+if fa4=1 then tranto fa4=0, tb4=1 by alpha;
+
+if fs1=1 then tranto fs1=0, wg1=0, cf1=1 by delta;
+if fs2=1 then tranto fs2=0, wg2=0, cf2=1 by delta;
+if fs3=1 then tranto fs3=0, wg3=0, cf3=1 by delta;
+if fs4=1 then tranto fs4=0, wg4=0, cf4=1 by delta;
+
+if tb1=1 then tranto tb1=0, fs1=1 by beta;
+if tb2=1 then tranto tb2=0, fs2=1 by beta;
+if tb3=1 then tranto tb3=0, fs3=1 by beta;
+if tb4=1 then tranto tb4=0, fs4=1 by beta;
+
+if tb1=1 then tranto tb1=0, fb1=1 by tau;
+if tb2=1 then tranto tb2=0, fb2=1 by tau;
+if tb3=1 then tranto tb3=0, fb3=1 by tau;
+if tb4=1 then tranto tb4=0, fb4=1 by tau;
+
+if cf1=1 then tranto cf1=0, wg1=1 by epsilon;
+if cf2=1 then tranto cf2=0, wg2=1 by epsilon;
+if cf3=1 then tranto cf3=0, wg3=1 by epsilon;
+if cf4=1 then tranto cf4=0, wg4=1 by epsilon;
+

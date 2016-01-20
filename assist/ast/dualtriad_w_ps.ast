@@ -1,0 +1,27 @@
+(* 2 TRIADS OF COMPUTERS WITH 1 TRIAD OF POWER SUPPLIES        *)
+(* CONNECTED SUCH THAT 1 COMPUTER IN EACH TRIAD IS CONNECTED TO  *)
+(* EACH POWER SUPPLY.  THUS, IF A POWER SUPPLY FAILS, THEN ONE *)
+(* COMPUTER IN EACH TRIAD FAILS.  THE SYSTEM FAILS IF EITHER   *)
+(* TRIAD OF COMPUTERS FAILS.                                   *)
+
+LAM_PS = 1E-6;  (* Failure rate of power supplies *)
+LAM_C = 1E-5;   (* Failure rate of computers *)
+
+SPACE = (CAF: ARRAY[1..3] OF BOOLEAN,    (* Failed computers in Triad A *)
+         CBF: ARRAY[1..3] OF BOOLEAN,    (* Failed computers in Triad B *)
+         PSF: ARRAY[1..3] OF BOOLEAN);   (* Failed power supplies *)
+START = (9 OF FALSE);
+
+DEATHIF COUNT(CAF) > 1;  (* 2/3 computers in Triad A failed *)
+DEATHIF COUNT(CBF) > 1;  (* 2/3 computers in Triad B failed *)
+
+FOR I IN [1..3]
+   IF (NOT CAF[I])
+      TRANTO CAF[I]=TRUE BY LAM_C;  (* Computer failure in Triad A *)
+   IF (NOT CBF[I])
+      TRANTO CBF[I]=TRUE BY LAM_C;  (* Computer failure in Triad B *)
+   IF (NOT PSF[I])
+      TRANTO CAF[I]=TRUE,CBF[I]=TRUE,PSF[I]=TRUE
+             BY LAM_PS;  (* Power supply failure *)
+ENDFOR;
+

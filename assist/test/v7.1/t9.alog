@@ -1,0 +1,17 @@
+t9.ast    9/03/97 9:44:42 a.m.                          ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): foo1 = array (27,28,29,30,31);
+(0002): foo2 = array (25,26,27,28,29,30,31);
+(0003): space = (a,b);
+(0004): start = (0,0);
+(0005): deathif b>0;
+(0006): for i = 1,5;
+(0007): if b = 0 tranto b = b+foo1[i] by foo2[I+1]*lambda;
+(0008): endfor;
+
+PARSING TIME = 0.01 sec.
+RULE GENERATION TIME = 0.00 sec.
+NUMBER OF STATES IN MODEL = 2
+NUMBER OF TRANSITIONS IN MODEL = 5
+5 DEATH STATES AGGREGATED INTO STATE 1
+

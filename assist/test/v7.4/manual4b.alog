@@ -1,0 +1,44 @@
+manual4b.ast    11/16/15 9:20:17 a.m.             ASSIST ***7.4***, NASA LaRC    Page 1
+
+(0001): (* 2 TRIADS OF COMPUTERS WITH 1 TRIAD OF POWER SUPPLIES        *)
+(0002): (* CONNECTED SO THAT 1 COMPUTER IN EACH TRIAD IS CONNECTED TO  *)
+(0003): (* EACH POWER SUPPLY.  THUS, IF A POWER SUPPLY FAILS, THEN ONE *)
+(0004): (* COMPUTER IN EACH TRIAD FAILS.  THE SYSTEM FAILS IF EITHER   *)
+(0005): (* TRIAD OF COMPUTERS FAILS.                                   *)
+(0006): 
+(0007): LAM_S = 1E-6;   (* Failure rate of power supplies *)
+(0008): LAM_C = 1E-5;   (* Failure rate of computers *)
+(0009): 
+(0010): SPACE = (NFP: ARRAY[1..2] OF 0..3,  (* Number of failed computers *)
+(0011):                                     (*       in each triad        *)
+(0012):          NFS: 0..3,                 (* Number of failed power supplies *)
+(0013):          FLAG:0..1);    (* set to 1 if 2 failed computers are on    *)
+(0014):                         (*    different power supplies, 0 otherwise *)
+(0015): START = (0, 0, 0, 0);
+(0016): 
+(0017): DEATHIF NFP[1]>1 OR NFP[2]>1;
+(0018): 
+(0019):    IF NFP[1]<3 THEN
+(0020):       TRANTO NFP[1] = NFP[1]+1,FLAG = NFP[2]
+(0021):          BY (2-NFP[1])*LAM_C + (1-NFP[2])*LAM_C;
+(0022):       TRANTO NFP[1] = NFP[1]+1 BY NFP[2]*LAM_C;
+(0023):    ENDIF;
+(0024):    IF NFP[2]<3 THEN
+(0025):       TRANTO NFP[2] = NFP[2]+1,FLAG = NFP[1]
+(0026):          BY (2-NFP[2])*LAM_C + (1-NFP[1])*LAM_C;
+(0027):       TRANTO NFP[2] = NFP[2]+1 BY NFP[1]*LAM_C;
+(0028):    ENDIF;
+(0029): 
+(0030): IF (NFP[1]=0 AND NFP[2]=0) THEN
+(0031):    TRANTO (NFP[1]+1, NFP[2]+1, NFS+1, 0) BY 3*LAM_S;
+(0032): ELSE
+(0033):    TRANTO (2,2,2,1) BY (2+FLAG)*LAM_S;
+(0034):    TRANTO (1, 1, 1, 0) BY (1-FLAG)*LAM_S;
+(0035): ENDIF;
+
+PARSING TIME = 0.00 sec.
+RULE GENERATION TIME = 0.00 sec.
+NUMBER OF STATES IN MODEL = 7
+NUMBER OF TRANSITIONS IN MODEL = 35
+21 DEATH STATES AGGREGATED INTO STATE 1
+

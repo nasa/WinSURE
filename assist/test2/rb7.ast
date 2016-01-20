@@ -1,0 +1,4 @@
+SPACE = (X:0..1,Y:0..1,Z:0..1);
+START = (0,0,0);
+IF (X=Y+Z) AND (X=Y-Z) TRANTO (X*Y,1,0) BY 1;
+IF (X=Y-1) OR (X=Y+1) TRANTO (1,X,Y*Y) BY 2;

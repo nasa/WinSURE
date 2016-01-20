@@ -1,0 +1,30 @@
+L = 34;
+DEL =23;
+ECHO = 0;
+T = 10.0;
+D = 5*DEL;
+
+X = T;
+F1X = 1;
+F2X = 1 + L*X;
+F3X = 1 + L*X + L*L*X*X/2;
+HX =  EXP(-L*X);
+H1T = 1 - HX*F1X; H2T = 1 - HX*F2X; H3T = 1 - HX*F3X;
+
+X = T - D;
+F1X = 1;
+F2X = 1 + L*X;
+F3X = 1 + L*X + L*L*X*X/2;
+HX =  EXP(-L*X);
+H1TMD = 1 - HX*F1X; H2TMD = 1 - HX*F2X; H3TMD = 1 - HX*F3X;
+
+RF = EXP(-L*D);
+RE1 = 1 - (H1TMD/H1T)*RF;
+RE2 = 1 - (H2TMD/H2T)*RF;
+RE3 = 1 - (H3TMD/H3T)*RF;
+ECHO = 1;
+
+SHOW L,DEL,RE1,RE2,RE3;
+SHOW H1T,H2T,H3T,H1TMD,H2TMD,H3TMD;
+A1 = H1TMD/H1T; A2 = H2TMD/H2T; A3 = H3TMD/H3T;
+SHOW A1,A2,A3;

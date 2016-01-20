@@ -1,0 +1,9 @@
+
+
+     2(* 1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1 *),
+     1(* 1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1 DEATH  *)
+     = 1+1+0+0+1+1+0+1+1;
+
+(* NUMBER OF STATES IN MODEL = 2 *)
+(* NUMBER OF TRANSITIONS IN MODEL = 1 *)
+(* 1 DEATH STATES AGGREGATED INTO STATE 1 *)

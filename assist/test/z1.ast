@@ -1,0 +1,5 @@
+lambda = 1e-5;
+gamma = 10 * lambda;
+space = (a);
+start = (1);
+deathif (a > 1 + a < 5);

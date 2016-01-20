@@ -1,0 +1,9 @@
+LAMBDA = 1E-4;
+RHO_T = .1;
+MU_REC = 2E-5;
+RHO_REC = 1 - RHO_T;
+
+1,2 = 3*LAMBDA;
+2,3 = 2*LAMBDA;
+2,4 = FAST RHO_REC/MU_REC;
+LIST=3;

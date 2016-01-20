@@ -1,0 +1,19 @@
+t1.ast    11/16/15 9:26:01 a.m.                   ASSIST ***7.4***, NASA LaRC    Page 1
+
+(0001): NP=6;   (* number of processors initially *)
+(0002): LAMBDA = 1E-4;  (* fault arrival rate *)
+(0003): DELTA = 3.6E3;  (* recovery rate *)
+(0004): SPACE = (NC: 0..NP,  NF: 0..NP);
+(0005): START = (NP,0);
+(0006): DEATHIF 2*NF >= NC;
+(0007): INPUT ONEDEATH;
+        ^ [ERROR] STATEMENT OUT OF SEQUENCE ... NOT ALLOWED IN RULE SECTION.
+ONEDEATH (ON/OFF/FULL)? 
+ON;
+
+(0008): IF NC > 0 TRANTO (NC,NF+1)  BY (NC-NF)*LAMBDA; (* fault arrivals *)
+(0009): IF NF > 0 TRANTO (NC-1, NF-1) BY <1/(NF*DELTA),1/(NF*DELTA)>;
+(0010):     (* system recovery *)
+
+
+0001 ERROR.

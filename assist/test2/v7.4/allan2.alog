@@ -1,0 +1,100 @@
+allan2.ast    11/16/15 9:26:00 a.m.               ASSIST ***7.4***, NASA LaRC    Page 1
+
+(0001): lambda=1;
+(0002): tau=3600*24*365;
+(0003): delta=36000*24*365;
+(0004): epsilon=730;
+(0005): alpha=10**8;
+(0006): beta=10**8;
+(0007): 
+(0008): space=(fb1:0..1,
+(0009):        fa1:0..1,
+(0010):        fs1:0..1,
+(0011):        tb1:0..1,
+(0012):        wg1:0..1,
+(0013):        cf1:0..1,
+(0014): 
+(0015):        fb2:0..1,
+(0016):        fa2:0..1,
+(0017):        fs2:0..1,
+(0018):        tb2:0..1,
+(0019):        wg2:0..1,
+(0020):        cf2:0..1,
+(0021): 
+(0022):        fb3:0..1,
+(0023):        fa3:0..1,
+(0024):        fs3:0..1,
+(0025):        tb3:0..1,
+(0026):        wg3:0..1,
+(0027):        cf3:0..1,
+(0028): 
+(0029):        fb4:0..1,
+(0030):        fa4:0..1,
+(0031):        fs4:0..1,
+(0032):        tb4:0..1,
+(0033):        wg4:0..1,
+(0034):        cf4:0..1);
+(0035): 
+(0036): start=(0,0,0,0,1,0,
+(0037):        0,0,0,0,1,0,
+(0038):        0,0,0,0,1,0,
+(0039):        0,0,0,0,1,0);
+(0040): 
+(0041): deathif ((fa1+fs1)*wg1
+(0042):          +(fa2+fs2)*wg2
+(0043):          +(fa3+fs3)*wg3
+(0044):          +(fa4+fs4)*wg4)
+(0045): 
+(0046):          >= ((wg1+wg2+wg3+wg4)/2);
+                                      <-^ [ERROR] REAL NUMBERS NOT ALLOWED EXCEPT IN 
+                                                  RATE EXPRESSIONS: )
+
+(0047): 
+(0048): if fb1+fa1+fs1+tb1+cf1=0 then tranto fb1=1 by lambda; endif;
+(0049): if fb2+fa2+fs2+tb2+cf2=0 then tranto fb2=1 by lambda; endif;
+(0050): if fb3+fa3+fs3+tb3+cf3=0 then tranto fb3=1 by lambda; endif;
+(0051): if fb4+fa4+fs4+tb4+cf4=0 then tranto fb4=1 by lambda; endif;
+(0052): 
+(0053): if fb1=1 then tranto fb1=0, fa1=1 by beta; endif;
+(0054): if fb2=1 then tranto fb2=0, fa2=1 by beta; endif;
+allan2.ast    11/16/15 9:26:00 a.m.               ASSIST ***7.4***, NASA LaRC    Page 2
+
+(0055): if fb3=1 then tranto fb3=0, fa3=1 by beta; endif;
+(0056): if fb4=1 then tranto fb4=0, fa4=1 by beta; endif;
+(0057): 
+(0058): if fa1=1 then tranto fa1=0, fs1=1 by tau; endif;
+(0059): if fa2=1 then tranto fa2=0, fs2=1 by tau; endif;
+(0060): if fa3=1 then tranto fa3=0, fs3=1 by tau; endif;
+(0061): if fa4=1 then tranto fa4=0, fs4=1 by tau; endif;
+(0062): 
+(0063): if fa1=1 then tranto fa1=0, tb1=1 by alpha; endif;
+(0064): if fa2=1 then tranto fa2=0, tb2=1 by alpha; endif;
+(0065): if fa3=1 then tranto fa3=0, tb3=1 by alpha; endif;
+(0066): if fa4=1 then tranto fa4=0, tb4=1 by alpha; endif;
+(0067): 
+(0068): if fs1=1 then tranto fs1=0, wg1=0, cf1=1 by delta; endif;
+(0069): if fs2=1 then tranto fs2=0, wg2=0, cf2=1 by delta; endif;
+(0070): if fs3=1 then tranto fs3=0, wg3=0, cf3=1 by delta; endif;
+(0071): if fs4=1 then tranto fs4=0, wg4=0, cf4=1 by delta; endif;
+(0072): 
+(0073): if tb1=1 then tranto tb1=0, fs1=1 by beta; endif;
+(0074): if tb2=1 then tranto tb2=0, fs2=1 by beta; endif;
+(0075): if tb3=1 then tranto tb3=0, fs3=1 by beta; endif;
+(0076): if tb4=1 then tranto tb4=0, fs4=1 by beta; endif;
+(0077): 
+(0078): if tb1=1 then tranto tb1=0, fb1=1 by tau; endif;
+(0079): if tb2=1 then tranto tb2=0, fb2=1 by tau; endif;
+(0080): if tb3=1 then tranto tb3=0, fb3=1 by tau; endif;
+(0081): if tb4=1 then tranto tb4=0, fb4=1 by tau; endif;
+(0082): 
+(0083): if cf1=1 then tranto cf1=0, wg1=1 by epsilon; endif;
+(0084): if cf2=1 then tranto cf2=0, wg2=1 by epsilon; endif;
+(0085): if cf3=1 then tranto cf3=0, wg3=1 by epsilon; endif;
+(0086): if cf4=1 then tranto cf4=0, wg4=1 by epsilon; endif;
+(0087): 
+(0088): 
+(0089): 
+(0090): 
+
+
+0001 ERROR.

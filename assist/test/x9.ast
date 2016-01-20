@@ -1,0 +1,9 @@
+NP = 6;   (* number of processors initially *)
+ONE = 1;
+LAMBDA = 1E-4;  (* fault arrival rate *)
+DELTA = 3.6E3;  (* recovery rate *)
+SPACE = (NC: ARRAY [ONE..2] OF 0..NP,  NF: ARRAY [1..2] OF 0..NP); 
+START = (NP,5,0,6);
+DEATHIF 2*NF[1] >= NC[1];
+IF NC[1] > 0 TRANTO (NC[1],1,NF[1]+1,1)  BY (NC[1]-NF[1])*LAMBDA; (* fault arrivals *)
+IF NF[1] > 0 TRANTO (NC[1]-1,2, NF[1]-1,2) BY NF[1]*DELTA;     (* system recovery*)

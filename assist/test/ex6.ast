@@ -1,0 +1,47 @@
+(* 2 TRIADS OF COMPUTERS WITH 1 TRIAD OF POWER SUPPLIES        *)
+(* CONNECTED SO THAT 1 COMPUTER IN EACH TRIAD IS CONNECTED TO  *)
+(* EACH POWER SUPPLY.  THUS, IF A POWER SUPPLY FAILS, THEN ONE *)
+(* COMPUTER IN EACH TRIAD FAILS.  THE SYSTEM FAILS IF EITHER   *)
+(* TRIAD OF COMPUTERS FAILS.                                   *)
+
+LAM_S = 1E-6;	(* Failure rate of power supplies *)
+LAM_C = 1E-5;	(* Failure rate of computers *)
+
+SPACE = (NFP: ARRAY[1..2] OF 0..3,  (* Number of failed computers *)
+ 				    (*       in each triad        *)
+         NFS: 0..3,		    (* Number of failed power supplies *)
+         SAME:0..1);	(* Set to 0 if 2 failed computers are on    *)
+                        (*    different power supplies, 1 otherwise *)
+START = (0, 0, 0, 1);
+
+DEATHIF NFP[1]>1 OR NFP[2]>1;  (* The system fails if 2/3 of the   *)
+                               (*   computers in either triad fail *)
+
+FOR I=1,2
+   IF NFP[I]<3 THEN
+      IF NFP[3-I]=1 THEN  (* Other triad has a failed processor *)
+         TRANTO NFP[I] = NFP[I]+1 BY LAM_C;
+   	   (* Failure of processor on same power supply as other failed one *)
+         TRANTO NFP[I] = NFP[I]+1, SAME = 0 BY (2-NFP[I])*LAM_C;
+           (* Failure of processor on different power *)
+           (*   supply than the other failed one      *)
+      ELSE
+         TRANTO NFP[I] = NFP[I]+1 BY (3-NFP[I])*LAM_C;
+           (* Failure of processor when other triad has no failures yet *)
+      ENDIF;
+   ENDIF;
+ENDFOR;
+
+IF (NFP[1]=0 AND NFP[2]=0) THEN
+   TRANTO (NFP[1]+1, NFP[2]+1, NFS+1, 1) BY 3*LAM_S;
+     (* Power supply failures when no previous *)
+     (*   processor failures have occurred     *)
+ELSE 
+   TRANTO (2, 2, 2, 0) BY (3-SAME)*LAM_S;
+     (* Failure of a power supply not connected to another    *)
+     (*   previously failed processor.  NOTE: State (2,2,2,0) *)
+     (*   is an aggregation of several death states           *)
+   IF SAME = 1 TRANTO (1, 1, 1, 1) BY LAM_S;
+     (* Failed power supply connected to *)
+     (*   a previously failed processor  *)
+ENDIF;

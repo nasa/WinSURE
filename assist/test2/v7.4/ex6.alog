@@ -1,0 +1,24 @@
+ex6.ast    11/16/15 9:26:00 a.m.                  ASSIST ***7.4***, NASA LaRC    Page 1
+
+(0001): NP = 6;   (* number of processors initially *)
+(0002): LAMBDA = 1E-4;  (* fault arrival rate *)
+(0003): DELTA = 3.6E3;  (* recovery rate *)
+(0004): SPACE = (NC: 0..NP,  NF: 0..NP);
+(0005): START = (NP,0);
+(0006): DEATHIF 2*NF >= NC;
+(0007): IF NC > 0 TRANTO NC = NC BY (NC-NF)*LAMBDA; (* fault arrivals *)
+(0008): IF NC > 0 TRANTO NC , NF = ,NC = BY (NC-NF)*LAMBDA; (* fault arrivals *)
+                            ^ [ERROR] MISSING TOKEN INSERTED BY PARSER: =
+                            ^ [ERROR] IDENTIFIER OR LITERAL EXPECTED: ,
+                              ^ [ERROR] EXPRESSION REQUIRED BUT WAS OMITTED: NF
+                                   ^ [ERROR] IDENTIFIER OR LITERAL EXPECTED: ,
+                                    ^ [ERROR] EXPRESSION REQUIRED BUT WAS OMITTED: NC
+                                    ^ [WARNING] VALUE ASSIGNED TWICE IN SAME TRANTO 
+                                                FOR THIS STATE-SPACE VARIABLE: NC
+                                         ^ [ERROR] KEYWORD USED IN WRONG CONTEXT: BY
+                                         ^ [ERROR] NUMBER OF ERRORS/LINE EXCEEDS LIMIT 
+                                                   OF: 5
+                                         ^ [ERROR] QUITTING COMPILATION !!!
+
+0008 ERRORS.
+0001 WARNING.

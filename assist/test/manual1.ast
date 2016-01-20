@@ -1,0 +1,30 @@
+(*  TRIAD WITH COLD SPARES  *)
+
+N_PROCS = 3;            (* Number of active processors *)
+N_SPARES = 2;           (* Number of spare processors *)
+LAMBDA_P = 1E-4;        (* Failure rate of active processors *)
+LAMBDA_S = 1E-5;        (* Failure rate of spare processors *)
+DELTA = 3.6E3;          (* Reconfiguration rate *)
+
+SPACE = (NP: 0..N_PROCS,	(* Number of active processors *)
+         NFP: 0..N_PROCS,	(* Number of failed active processors *)
+         NS: 0..N_SPARES,	(* Number of spare processors *)
+         NFS: 0..N_SPARES);	(* Number of failed spare processors *)
+
+START = (N_PROCS, 0, N_SPARES, 0);
+
+DEATHIF 2 * NFP >= NP;
+
+IF NP > NFP TRANTO NFP = NFP+1 BY (NP-NFP)*LAMBDA_P;  
+   (* Active processor failure *)
+
+IF NS > NFS TRANTO NFS = NFS+1 BY NS*LAMBDA_S;       
+   (* Spare processor failure *)
+
+IF (NFP > 0 AND NS > 0) THEN
+   IF NS > NFS TRANTO (NP, NFP-1, NS-1, NFS) BY (1-(NFS/NS))*NFP*DELTA;    
+      (* Replace failed processor with working spare *)
+
+   IF NFS > 0 TRANTO (NP, NFP, NS-1, NFS-1) BY (NFS/NS)*NFP*DELTA;    
+      (* Replace failed processor with failed spare *)
+ENDIF;

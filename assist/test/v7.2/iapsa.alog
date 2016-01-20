@@ -1,0 +1,20 @@
+iapsa.ast    10/21/99 2:41:36 p.m.                      ASSIST 7.2, NASA LaRC    Page 1
+
+(0001): SPACE    = ( NADS: 0..3,        (* NUMBER OF ACTIVE ADS SENSORS *)
+(0002):              NFADS: 0..2,       (* NUMBER OF FAILED ADS SENSORS *)
+(0003):              NMADS: 0..3);      (* NUMBER OF ACTIVE ADS MONITORS *)
+(0004): 
+(0005): DEATHIF ( NADS - NFADS < 1 ) OR ( NFADS > 1 )
+      <-^-> [ERROR] START STATEMENT IS MISSING.
+
+(0006):         OR ( NMADS < 2 AND NADS = 2 AND NFADS > 0 );
+(0007): 
+(0008): START    = (3, 0, 3);
+      <-^-> [ERROR] STATEMENT OUT OF SEQUENCE ... NOT ALLOWED IN RULE SECTION.
+
+(0009): 
+(0010): LAMADS   = 40.0E-6;     (* ADS SENSOR FAILURE RATE *)
+        ^ [ERROR] PROGRAM MUST CONTAIN AT LEAST ONE TRANSITION: LAMADS
+
+
+0003 ERRORS.

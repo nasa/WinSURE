@@ -1,0 +1,16 @@
+lee1.ast    9/03/97 9:44:37 a.m.                        ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): space = (a,b,c);
+(0002): start = (5,5,5);
+(0003): deathif a < 5;
+(0004): pruneif a < 5;
+(0005): if a=5 tranto a=a-1 by foo;
+(0006): if a=5 tranto a=a-1,b=b-1 by foo;
+
+PARSING TIME = 0.01 sec.
+RULE GENERATION TIME = 0.00 sec.
+NUMBER OF STATES IN MODEL = 3
+NUMBER OF TRANSITIONS IN MODEL = 2
+2 DEATH STATES AGGREGATED INTO STATE 1
+0 PRUNE STATES AGGREGATED INTO STATE 2
+

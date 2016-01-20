@@ -1,0 +1,76 @@
+To install the program, the two Makefiles must be slightly modified.
+The second Makefile is in the "common" sub-directory.  At the top of the Makefile
+the appropriate section must be uncommented:
+
+For Linux:
+
+# --------------------------------------------  LINUX
+DFLAGS = -DLINUX -DMUST_ALIGN 
+OFLAGS =  #-fno-rerun-cse-after-loop -g
+WFLAGS = -Wall -Wno-parentheses -Wpointer-arith -Wcast-qual -Wshadow -Wmissing-prototypes
+XFLAGS = -Wcast-align
+MakeWinASSIST = 0
+
+# --------------------------------------------  MAC
+#DFLAGS = -DUNIX -DLINUX #-DIBM -DLINUX -DMUST_ALIGN 
+#OFLAGS =  #-fno-rerun-cse-after-loop -g
+#WFLAGS = -Wall -Wno-parentheses -Wpointer-arith -Wcast-qual -Wshadow -Wmissing-prototypes
+#XFLAGS = -Wcast-align
+#MakeWinASSIST = 0
+
+# --------------------------------------------  Windows 7
+#DFLAGS = -DMSDOS
+#WFLAGS = -Wall
+#MakeWinASSIST = 1
+
+
+
+For Mac
+
+# --------------------------------------------  LINUX
+#DFLAGS = -DLINUX -DMUST_ALIGN 
+#OFLAGS =  #-fno-rerun-cse-after-loop -g
+#WFLAGS = -Wall -Wno-parentheses -Wpointer-arith -Wcast-qual -Wshadow -Wmissing-prototypes
+#XFLAGS = -Wcast-align
+#MakeWinASSIST = 0
+
+# --------------------------------------------  MAC
+DFLAGS = -DUNIX -DLINUX #-DIBM -DLINUX -DMUST_ALIGN 
+OFLAGS =  #-fno-rerun-cse-after-loop -g
+WFLAGS = -Wall -Wno-parentheses -Wpointer-arith -Wcast-qual -Wshadow -Wmissing-prototypes
+XFLAGS = -Wcast-align
+MakeWinASSIST = 0
+
+# --------------------------------------------  Windows 7
+#DFLAGS = -DMSDOS
+#WFLAGS = -Wall
+#MakeWinASSIST = 1
+
+
+
+For Windows:
+
+# --------------------------------------------  LINUX
+#DFLAGS = -DLINUX -DMUST_ALIGN 
+#OFLAGS =  #-fno-rerun-cse-after-loop -g
+#WFLAGS = -Wall -Wno-parentheses -Wpointer-arith -Wcast-qual -Wshadow -Wmissing-prototypes
+#XFLAGS = -Wcast-align
+#MakeWinASSIST = 0
+
+# --------------------------------------------  MAC
+#DFLAGS = -DUNIX -DLINUX #-DIBM -DLINUX -DMUST_ALIGN 
+#OFLAGS =  #-fno-rerun-cse-after-loop -g
+#WFLAGS = -Wall -Wno-parentheses -Wpointer-arith -Wcast-qual -Wshadow -Wmissing-prototypes
+#XFLAGS = -Wcast-align
+#MakeWinASSIST = 0
+
+# --------------------------------------------  Windows 7
+DFLAGS = -DMSDOS
+WFLAGS = -Wall
+MakeWinASSIST = 1
+
+
+
+This must be done for both Makefiles!!
+
+The just type "make" in the parent directory.

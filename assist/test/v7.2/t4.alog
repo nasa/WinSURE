@@ -1,0 +1,14 @@
+t4.ast    10/12/99 11:29:40 a.m.                        ASSIST 7.2, NASA LaRC    Page 1
+
+(0001): SPACE = (A,B,C);
+(0002): START = (1,2,3);
+(0003): DEATHIF AND(A+B=C);
+                ^ [ERROR] IDENTIFIER OR LITERAL EXPECTED: AND
+                   ^ [ERROR] EXPRESSION REQUIRED BUT WAS OMITTED: (
+                   ^ [ERROR] SEMICOLON EXPECTED: (
+                   ^ [ERROR] SKIPPING EXTRANEOUS TOKENS: (
+
+(0004): IF A < 10 TRANTO A = A+1 BY FOOBAR;
+
+
+0004 ERRORS.

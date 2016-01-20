@@ -1,0 +1,10 @@
+ECHO = 0;
+N= 5;
+lambda = .001;
+1,2 = N*lambda;
+2,3 = (N-1)*lambda;
+3,4 = (N-2)*lambda;
+4,5 = (N-3)*lambda;
+5,6 = (N-4)*lambda;
+echo=1; 
+qtcalc = 1; time = 10;

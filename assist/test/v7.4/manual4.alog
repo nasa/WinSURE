@@ -1,0 +1,39 @@
+manual4.ast    11/16/15 9:20:17 a.m.              ASSIST ***7.4***, NASA LaRC    Page 1
+
+(0001): (* 2 TRIADS OF COMPUTERS WITH 1 TRIAD OF POWER SUPPLIES        *)
+(0002): (* CONNECTED SUCH THAT 1 COMPUTER IN EACH TRIAD IS CONNECTED TO  *)
+(0003): (* EACH POWER SUPPLY.  THUS, IF A POWER SUPPLY FAILS, THEN ONE *)
+(0004): (* COMPUTER IN EACH TRIAD FAILS.  THE SYSTEM FAILS IF EITHER   *)
+(0005): (* TRIAD OF COMPUTERS FAILS.                                   *)
+(0006): 
+(0007): LAM_PS = 1E-6;  (* Failure rate of power supplies *)
+(0008): LAM_C = 1E-5;   (* Failure rate of computers *)
+(0009): 
+(0010): SPACE = (CAF: ARRAY[1..3] OF 0..1,      (* Failed computers in Triad A *)
+(0011):          CBF: ARRAY[1..3] OF 0..1,      (* Failed computers in Triad B *)
+(0012):          PSF: ARRAY[1..3] OF 0..1);     (* Failed power supplies *)
+(0013): START = (9 OF 0);
+(0014): 
+(0015): DEATHIF CAF[1] + CAF[2] + CAF[3] > 1;
+(0016):         (* 2/3 computers in Triad A failed *)
+(0017): DEATHIF CBF[1] + CBF[2] + CBF[3] > 1;
+(0018):         (* 2/3 computers in Triad B failed *)
+(0019): 
+(0020): FOR I = 1,3;
+(0021):    IF CAF[I]=0 TRANTO CAF[I] = 1 BY LAM_C;
+(0022):         (* Failure of computer in Triad A *)
+(0023): 
+(0024):    IF CBF[I]=0 TRANTO CBF[I] = 1 BY LAM_C;
+(0025):         (* Failure of computer in Triad B *)
+(0026): 
+(0027):    IF PSF[I]=0 TRANTO CAF[I] = 1, CBF[I] = 1, PSF[I] = 1 BY LAM_PS;
+(0028):         (* Power supply failure *)
+(0029): ENDFOR;
+(0030): 
+
+PARSING TIME = 0.00 sec.
+RULE GENERATION TIME = 0.00 sec.
+NUMBER OF STATES IN MODEL = 21
+NUMBER OF TRANSITIONS IN MODEL = 138
+102 DEATH STATES AGGREGATED INTO STATES 1 - 2
+

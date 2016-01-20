@@ -1,0 +1,17 @@
+#!/bin/sh
+#rit ../tests/*.mod 
+
+
+
+echo "Running ../tests/*.mod SURE  tests"
+if ./rit --run $1 ../tests/*.mod > mold/runs.out
+then
+  echo "============================================================================="
+  diff ../gold/runs.out mold/runs.out
+  #echo "============================================================================="
+  #diff ../gold/summary.txt mold/summary.txt
+else
+  echo "HALTED UNEXPECTEDLY"
+fi
+echo $'\a'
+

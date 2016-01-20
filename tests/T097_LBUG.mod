@@ -1,0 +1,25 @@
+LEE;
+TIME=1.0;
+LAM=0.001;
+MU = 0.001;
+START=10;
+10,1 = 2*LAM;
+1,2 = MU;
+2,3= <0.68>;
+10,4= MU;
+1,6= <1>;
+1,5= 2*LAM;
+2,7= 2*LAM;
+2,8= <0.32>;
+10,9 = LAM;
+ARBITRARY = 321;
+@1 = <0.002,0.003,1.0-0.04>;
+@2 = <ARBITRARY,0.003,1.0>;
+LIST=2;
+(* STATE 3 prob. in Lee's paper = 2.75223E-9,  1.81361E-5 *)
+et0 = 2*lam*time; et1 = 1 - exp(-2*lam*time);
+prod = (0.68)*mu*[0.96*0.002+(1 - 0.96)*(0.003+1/(mu+2*lam))];
+show et0,et1,prod;
+calc et0*prod;
+calc et1*prod;
+qtcalc=1;

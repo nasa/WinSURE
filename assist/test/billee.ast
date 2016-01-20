@@ -1,0 +1,70 @@
+
+space = (pri: 0..3,
+         seca: 0..3,
+         secb: 0..3,
+         vlv1: 0..2,
+         vlv2: 0..2,
+         nfail: 0..4);
+
+start = ( 3,3,3,2,2,0);
+
+deathif ((seca<3 and pri<2) or vlv1<2) and
+        ((secb<3 and (pri=2 or pri=0)) or vlv2<2) or
+        (seca=1 and pri<2) or (secb=1 and (pri=2 or pri=0)) or
+        vlv1=0 or vlv2=0;
+
+pruneif nfail>2;
+
+list = 3;
+time = 3.0;
+prune = 1.0e-15;
+echo = 0;
+
+lamc = 50.0e-6;
+covc = 0.95;
+lamdiu = 37.5e-6;
+diuact = 0.05;
+lamnode = 37.5e-6;
+lamhyd = 43.0e-6;
+lamsd = 30.0e-6;
+lamv = 15.0e-6;
+ramjam = 3.33e-5;
+
+(* primary failures *)
+
+if pri>0 then
+   tranto pri=0, nfail=nfail+1 by 2*lamc + lamnode + lamdiu;
+   if pri=3 then
+      tranto pri=2, nfail=nfail+1 by lamsd;
+      tranto pri=1, nfail=nfail+1 by lamsd;
+   else
+      tranto pri=0, nfail=nfail+1 by lamsd;
+   endif;
+endif;
+
+(* secondary failures *)
+
+if seca>0 then
+   tranto seca=0, nfail=nfail+1 by lamnode + (1.0-diuact)*lamdiu;
+   if seca=3 tranto seca=2, nfail=nfail+1 by lamsd;
+   if seca>1 tranto seca=1, nfail=nfail+1 by lamc + diuact*lamdiu;
+endif;
+
+if secb>0 then
+   tranto secb=0, nfail=nfail+1 by lamnode + (1.0-diuact)*lamdiu;
+   if secb=3 tranto secb=2, nfail=nfail+1 by lamsd;
+   if secb>1 tranto secb=1, nfail=nfail+1 by lamc + diuact*lamdiu;
+endif;
+
+(* valve *)
+
+if vlv1>1 then
+   tranto vlv1=1, nfail=nfail+1 by (1.0-ramjam)*lamv + lamhyd;
+   tranto vlv1=0, nfail=nfail+1 by ramjam*lamv;
+endif;
+
+if vlv2>1 then
+   tranto vlv2=1, nfail=nfail+1 by (1.0-ramjam)*lamv + lamhyd;
+   tranto vlv2=0, nfail=nfail+1 by ramjam*lamv;
+endif;
+

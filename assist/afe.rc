@@ -1,0 +1,58 @@
+#include <windows.h>
+#include "afe.h"
+
+
+InputFile MENU
+{
+//  POPUP "&InputFile"
+//  {
+//    MENUITEM "&Input Text File\tF2", IDM_INPUTFILE
+//    MENUITEM "E&xit\tCtrl+X", IDM_EXIT
+//  }
+  
+  MENUITEM "&Input_File", IDM_INPUTFILE
+  MENUITEM "&Rerun"     , IDM_RERUN
+  MENUITEM "&Listing", IDM_LISTING
+  MENUITEM "&List_Mod", IDM_LISTMOD
+  MENUITEM "&Options", IDM_DIALOG1
+  MENUITEM "&Help", IDM_HELP
+  MENUITEM "&Exit", IDM_EXIT
+}
+
+InputFile ACCELERATORS
+{
+  VK_F2, IDM_INPUTFILE, VIRTKEY
+  "^X", IDM_EXIT
+
+  VK_F3, IDM_DIALOG1, VIRTKEY
+  "^X", IDM_EXIT
+  VK_F1, IDM_HELP, VIRTKEY
+
+
+}
+
+MyDB DIALOG 18, 18, 120, 160
+CAPTION "Options Dialog Box"
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+{
+//  DEFPUSHBUTTON "Red", IDD_RED, 57, 45, 30, 14,
+//             WS_CHILD | WS_VISIBLE | WS_TABSTOP
+//  PUSHBUTTON "Green", IDD_GREEN, 95, 45, 30, 14,
+//             WS_CHILD | WS_VISIBLE | WS_TABSTOP
+//  PUSHBUTTON "Select Fruit", IDD_SELFRUIT, 5, 45, 42, 14,
+//             WS_CHILD | WS_VISIBLE | WS_TABSTOP
+//  LISTBOX ID_LB1, 2, 10, 47, 28, LBS_NOTIFY | WS_CHILD |
+//          WS_VISIBLE | WS_BORDER | WS_VSCROLL | WS_TABSTOP
+  AUTOCHECKBOX "Cross Reference Map", ID_CB1, 3, 10, 80, 12
+  AUTOCHECKBOX "OneDeath ON  Default", ID_CB2, 3, 25, 85, 12
+  AUTOCHECKBOX "State Comments ON", ID_CB3, 3, 40, 85, 12
+  EDITTEXT ID_EB1, 68, 65, 42, 12, ES_LEFT | ES_AUTOHSCROLL |
+           WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP
+  CTEXT "Input Line Width",ID_CT1,2,65,60,8
+  PUSHBUTTON "Cancel", IDCANCEL, 32, 90, 37, 14,
+             WS_CHILD | WS_VISIBLE | WS_TABSTOP
+  PUSHBUTTON "Done", IDOK, 78, 90, 30, 14,
+             WS_CHILD | WS_VISIBLE | WS_TABSTOP
+  LTEXT "Note. Commands inside the ASSIST",ID_CT2,3,130,120,8
+  LTEXT "input file overide these defaults.",ID_CT3,3,140,120,8
+}

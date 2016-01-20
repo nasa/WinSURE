@@ -1,0 +1,37 @@
+big2-com.ast    11/16/15 9:20:16 a.m.             ASSIST ***7.4***, NASA LaRC    Page 1
+
+(0001): echo=0;
+(0002): comment=1;
+(0003): list=2;
+(0004): prune=1.0e-30;
+(0005): rec=3.0e-4;
+(0006): recover=1.0/rec;
+(0007): lambda=1.0e-4;
+(0008): 
+(0009): 
+(0010): 
+(0011): space=(a:0..4,b:0..4,c:0..4,abad:0..2,bbad:0..2,cbad:0..2,n);
+(0012): 
+(0013): start=(4,4,4,0,0,0,0);
+(0014): 
+(0015): deathif abad>1;
+(0016): deathif bbad>1;
+(0017): deathif cbad>1;
+(0018): 
+(0019): pruneif n=5;
+(0020): 
+(0021): if a>0 tranto a=a-1,abad=abad+1,n=n+1 by lambda;
+(0022): if b>0 tranto b=b-1,bbad=bbad+1,n=n+1 by lambda;
+(0023): if c>0 tranto c=c-1,cbad=cbad+1,n=n+1 by lambda;
+(0024): 
+(0025): if abad>0 tranto abad=0 by fast recover;
+(0026): if bbad>0 tranto bbad=0 by fast recover;
+(0027): if cbad>0 tranto cbad=0 by fast recover;
+
+PARSING TIME = 0.00 sec.
+RULE GENERATION TIME = 0.01 sec.
+NUMBER OF STATES IN MODEL = 133
+NUMBER OF TRANSITIONS IN MODEL = 513
+129 DEATH STATES AGGREGATED INTO STATES 1 - 3
+120 PRUNE STATES AGGREGATED INTO STATE 4
+

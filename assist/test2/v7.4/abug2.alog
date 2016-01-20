@@ -1,0 +1,44 @@
+abug2.ast    11/16/15 9:26:00 a.m.                ASSIST ***7.4***, NASA LaRC    Page 1
+
+(0001): COMMENT = 0;
+(0002): NP =1+1;
+(0003): LAMBDA = 1E-4;  (* fault arrival rate *)
+(0004): DELTA = 3.6E3;  (* recovery rate *)
+(0005): SPACE = (N1:1..10,N2:1..10,N3:1..1,N4:1..10,N5:1..1,N6:1..1,
+(0006):          N7:1..1,N8:1..1,N9:1..1,N0:1..1,NA:1..1,NB:1..1,NC:1..1,
+(0007):          ND:1..1,NE:1..1,NF:1..1,NG:1..1,NH:1..1,NI:1..1,NJ:1..1,
+(0008):          NK:1..1,NL:1..1,NM:1..1,NN:1..1,M1:1..1,M2:1..1,M3:1..1,
+(0009):          M4:1..1,M5:1..1,M6:1..1,M7:1..1,M8:1..1,M9:1..1,M0:1..1,
+(0010):          MA:1..1,MB:1..1,MC:1..1,MD:1..1,ME:1..1,MF:1..1,MG:1..1);
+(0011): START = (1,2,1,10,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+(0012):          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+(0013): DEATHIF N1 >= 2*NP;
+(0014): IF N1 > 0 THEN TRANTO N1=N1+1 BY (N1)*LAMBDA; (* fault arrivals *)
+(0015): IF N1 > 0 THEN TRANTO N2=N2+1 BY (N1)*LAMBDA; (* fault arrivals *)
+(0016): IF N1 > 0 THEN TRANTO N1=N1+1 BY (N1)*LAMBDA; (* fault arrivals *)
+(0017): IF N1 > 0 THEN TRANTO N2=N2+1 BY (N1)*LAMBDA; (* fault arrivals *)
+(0018): IF N1 > 0 THEN TRANTO N1=N1+1 BY (N1)*LAMBDA; (* fault arrivals *)
+(0019): IF N1 > 0 THEN TRANTO N2=N2+1 BY (N1)*LAMBDA; (* fault arrivals *)
+(0020): IF N1 > 0 THEN TRANTO N1=N1+1 BY (N1)*LAMBDA; (* fault arrivals *)
+(0021): IF N1 > 0 THEN TRANTO N2=N2+1 BY (N1)*LAMBDA; (* fault arrivals *)
+(0022): IF N1 > 0 THEN TRANTO N1=N1+1 BY (N1)*LAMBDA; (* fault arrivals *)
+(0023): IF N1 > 0 THEN TRANTO N2=N2+1 BY (N1)*LAMBDA; (* fault arrivals *)
+(0024): IF N1 > 0 THEN TRANTO N1=N1+1 BY (N1)*LAMBDA; (* fault arrivals *)
+(0025): IF N1 > 0 THEN TRANTO N2=N2+1 BY (N1)*LAMBDA; (* fault arrivals *)
+(0026): IF N1 > 0 THEN TRANTO N1=N1+1 BY (N1)*LAMBDA; (* fault arrivals *)
+(0027): IF N1 > 0 THEN TRANTO N2=N2+1 BY (N1)*LAMBDA; (* fault arrivals *)
+(0028): IF N1 > 0 THEN TRANTO N1=N1+1 BY (N1)*LAMBDA; (* fault arrivals *)
+(0029): IF N1 > 0 THEN TRANTO N2=N2+1 BY (N1)*LAMBDA; (* fault arrivals *)
+        ^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF 
+                  MISSING.
+        ^ [ERROR] SEMICOLON EXPECTED: (end-of-file)
+        ^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF 
+                  MISSING.
+        ^ [ERROR] SEMICOLON EXPECTED: (end-of-file)
+        ^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF 
+                  MISSING.
+        ^ [ERROR] SEMICOLON EXPECTED: (end-of-file)
+        ^ [ERROR] NUMBER OF ERRORS/LINE EXCEEDS LIMIT OF: 5
+        ^ [ERROR] QUITTING COMPILATION !!!
+
+0008 ERRORS.

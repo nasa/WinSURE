@@ -1,0 +1,27 @@
+NSI = 5;              (* number of spares initially, can be anything *)
+SPACE = (N1: 0..3,    (* number of processors in first triad *)
+         N2: 0..3,    (* number of processors in second triad *)
+         F1: 0..2,    (* number of faulty processors in first triad *)
+         F2: 0..2,    (* number of fault processors in second triad *)
+         NS: 0..NSI); (* number of spares *)
+
+START = (3,3,0,0,NSI);
+
+LAMBDA = 5E-4;  (* failure rate of active processors *)
+GAMMA = 2E-5;   (* failure rate of spares *)
+DELTA = 3.6E3;  (* rate at which faulty processors are removed *)
+
+DEATHIF (2*F1 > N1) OR (2*F2 > N2);
+
+IF N1 > 0 TRANTO F1=F1+1 BY (N1-F1)*LAMBDA;
+IF N2 > 0 TRANTO F2=F2+1 BY (N2-F2)*LAMBDA;
+IF NS > 0 TRANTO NS=NS-1 BY NS*GAMMA;
+
+IF (F1 > 0) AND (NS=0) TRANTO (1,N2,0,F2,NS+1) BY 
+    <1/DELTA,1/DELTA,1-F2*0.5>;
+IF (F2 > 0) AND (NS=0) TRANTO (N1,1,F1,0,NS+1) BY 
+    <1/DELTA,1/DELTA,1-F1*0.5>;
+IF (F1 > 0) AND (NS > 0) 
+   TRANTO (N1,N2,F1-1,F2,NS-1) BY <1/DELTA,1/DELTA,1-F2*0.5>;
+IF (F2 > 0) AND (NS > 0) 
+   TRANTO (N1,N2,F1,F2-1,NS-1) BY <1/DELTA,1/DELTA,1-F1*0.5>;

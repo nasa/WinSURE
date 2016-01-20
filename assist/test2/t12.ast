@@ -1,0 +1,19 @@
+LAMBDA = 1E-4;  (* fault arrival rate *)
+DELTA = 3.6E3;  (* recovery rate *)
+FOOBAR = 2;
+SPACE = (A,B,C,D,E);
+START = (FOOBAR OF 6,6,2 OF 6);
+ONEDEATH = 1;
+DEATHIF A < 5;
+IF A = 6 TRANTO (A-1,B,C,D,200) BY FOONESS;
+IF A = 10 TRANTO A=A+1 BY FOO;
+IF A=6 THEN;
+   IF B=6 THEN;
+      TRANTO A=A-1 BY FOO1;
+      TRANTO A=A-1,B=B-1 BY FOO2;
+   ENDIF;
+ELSE;
+   IF B < 6 TRANTO A=A-2,C=C-1 BY FOO3;
+   TRANTO A=A-3,D=D-1 BY FOO4;
+ENDIF;
+(* FOONESS *)

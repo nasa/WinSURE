@@ -1,0 +1,62 @@
+manual2.ast    10/12/99 11:29:36 a.m.                   ASSIST 7.2, NASA LaRC    Page 1
+
+(0001): (*  MULTIPLE TRIADS WITH POOL OF SPARES *)
+(0002): 
+(0003): INPUT N_TRIADS;         (* Number of triads initially *)
+N_TRIADS? 3;
+
+(0004): INPUT N_SPARES;         (* Number of spares *)
+N_SPARES? 2;
+
+(0005): N_PROCS = 3;            (* Number of active processors per triad *)
+(0006): LAMBDA_P = 1E-4;        (* Failure rate of active processors *)
+(0007): LAMBDA_S = 1E-5;        (* Failure rate of cold spare processors *)
+(0008): DELTA1 = 3.6E3;         (* Reconfiguration rate to switch in spare *)
+(0009): DELTA2 = 5.1E3;         (* Reconfiguration rate to break up a triad *)
+(0010): 
+(0011): SPACE = (NP: ARRAY[1..N_TRIADS] OF 0..N_PROCS,
+(0012):                              (* Number of processors per triad *)
+(0013):          NFP: ARRAY[1..N_TRIADS] OF 0..N_PROCS,
+(0014):                              (* Number of failed active processors per triad *)
+(0015):          NS,                 (* Number of spare processors *)
+(0016):          NFS,                (* Number of failed spare processors *)
+(0017):          NT: 0..N_TRIADS);   (* Number of non-failed triads *)
+(0018): 
+(0019): START = (N_TRIADS OF N_PROCS, N_TRIADS OF 0, N_SPARES, 0, N_TRIADS);
+(0020): 
+(0021): IF NS > NFS TRANTO NFS = NFS+1 BY NS*LAMBDA_S;  (* Spare failure *)
+(0022): 
+(0023): FOR J = 1, N_TRIADS;
+(0024):    IF NP[J] > NFP[J] TRANTO NFP[J] = NFP[J]+1
+(0025):         BY (NP[J]-NFP[J])*LAMBDA_P;  (* Active processor failure *)
+(0026): 
+(0027):    IF NFP[J] > 0 THEN
+(0028):       IF NS > 0 THEN
+(0029):          IF NS > NFS TRANTO NFP[J] = NFP[J]-1, NS = NS-1
+(0030):             BY (1-(NFS/NS))*NFP[J]*DELTA1;
+(0031):             (* Replace failed processor with working spare *)
+(0032): 
+(0033):          IF NFS > 0 TRANTO NS = NS-1, NFS = NFS-1 BY (NFS/NS)*NFP[J]*DELTA1;
+(0034):             (* Replace failed processor with failed spare *)
+(0035): 
+(0036):       ELSE
+(0037):          TRANTO NP[J]=0, NFP[J]=0, NS = NP[J]-NFP[J], NT = NT-1 BY DELTA2;
+(0038):             (* Break up a failed triad when no spares available *)
+(0039):       ENDIF;
+(0040):    ENDIF;
+(0041): 
+(0042):    DEATHIF 2 * NFP[J] >= NP[J] AND NP[J] > 0;
+(0043):      (* Two faults in an active triad is system failure *)
+(0044): 
+(0045): ENDFOR;
+(0046): 
+(0047): DEATHIF NT = 0;    (* System failure by exhaustion *)
+
+PARSING TIME = 0.00 sec.
+RULE GENERATION TIME = 900.00 sec.
+NUMBER OF STATES IN MODEL = 158
+NUMBER OF TRANSITIONS IN MODEL = 591
+165 DEATH STATES AGGREGATED INTO STATES 1 - 2
+manual2.ast    10/12/99 11:29:36 a.m.                   ASSIST 7.2, NASA LaRC    Page 2
+
+

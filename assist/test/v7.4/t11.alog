@@ -1,0 +1,18 @@
+t11.ast    11/16/15 9:20:17 a.m.                  ASSIST ***7.4***, NASA LaRC    Page 1
+
+(0001): SPACE = (A,B,C);
+(0002): START = (0,0,0);
+(0003): DEATHIF (A>B>C);
+                    ^ [ERROR] TRIPLE INEQUALITY NOT SUPPORTED.  USE "A<B AND B<C" 
+                              INSTEAD OF "A<B<C", ETC: >
+                    ^ [ERROR] ARITHMETIC OPERATOR IN A BOOLEAN EXPRESSION: >
+                    ^ [ERROR] RIGHT ")" EXPECTED: >
+                    ^ [ERROR] SEMICOLON EXPECTED: >
+                     ^ [ERROR] SKIPPING EXTRANEOUS TOKENS: C
+
+(0004): DEATHIF (A>0) AND (B>0) OR (C>0);
+(0005): IF A < 10 TRANTO A = A+1 BY FOOBAR;
+(0006): IF B < 5 TRANTO B = B+1 BY FOOBAR;
+
+
+0005 ERRORS.

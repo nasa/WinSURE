@@ -1,0 +1,39 @@
+bc3.ast    11/16/15 9:20:16 a.m.                  ASSIST ***7.4***, NASA LaRC    Page 1
+
+(0001): 
+(0002): 
+(0003): 
+(0004): 
+(0005): 
+(0006): 
+(0007):           LAMBDA = 1E-4;                (* Permanent fault arrival rate *)
+(0008):           GAMMA = 10*LAMBDA;            (* Transient fault arrival rate *)
+(0009):           W = .5;                       (* Transient fault disappearance rate *)
+(0010):           DELTA = 3.6E3;                (* Reconfiguration rate *)
+(0011): 
+(0012):           SPACE = (NW,          (* Number of working processors *)
+(0013):                    NFP,         (* Active procs. with permanent faults *)
+(0014):                    NFT);        (* Active procs. with transient faults *)
+(0015): 
+(0016):           START = (10, 0, 0);
+(0017): 
+(0018):           IF NW>0 TRANTO NW = NW-1, NFP = NFP+1 BY NW*LAMBDA;
+(0019):              (* 1. Permanent fault arrival *)
+(0020):           IF NW>0 TRANTO NW = NW-1, NFT = NFT+1 BY NW*GAMMA;
+(0021):              (* 2. Transient fault arrival *)
+(0022):           IF NFT>0 TRANTO NW = NW+1, NFT = NFT-1 BY FAST NFT*W;
+(0023):              (* 3. Transient fault disappearance *)
+(0024):           IF NFP>0 TRANTO NFP = NFP-1 BY FAST NFP*DELTA;
+(0025):              (* 4A. Permanent fault reconfiguration *)
+(0026):           IF NFT>0 TRANTO NFT = NFT-1 BY FAST NFT*DELTA;
+(0027):              (* 4B. Transient fault reconfiguration *)
+(0028): 
+(0029):           DEATHIF NFP+NFT >= NW;
+(0030):              (* 5. System failure *)
+
+PARSING TIME = 0.00 sec.
+RULE GENERATION TIME = 0.00 sec.
+NUMBER OF STATES IN MODEL = 70
+NUMBER OF TRANSITIONS IN MODEL = 258
+58 DEATH STATES AGGREGATED INTO STATE 1
+

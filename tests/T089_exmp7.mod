@@ -1,0 +1,13 @@
+lee;
+lambda = 1E-4;
+pr1 = 0.91;
+mu = 2e-4;
+1,2 = 3*lambda;
+2,3 = 2*lambda;
+2,4 = <pr1>;
+4,5 = 3*lambda;
+5,6 = 2*lambda;
+2,7 = <1-pr1>;
+7,8 = lambda;
+@2 = <mu,2*mu,1.0>;
+list = 2;

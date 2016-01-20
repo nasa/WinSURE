@@ -1,0 +1,9 @@
+NP=6;   (* number of processors initially *)
+LAMBDA = 1E-4;  (* fault arrival rate *)
+DELTA = 3.6E3;  (* recovery rate *)
+SPACE = (A:0..1,B:0..1,C:0..1,D,E,F,G); 
+START = (7 OF 1);
+DEATHIF A=B;
+ONEDEATH = 1;
+IF A > 0 TRANTO A = A+1 BY LAMBDA; (* fault arrivals *)
+(* START STATE SHOULD BE A DEATH STATE *)

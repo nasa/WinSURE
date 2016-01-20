@@ -1,0 +1,21 @@
+f6.ast    11/16/15 9:20:17 a.m.                   ASSIST ***7.4***, NASA LaRC    Page 1
+
+(0001): 
+(0002): NP = 6;   (* number of processors initially *)
+(0003): FOOBAR = ARRAY (5,1,6);
+(0004): ONE = 1;
+(0005): LAMBDA = 1E-4;  (* fault arrival rate *)
+(0006): DELTA = 3.6E3;  (* recovery rate *)
+(0007): SPACE = (NC: ARRAY [ONE..2] OF 0..NP,  NF: ARRAY [1..2] OF 0..NP);
+(0008): START = (NP,5,0,6);
+(0009): DEATHIF 2*NF[1] >= NC[1];
+(0010): IF NC[1] > 0 TRANTO (NC[1],1,NF[1]+1,1)  BY
+(0011):    (NC[1]-NF[1])*5*LAMBDA; (* fault arrivals *)
+(0012): (*IF NF[1] > 0 TRANTO (NC[1]-1,2, NF[1]-1,2) BY NF[1]*DELTA;*)     (* system recovery*)
+
+PARSING TIME = 0.00 sec.
+RULE GENERATION TIME = 0.00 sec.
+NUMBER OF STATES IN MODEL = 4
+NUMBER OF TRANSITIONS IN MODEL = 3
+1 DEATH STATES AGGREGATED INTO STATE 1
+

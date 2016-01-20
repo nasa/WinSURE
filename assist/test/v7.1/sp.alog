@@ -1,0 +1,82 @@
+sp.ast    9/03/97 9:47:27 a.m.                          ASSIST 7.1, NASA LaRC    Page 1
+
+(0001):  SPACE = (LANE1L :0..1,  (* NUMBER OF OPERATIONAL LANE 1S IN LEFT PFC       *)
+(0002): LANE1HL:0..1,  (* NUMBER OF LANE 1S IN RESET MODE IN LEFT PFC     *)
+(0003): LANE2L :0..1,  (* NUMBER OF OPERATIONAL LANE 2S IN LEFT PFC       *)
+(0004): LANE2HL:0..1,  (* NUMBER OF LANE 2S IN RESET MODE IN LEFT PFC     *)
+(0005): LANE3L :0..1,  (* NUMBER OF OPERATIONAL LANE 3S IN LEFT PFC       *)
+(0006): LANE3HL:0..1,  (* NUMBER OF LANE 3S IN RESET MODE IN LEFT PFC     *)
+(0007): 
+(0008): LANE1R :0..1,  (* NUMBER OF OPERATIONAL LANE 1S IN RIGHT PFC      *)
+(0009): LANE1HR:0..1,  (* NUMBER OF LANE 1S IN RESET MODE IN RIGHT PFC    *)
+(0010): LANE2R :0..1,  (* NUMBER OF OPERATIONAL LANE 2S IN RIGHT PFC      *)
+(0011): LANE2HR:0..1,  (* NUMBER OF LANE 2S IN RESET MODE IN RIGHT PFC    *)
+(0012): LANE3R :0..1,  (* NUMBER OF OPERATIONAL LANE 3S IN RIGHT PFC      *)
+(0013): LANE3HR:0..1); (* NUMBER OF LANE 3S IN RESET MODE IN RIGHT PFC    *)
+(0014): 
+(0015): START = (1,0,1,0,1,0,1,0,1,0,1,0);                (* START WITH ALL GOOD   *)
+(0016): 
+(0017): (* ----------------------------------------------------------------------- *)
+(0018): (* -- DEATH STATE DEFINITION --------------------------------------------- *)
+(0019): (* ----------------------------------------------------------------------- *)
+(0020): 
+(0021): DEATHIF
+(0022): (((LANE1L = 0) AND (LANE2L = 0))
+(0023): OR  ((LANE1L = 0) AND (LANE3L = 0))
+(0024): OR  ((LANE2L = 0) AND (LANE3L = 0)))
+(0025): AND
+(0026): (((LANE1R = 0) AND (LANE2R = 0))
+(0027): OR  ((LANE1R = 0) AND (LANE3R = 0))
+(0028): OR  ((LANE2R = 0) AND (LANE3R = 0)));
+(0029): 
+(0030): (* ---------------------------------------------------------------------- *)
+(0031): (* -- TRANSITION STATEMENTS --------------------------------------------- *)
+(0032): (* ---------------------------------------------------------------------- *)
+(0033): 
+(0034): (* -- LANE 1 COMMON MODE TRANSIENT FAULTS DUE TO SOFTWARE -------------- *)
+(0035): 
+(0036): IF ((LANE1L > 0) OR (LANE1R > 0))
+(0037): AND ((LANE2HL = 0) AND (LANE2HR = 0))
+(0038): AND ((LANE3HL = 0) AND (LANE3HR - 0))
+                                           ^ [ERROR] RELATIONAL OPERATOR MUST FOLLOW 
+                                                     NUMERIC QUANTITY IN BOOLEAN 
+                                                     EXPRESSION: )
+
+(0039): THEN TRANTO (LANE1L-LANE1L,LANE1HL+LANE1L,LANE2L,LANE2HL,
+(0040): LANE3L,LANE3HL,
+(0041): LANE1R-LANE1R,LANE1HR+LANE1R,LANE2R,LANE2HR,
+(0042): LANE3X,LANE2HR)
+        ^ [ERROR] IDENTIFIER NOT DEFINED: LANE3X
+
+(0043): BY GAMMA;
+(0044): 
+(0045): (* -- LANE 1 RANDOM PERMANENT FAULTS DUE TO HARDWARE ------------------ *)
+(0046): 
+(0047): IF (LANE1L > 0)
+(0048): THEN TRANTO (LANE1L-1,LANE1HL,LANE2L,LANE2HL,LANE3L,LANE3HL,
+(0049): LANE1R,LANE1HR,LANE2R,LANE2HR,LANE3R,LANE3HR)
+(0050): BY LANELAMB;
+(0051): 
+(0052): IF (LANE1R > 0)
+(0053): THEN TRANTO (LANE1L,LANE1HL,LANE2L,LANE2HL,LANE3L,LANE3HL,
+sp.ast    9/03/97 9:47:27 a.m.                          ASSIST 7.1, NASA LaRC    Page 2
+
+(0054): LANE1R-1,LANE1HR,LANE2R,LANE2HR,LANE3R,LANE3HR)
+(0055): BY LANELAMB;
+(0056): 
+(0057): (* -- LANE 1 RECOVERIES VIA RESET ------------------------------------ *)
+(0058): 
+(0059): IF (LANE1HL > 0) OR (LANE1HR > 0)
+(0060): THEN TRANTO (LANE1L+LANE1HL,LANE1HL-LANE1HL,LANE2L,LANE2HL,
+(0061): LANE3L,LANE3HL,
+(0062): LANE1R)LANE1HR,LANE1HR-LANE1HR,LANE2R,LANE2HR,
+              ^ [ERROR] COMMA EXPECTED: )
+              ^ [ERROR] COMMA EXPECTED: )
+              ^ [ERROR] COMMA EXPECTED: )
+              ^ [ERROR] COMMA EXPECTED: )
+              ^ [ERROR] COMMA EXPECTED: )
+               ^ [ERROR] RATE EXPRESSION MUST BEGIN WITH KEYWORD "BY": LANE1HR
+               ^ [ERROR] NUMBER OF ERRORS/LINE EXCEEDS LIMIT OF: 5
+               ^ [ERROR] QUITTING COMPILATION !!!
+
+0010 ERRORS.

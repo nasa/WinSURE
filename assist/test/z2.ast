@@ -1,0 +1,10 @@
+lambda = 1e-5;
+gamma = 10 * lambda;
+space = (a);
+start = (1);
+DEATHIF A+3+4<A OR A<A AND A<3;
+DEATHIF A>3+4;
+DEATHIF A+1<A+2 AND A<3 AND A>4 OR A=5;
+deathif (a > 1 + a < 5);
+DEATHIF A+7 OR A>5;
+DEATHIF A>5 OR A+7 ;

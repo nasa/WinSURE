@@ -1,0 +1,82 @@
+abug.ast    10/12/99 11:29:30 a.m.                      ASSIST 7.2, NASA LaRC    Page 1
+
+(0001): NSI=1;                (* number of spares initially, can be anything *)
+(0002): SPACE = (N1: 0..3,    (* number of processors in first triad *)
+(0003):          N2: 0..3,    (* number of processors in second triad *)
+(0004):          N3: 0..3,    (* number of processors in second triad *)
+(0005):          F1: 0..2,    (* number of faulty processors in first triad *)
+(0006):          F2: 0..2,    (* number of fault processors in second triad *)
+(0007):          F3: 0..2,    (* number of fault processors in second triad *)
+(0008):          NS);         (* number of spares *)
+(0009): 
+(0010): START = (3,3,3,0,0,0,NSI);
+(0011): 
+(0012): LAMBDA = 5E-4;  (* failure rate of active processors *)
+(0013): GAMMA = 5E-4;   (* failure rate of spares *)
+(0014): MU = .400/3600  (* rate at which faulty processors are removed *)
+(0015): STD = MU;
+        ^ [ERROR] SEMICOLON EXPECTED: STD
+        ^ [ERROR] SKIPPING EXTRANEOUS TOKENS: STD
+
+(0016): 
+(0017): DEATHIF (F1 >= N1) OR (F2 >= N2) OR (F3 >= N3);
+(0018): 
+(0019): IF N1 > 0 THEN TRANTO F1=F1+1, N1=N1-1 BY N1*LAMBDA;
+(0020): IF N2 > 0 THEN TRANTO F2=F2+1, N2=N2-1 BY N2*LAMBDA;
+(0021): IF N3 > 0 THEN TRANTO F3=F3+1, N3=N3-1 BY N3*LAMBDA;
+(0022): 
+(0023): IF NS > 0 THEN TRANTO NS=NS-1 BY NS*GAMMA;
+(0024): 
+(0025): IF (F1 > 0) AND (NS=0) THEN TRANTO ( 1,N2,N3, 0,F2,F3,NS+1) BY
+(0026):     <MU,STD,1/(F1+F2+F3)>;
+(0027): IF (F2 > 0) AND (NS=0) THEN TRANTO (N1, 1,N3,F1, 0,F3,NS+1) BY
+(0028):     <MU,STD,1/(F1+F2+F3)>;
+(0029): IF (F3 > 0) AND (NS=0) THEN TRANTO (N1,N2, 1,F1,F2, 0,NS+1) BY
+(0030):     <MU,STD,1/(F1+F2+F3)>;
+(0031): IF (F1 > 0) AND (NS > 0) THEN
+(0032):    TRANTO F1=F1-1, N1=N1+1, NS=NS-1)
+                                           ^ [ERROR] RATE EXPRESSION MUST BEGIN WITH 
+                                                     KEYWORD "BY": )
+                                           ^ [ERROR] IDENTIFIER OR LITERAL EXPECTED: )
+
+(0033):    BY <MU,STD,1/(F1+F2+F3)>;
+           ^ [ERROR] EXPRESSION REQUIRED BUT WAS OMITTED: BY
+           ^ [ERROR] SEMICOLON EXPECTED: BY
+              ^ [ERROR] SKIPPING EXTRANEOUS TOKENS: <
+
+(0034): IF (F2 > 0) AND (NS > 0) THEN
+(0035):    TRANTO F2=F2-1, N2=N2+1, NS=NS-1)
+                                           ^ [ERROR] RATE EXPRESSION MUST BEGIN WITH 
+                                                     KEYWORD "BY": )
+                                           ^ [ERROR] IDENTIFIER OR LITERAL EXPECTED: )
+
+(0036):    BY  <MU,STD,1/(F1+F2+F3)>;
+           ^ [ERROR] EXPRESSION REQUIRED BUT WAS OMITTED: BY
+           ^ [ERROR] SEMICOLON EXPECTED: BY
+               ^ [ERROR] SKIPPING EXTRANEOUS TOKENS: <
+
+(0037): IF (F3 > 0) AND (NS > 0) THEN
+(0038):    TRANTO F3=F3-1, N3=N3+1, NS=NS-1)
+                                           ^ [ERROR] RATE EXPRESSION MUST BEGIN WITH 
+                                                     KEYWORD "BY": )
+                                           ^ [ERROR] IDENTIFIER OR LITERAL EXPECTED: )
+
+(0039):    BY  <MU,STD,1/(F1+F2+F3)>;
+           ^ [ERROR] EXPRESSION REQUIRED BUT WAS OMITTED: BY
+           ^ [ERROR] SEMICOLON EXPECTED: BY
+               ^ [ERROR] SKIPPING EXTRANEOUS TOKENS: <
+
+(0040): 
+        ^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF 
+                  MISSING.
+        ^ [ERROR] SEMICOLON EXPECTED: (end-of-file)
+        ^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF 
+                  MISSING.
+        ^ [ERROR] SEMICOLON EXPECTED: (end-of-file)
+        ^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF 
+                  MISSING.
+        ^ [ERROR] SEMICOLON EXPECTED: (end-of-file)
+        ^ [ERROR] NUMBER OF ERRORS/LINE EXCEEDS LIMIT OF: 5
+        ^ [ERROR] QUITTING COMPILATION !!!
+
+0025 ERRORS.

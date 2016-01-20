@@ -1,0 +1,632 @@
+
+run-all  
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.02 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.01 sec. 
+NUMBER OF STATES IN MODEL = 2 
+NUMBER OF TRANSITIONS IN MODEL = 1 
+1 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 2 
+NUMBER OF TRANSITIONS IN MODEL = 1 
+1 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 2 
+NUMBER OF TRANSITIONS IN MODEL = 1 
+1 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0029): 
+IF N1 > 0 THEN TRANTO N2=N2+1 BY (N1)*LAMBDA; (* fault arrivals *) 
+(0030): 
+^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF  
+          MISSING. 
+^ [ERROR] SEMICOLON EXPECTED: (end-of-file) 
+^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF  
+          MISSING. 
+^ [ERROR] SEMICOLON EXPECTED: (end-of-file) 
+^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF  
+          MISSING. 
+^ [ERROR] SEMICOLON EXPECTED: (end-of-file) 
+^ [ERROR] NUMBER OF ERRORS/LINE EXCEEDS LIMIT OF: 5 
+^ [ERROR] QUITTING COMPILATION !!! 
+ 
+0008 ERRORS. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0109): 
+            OD1,OD2,OD3,R1,R2,0) BY GAM3; 
+(0118): 
+^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF  
+          MISSING. 
+^ [ERROR] SEMICOLON EXPECTED: (end-of-file) 
+^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF  
+          MISSING. 
+^ [ERROR] SEMICOLON EXPECTED: (end-of-file) 
+^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF  
+          MISSING. 
+^ [ERROR] SEMICOLON EXPECTED: (end-of-file) 
+^ [ERROR] NUMBER OF ERRORS/LINE EXCEEDS LIMIT OF: 5 
+^ [ERROR] QUITTING COMPILATION !!! 
+ 
+0008 ERRORS. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0046): 
+         >= ((wg1+wg2+wg3+wg4)/2); 
+                              <-^ [ERROR] REAL NUMBERS NOT ALLOWED EXCEPT IN  
+                                          RATE EXPRESSIONS: ) 
+ 
+(0086): 
+if cf4=1 then tranto cf4=0, wg4=1 by epsilon; 
+(0088): 
+^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF  
+          MISSING. 
+^ [ERROR] SEMICOLON EXPECTED: (end-of-file) 
+^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF  
+          MISSING. 
+^ [ERROR] SEMICOLON EXPECTED: (end-of-file) 
+^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF  
+          MISSING. 
+^ [ERROR] SEMICOLON EXPECTED: (end-of-file) 
+^ [ERROR] NUMBER OF ERRORS/LINE EXCEEDS LIMIT OF: 5 
+^ [ERROR] QUITTING COMPILATION !!! 
+ 
+0009 ERRORS. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0046): 
+         >= ((wg1+wg2+wg3+wg4)/2); 
+                              <-^ [ERROR] REAL NUMBERS NOT ALLOWED EXCEPT IN  
+                                          RATE EXPRESSIONS: ) 
+ 
+0001 ERROR. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.02 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 12 
+NUMBER OF TRANSITIONS IN MODEL = 17 
+5 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.02 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 12 
+NUMBER OF TRANSITIONS IN MODEL = 17 
+5 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.02 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 12 
+NUMBER OF TRANSITIONS IN MODEL = 17 
+5 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.02 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 7 
+NUMBER OF TRANSITIONS IN MODEL = 17 
+3 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0002): 
+IF X > 2 TRANTO (1) BY 12 * (* 1; 
+^ [ERROR] START STATEMENT IS MISSING. 
+ 
+(0003): 
+(* COMMENT * 
+(0004): 
+^ [ERROR] EOF REACHED BEFORE COMMENT TERMINATED:  ("(*" on line#2) 
+^ [ERROR] IDENTIFIER OR LITERAL EXPECTED. 
+^ [ERROR] SEMICOLON EXPECTED: (end-of-file) 
+^ [WARNING] PROGRAM DOES NOT CONTAIN ANY DEATHIF STATEMENTS. 
+ 
+0004 ERRORS. 
+0001 WARNING. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.02 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.01 sec. 
+NUMBER OF STATES IN MODEL = 12 
+NUMBER OF TRANSITIONS IN MODEL = 85 
+25 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.02 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 2 
+NUMBER OF TRANSITIONS IN MODEL = 2 
+2 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.02 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 2 
+NUMBER OF TRANSITIONS IN MODEL = 12 
+12 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.04 sec. 
+generating SURE model file... 
+ 100 transitions processed. 
+ 200 transitions processed. 
+ 300 transitions processed. 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 14) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 16) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 18) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 20) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 22) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 24) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 26) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 28) 
+ 400 transitions processed. 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 14) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 16) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 18) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 20) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 22) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 24) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 26) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 28) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 14) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 16) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 18) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 20) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 22) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 24) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 26) 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 11 (1 to 10) 
+        N2=11, (TRANTO on line 28) 
+RULE GENERATION TIME = 0.19 sec. 
+NUMBER OF STATES IN MODEL = 28 
+NUMBER OF TRANSITIONS IN MODEL = 432 
+72 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+0024 ERRORS. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 3 
+NUMBER OF TRANSITIONS IN MODEL = 2 
+1 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0006): 
+SPACE = (NC: ARRAY[1..NA] OF MINUSTEN..NP,  NF: ARRAY[1..NA] OF MINUSTEN..NP); 
+                                   <-^ [ERROR] NEGATIVE VALUES NOT ALLOWED.  
+                                               USE A WHOLE NUMBER:  -10 IS THE  
+                                               COMPUTED VALUE. 
+[ERROR] NEGATIVE VALUES NOT ALLOWED. USE A WHOLE NUMBER:  -10 IS THE  <-^ 
+        COMPUTED VALUE. 
+ 
+0002 ERRORS. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.02 sec. 
+generating SURE model file... 
+ 100 transitions processed. 
+RULE GENERATION TIME = 0.02 sec. 
+NUMBER OF STATES IN MODEL = 35 
+NUMBER OF TRANSITIONS IN MODEL = 121 
+40 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+ 100 transitions processed. 
+ 200 transitions processed. 
+ 300 transitions processed. 
+RULE GENERATION TIME = 0.05 sec. 
+NUMBER OF STATES IN MODEL = 57 
+NUMBER OF TRANSITIONS IN MODEL = 316 
+211 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: -3 (0 to 255) 
+        NF=-3, (TRANTO on line 5) 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 2 
+NUMBER OF TRANSITIONS IN MODEL = 2 
+2 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+0001 ERROR. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 2 
+NUMBER OF TRANSITIONS IN MODEL = 6 
+6 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+I? 4
+4 
+ 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+[ERROR] ARRAY DIMENSION OUT OF BOUNDS: (expression on line#5) 
+        NF[4] 
+[WARNING] NO TRANSITIONS GENERATED USING TRANTO ON LINE : 6 
+RULE GENERATION TIME = 0.01 sec. 
+NUMBER OF STATES IN MODEL = 1 
+NUMBER OF TRANSITIONS IN MODEL = 0 
+0 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+0001 ERROR. 
+0001 WARNING. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+I? 4
+4 
+ 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 2 
+NUMBER OF TRANSITIONS IN MODEL = 3 
+3 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.02 sec. 
+generating SURE model file... 
+ 100 transitions processed. 
+RULE GENERATION TIME = 0.01 sec. 
+NUMBER OF STATES IN MODEL = 35 
+NUMBER OF TRANSITIONS IN MODEL = 121 
+40 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0009): 
+SPACE = (NC: -6..0,  NF: -6..0); 
+             <-^ [ERROR] NEGATIVE VALUES NOT ALLOWED. USE A WHOLE NUMBER:  -6  
+                         IS THE COMPUTED VALUE. 
+                         <-^ [ERROR] NEGATIVE VALUES NOT ALLOWED. USE A WHOLE  
+                                     NUMBER:  -6 IS THE COMPUTED VALUE. 
+ 
+(0010): 
+START = (-6,0); 
+         <-^ [ERROR] NEGATIVE VALUES NOT ALLOWED. USE A WHOLE NUMBER:  -6 IS  
+                     THE COMPUTED VALUE. 
+ 
+0003 ERRORS. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 12 
+NUMBER OF TRANSITIONS IN MODEL = 17 
+5 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.01 sec. 
+NUMBER OF STATES IN MODEL = 12 
+NUMBER OF TRANSITIONS IN MODEL = 17 
+5 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0008): 
+IF NC > 0 TRANTO NC , NF = ,NC = BY (NC-NF)*LAMBDA; (* fault arrivals *) 
+                    ^ [ERROR] MISSING TOKEN INSERTED BY PARSER: = 
+                    ^ [ERROR] IDENTIFIER OR LITERAL EXPECTED: , 
+                      ^ [ERROR] EXPRESSION REQUIRED BUT WAS OMITTED: NF 
+                           ^ [ERROR] IDENTIFIER OR LITERAL EXPECTED: , 
+                            ^ [ERROR] EXPRESSION REQUIRED BUT WAS OMITTED: NC 
+                            ^ [WARNING] VALUE ASSIGNED TWICE IN SAME TRANTO  
+                                        FOR THIS STATE-SPACE VARIABLE: NC 
+                                 ^ [ERROR] KEYWORD USED IN WRONG CONTEXT: BY 
+                                 ^ [ERROR] NUMBER OF ERRORS/LINE EXCEEDS LIMIT  
+                                           OF: 5 
+                                 ^ [ERROR] QUITTING COMPILATION !!! 
+ 
+0008 ERRORS. 
+0001 WARNING. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0009): 
+FRED = NF; 
+^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of FRED =  
+          <expr>) 
+       <-^ [ERROR] VARIABLES NOT ALLOWED IN CONSTANT DEFINITION EXPRESSION.    
+                   CONSIDER THE USE OF A FUNCTION OR IMPLICIT: NF 
+         ^ [ERROR] STATE-SPACE VARIABLE DOES NOT HAVE A VALUE UNTIL AFTER  
+                   PARSING IS COMPLETE AND RULE GENERATION HAS STARTED. 
+ 
+(0010): 
+LUCY = NC; 
+^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of LUCY =  
+          <expr>) 
+       <-^ [ERROR] VARIABLES NOT ALLOWED IN CONSTANT DEFINITION EXPRESSION.    
+                   CONSIDER THE USE OF A FUNCTION OR IMPLICIT: NC 
+         ^ [ERROR] STATE-SPACE VARIABLE DOES NOT HAVE A VALUE UNTIL AFTER  
+                   PARSING IS COMPLETE AND RULE GENERATION HAS STARTED. 
+ 
+0006 ERRORS. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0006): 
+START = (7,ET); 
+           <-^ [ERROR] NEGATIVE VALUES NOT ALLOWED. USE A WHOLE NUMBER:  -2 IS  
+                       THE COMPUTED VALUE. 
+ 
+0001 ERROR. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.02 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 14 
+NUMBER OF TRANSITIONS IN MODEL = 21 
+6 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0004): 
+IF (A=1) AND ((B=1) AND (C=A-B)) TRANTO (1,0,1) BY 100; 
+(0005): 
+^ [WARNING] PROGRAM DOES NOT CONTAIN ANY DEATHIF STATEMENTS. 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+[WARNING] NO TRANSITIONS OUT OF A NON-DEATHIF STATE.  THIS STATE IS THEREFORE  
+          IMPLICITLY A DEATH STATE: 3 
+RULE GENERATION TIME = 0.01 sec. 
+NUMBER OF STATES IN MODEL = 3 
+NUMBER OF TRANSITIONS IN MODEL = 2 
+ 
+0002 WARNINGS. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0005): 
+IF Z=0 TRANTO (X,Y,10000) BY 3; 
+(0006): 
+^ [WARNING] PROGRAM DOES NOT CONTAIN ANY DEATHIF STATEMENTS. 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+[WARNING] NO TRANSITIONS OUT OF A NON-DEATHIF STATE.  THIS STATE IS THEREFORE  
+          IMPLICITLY A DEATH STATE: 8 
+RULE GENERATION TIME = 0.01 sec. 
+NUMBER OF STATES IN MODEL = 8 
+NUMBER OF TRANSITIONS IN MODEL = 12 
+ 
+0002 WARNINGS. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0004): 
+IF X>0 TRANTO (X-1) BY X/2; 
+(0005): 
+^ [WARNING] PROGRAM DOES NOT CONTAIN ANY DEATHIF STATEMENTS. 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 5 
+NUMBER OF TRANSITIONS IN MODEL = 8 
+ 
+0001 WARNING. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0001): 
+SPACE = (XX:-1000..0,YY:-1..1); 
+               <-^ [ERROR] NEGATIVE VALUES NOT ALLOWED. USE A WHOLE NUMBER:   
+                           -1000 IS THE COMPUTED VALUE. 
+                        <-^ [ERROR] NEGATIVE VALUES NOT ALLOWED. USE A WHOLE  
+                                    NUMBER:  -1 IS THE COMPUTED VALUE. 
+ 
+(0005): 
+IF XX*YY=0 TRANTO (0,XX+100) BY 3.14159; 
+(0006): 
+^ [WARNING] PROGRAM DOES NOT CONTAIN ANY DEATHIF STATEMENTS. 
+ 
+0002 ERRORS. 
+0001 WARNING. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0003): 
+IF AN<10000 TRANTO (AN+ANM1,AN) BY AN; 
+(0004): 
+^ [WARNING] PROGRAM DOES NOT CONTAIN ANY DEATHIF STATEMENTS. 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+[ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 10946 (1 to 10000) 
+        AN=10946, (TRANTO on line 3) 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 19 
+NUMBER OF TRANSITIONS IN MODEL = 19 
+ 
+0001 ERROR. 
+0001 WARNING. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0004): 
+IF (X=Y-1) OR (X=Y+1) TRANTO (1,X,Y*Y) BY 2; 
+(0005): 
+^ [WARNING] PROGRAM DOES NOT CONTAIN ANY DEATHIF STATEMENTS. 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 4 
+NUMBER OF TRANSITIONS IN MODEL = 4 
+ 
+0001 WARNING. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0006): 
+IF X=0 TRANTO (1,Y) BY 4; 
+(0007): 
+^ [WARNING] PROGRAM DOES NOT CONTAIN ANY DEATHIF STATEMENTS. 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 5 
+NUMBER OF TRANSITIONS IN MODEL = 9 
+ 
+0001 WARNING. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0001): 
+DEBUG ALL; 
+      ^ [ERROR] MISSING TOKEN INSERTED BY PARSER: = 
+         ^ [ERROR] LEFT "(" EXPECTED: ; 
+         ^ [ERROR] COMMA EXPECTED: ALL REQUIRES 1-32 PARAMETERS AND NO FEWER. 
+         ^ [ERROR] EXPRESSION REQUIRED BUT WAS OMITTED: ; 
+      ^ [ERROR] KEYWORD "BOOLEAN" MISSING FOR BOOLEAN CONSTANT INPUT OR  
+                DEFINITION. 
+ 
+(0004): 
+IF (A=1) AND ((B=1) AND (C=A-B)) THEN TRANTO (1,0,1) BY 100; 
+(0005): 
+^ [ERROR] EOF REACHED BEFORE NESTED RULE SEQUENCE TERMINATED: ELSE OR ENDIF  
+          MISSING. 
+^ [ERROR] SEMICOLON EXPECTED: (end-of-file) 
+^ [WARNING] PROGRAM DOES NOT CONTAIN ANY DEATHIF STATEMENTS. 
+ 
+0007 ERRORS. 
+0001 WARNING. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0007): 
+INPUT ONEDEATH; 
+^ [ERROR] STATEMENT OUT OF SEQUENCE ... NOT ALLOWED IN RULE SECTION. 
+ONEDEATH (ON/OFF/FULL)? off
+off 
+ 
+ 
+0001 ERROR. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0013): 
+ELSE 
+^ [ERROR] MISSING TOKEN INSERTED BY PARSER: ; 
+ 
+0001 ERROR. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.02 sec. 
+generating SURE model file... 
+[WARNING] NO TRANSITIONS GENERATED USING TRANTO ON LINE : 8 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 5 
+NUMBER OF TRANSITIONS IN MODEL = 7 
+4 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+0001 WARNING. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+[WARNING] NO TRANSITIONS GENERATED USING TRANTO ON LINE : 9 
+RULE GENERATION TIME = 0.01 sec. 
+NUMBER OF STATES IN MODEL = 5 
+NUMBER OF TRANSITIONS IN MODEL = 7 
+4 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+0001 WARNING. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0010): 
+ONEDEATH = 1; 
+^ [ERROR] STATEMENT OUT OF SEQUENCE ... NOT ALLOWED IN RULE SECTION. 
+ 
+0001 ERROR. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0007): 
+ONEDEATH = 1; 
+^ [ERROR] STATEMENT OUT OF SEQUENCE ... NOT ALLOWED IN RULE SECTION. 
+ 
+0001 ERROR. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+ 
+(0008): 
+ONEDEATH = 1; 
+^ [ERROR] STATEMENT OUT OF SEQUENCE ... NOT ALLOWED IN RULE SECTION. 
+ 
+0001 ERROR. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+LAMB_D_A? 1e-4
+1e-4 
+ 
+ 
+(0009): 
+ONEDEATH = 1; 
+^ [ERROR] STATEMENT OUT OF SEQUENCE ... NOT ALLOWED IN RULE SECTION. 
+ 
+0001 ERROR. 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.02 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 2 
+NUMBER OF TRANSITIONS IN MODEL = 6 
+6 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 2 
+NUMBER OF TRANSITIONS IN MODEL = 1 
+1 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 4 
+NUMBER OF TRANSITIONS IN MODEL = 22 
+16 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+ASSIST VERSION 7.1                                 NASA Langley Research Center 
+PARSING TIME = 0.01 sec. 
+generating SURE model file... 
+[WARNING] NO TRANSITIONS OUT OF A NON-DEATHIF STATE.  THIS STATE IS THEREFORE  
+          IMPLICITLY A DEATH STATE: 4 
+RULE GENERATION TIME = 0.00 sec. 
+NUMBER OF STATES IN MODEL = 4 
+NUMBER OF TRANSITIONS IN MODEL = 6 
+0 DEATH STATES AGGREGATED INTO STATE 1 
+ 
+0001 WARNING. 
+[rwb@exists test2]$ 

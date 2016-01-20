@@ -1,0 +1,10 @@
+LAMBDA = 1E-5;
+GAMMA = 10*LAMBDA;
+F1 = 7.85623E-12;
+F2 = F1*LAMBDA;
+F3 = ???;
+F4 = ???;
+
+CANNOT RUN DUE TO ERRORS !!!!!
+
+(* 0005 ERRORS *)

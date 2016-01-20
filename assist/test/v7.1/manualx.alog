@@ -1,0 +1,64 @@
+manualx.ast    9/03/97 9:44:41 a.m.                     ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): (*  Quad with 4 sensors and 3 actuators *)
+(0002): 
+(0003): LAM_C = 1E-4;           (* Computer failure rate *)
+(0004): LAM_S1 = 2E-5;          (* Type 1 sensor failure rate *)
+(0005): LAM_S2 = 1.5E-5;        (* Type 2 sensor failure rate *)
+(0006): LAM_A1 = 3.6E-5;        (* Actuator failure rate *)
+(0007): 
+(0008): SPACE = (CF: ARRAY[1..4] OF 0..1,       (* Computers failed *)
+(0009):          SF: ARRAY[1..4] OF 0..1,       (* Sensors failed *)
+(0010):          AF: ARRAY[1..3] OF 0..1);      (* Actuators failed *)
+(0011): START = (11 OF 0);
+(0012): 
+(0013): DEATHIF CF[1] + CF[2] + CF[3] + CF[4] >= 3;
+(0014):    (* 3/4 computers failed *)
+(0015): 
+(0016): DEATHIF (CF[1] + SF[1] > 0) AND (CF[2] + SF[2] > 0) AND (CF[3] + SF[3] > 0);
+(0017): DEATHIF (CF[1] + SF[1] > 0) AND (CF[2] + SF[2] > 0) AND (CF[4] + SF[4] > 0);
+(0018): DEATHIF (CF[1] + SF[1] > 0) AND (CF[3] + SF[3] > 0) AND (CF[4] + SF[4] > 0);
+(0019): DEATHIF (CF[2] + SF[2] > 0) AND (CF[3] + SF[3] > 0) AND (CF[4] + SF[4] > 0);
+(0020):    (* 3/4 sensor sets failed *)
+(0021): 
+(0022): DEATHIF (CF[1] + AF[1] > 0) OR (CF[2] + AF[2] > 0) OR (AF[3] > 0);
+(0023):    (* 2/3 actuator sets failed *)
+(0024): 
+(0025): FOR I = 1,4;
+(0026):    IF CF[I]=0 TRANTO CF[I] = CF[I]+1 BY LAM_C;
+(0027):       (* Computer failures *)
+(0028): ENDFOR;
+(0029): 
+(0030): FOR J = 1,3;
+(0031):    IF SF[J]=0 TRANTO SF[J] = SF[J]+1 BY LAM_S1;
+(0032):       (* Type 1 sensor failures *)
+(0033):    IF AF[J]=0 TRANTO AF[J] = AF[J]+1 BY LAM_A1;
+(0034):       (* Actuator failures *)
+(0035): ENDFOR;
+(0036): 
+(0037): IF SF[4]=0 TRANTO SF[3] = SF[3]+1 BY LAM_S2;
+(0038):    (* Type 2 sensor failures *)
+
+PARSING TIME = 0.02 sec.
+        [ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 2 (0 to 1)
+                SF[3]=2, (TRANTO on line 37)
+        [ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 2 (0 to 1)
+                SF[3]=2, (TRANTO on line 37)
+        [ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 2 (0 to 1)
+                SF[3]=2, (TRANTO on line 37)
+        [ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 2 (0 to 1)
+                SF[3]=2, (TRANTO on line 37)
+        [ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 2 (0 to 1)
+                SF[3]=2, (TRANTO on line 37)
+        [ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 2 (0 to 1)
+                SF[3]=2, (TRANTO on line 37)
+        [ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 2 (0 to 1)
+                SF[3]=2, (TRANTO on line 37)
+        [ERROR] STATE-SPACE VARIABLE VALUE IS OUT OF RANGE: 2 (0 to 1)
+                SF[3]=2, (TRANTO on line 37)
+RULE GENERATION TIME = 0.04 sec.
+NUMBER OF STATES IN MODEL = 25
+NUMBER OF TRANSITIONS IN MODEL = 175
+125 DEATH STATES AGGREGATED INTO STATES 1 - 6
+
+0008 ERRORS.

@@ -1,0 +1,14 @@
+fast.ast    9/03/97 9:44:37 a.m.                        ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): 
+(0002): space = (a);
+(0003): start = (0);
+(0004): deathif a>2;
+(0005): if a<5 tranto (a+1) by FAST a;
+
+PARSING TIME = 0.01 sec.
+RULE GENERATION TIME = 0.00 sec.
+NUMBER OF STATES IN MODEL = 4
+NUMBER OF TRANSITIONS IN MODEL = 3
+1 DEATH STATES AGGREGATED INTO STATE 1
+

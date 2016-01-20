@@ -1,0 +1,115 @@
+billee.ast    10/12/99 11:29:35 a.m.                    ASSIST 7.2, NASA LaRC    Page 1
+
+(0001): 
+(0002): space = (pri: 0..3,
+(0003):          seca: 0..3,
+(0004):          secb: 0..3,
+(0005):          vlv1: 0..2,
+(0006):          vlv2: 0..2,
+(0007):          nfail: 0..4);
+(0008): 
+(0009): start = ( 3,3,3,2,2,0);
+(0010): 
+(0011): deathif ((seca<3 and pri<2) or vlv1<2) and
+(0012):         ((secb<3 and (pri=2 or pri=0)) or vlv2<2) or
+(0013):         (seca=1 and pri<2) or (secb=1 and (pri=2 or pri=0)) or
+(0014):         vlv1=0 or vlv2=0;
+(0015): 
+(0016): pruneif nfail>2;
+(0017): 
+(0018): list = 3;
+        ^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of LIST = 
+                  <expr>)
+
+(0019): time = 3.0;
+        ^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of TIME = 
+                  <expr>)
+
+(0020): prune = 1.0e-15;
+        ^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of PRUNE = 
+                  <expr>)
+
+(0021): echo = 0;
+        ^ [ERROR] STATEMENT OUT OF SEQUENCE ... NOT ALLOWED IN RULE SECTION.
+
+(0022): 
+(0023): lamc = 50.0e-6;
+        ^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of LAMC = 
+                  <expr>)
+
+(0024): covc = 0.95;
+        ^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of COVC = 
+                  <expr>)
+
+(0025): lamdiu = 37.5e-6;
+        ^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of LAMDIU =
+                  <expr>)
+
+(0026): diuact = 0.05;
+        ^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of DIUACT =
+                  <expr>)
+
+(0027): lamnode = 37.5e-6;
+        ^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of LAMNODE 
+                  = <expr>)
+
+(0028): lamhyd = 43.0e-6;
+        ^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of LAMHYD =
+                  <expr>)
+
+(0029): lamsd = 30.0e-6;
+        ^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of LAMSD = 
+                  <expr>)
+
+(0030): lamv = 15.0e-6;
+        ^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of LAMV = 
+                  <expr>)
+
+(0031): ramjam = 3.33e-5;
+        ^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of RAMJAM =
+                  <expr>)
+
+(0032): 
+(0033): (* primary failures *)
+(0034): 
+(0035): if pri>0 then
+(0036):    tranto pri=0, nfail=nfail+1 by 2*lamc + lamnode + lamdiu;
+(0037):    if pri=3 then
+(0038):       tranto pri=2, nfail=nfail+1 by lamsd;
+(0039):       tranto pri=1, nfail=nfail+1 by lamsd;
+(0040):    else
+(0041):       tranto pri=0, nfail=nfail+1 by lamsd;
+(0042):    endif;
+(0043): endif;
+billee.ast    10/12/99 11:29:35 a.m.                    ASSIST 7.2, NASA LaRC    Page 2
+
+(0044): 
+(0045): (* secondary failures *)
+(0046): 
+(0047): if seca>0 then
+(0048):    tranto seca=0, nfail=nfail+1 by lamnode + (1.0-diuact)*lamdiu;
+(0049):    if seca=3 tranto seca=2, nfail=nfail+1 by lamsd;
+(0050):    if seca>1 tranto seca=1, nfail=nfail+1 by lamc + diuact*lamdiu;
+(0051): endif;
+(0052): 
+(0053): if secb>0 then
+(0054):    tranto secb=0, nfail=nfail+1 by lamnode + (1.0-diuact)*lamdiu;
+(0055):    if secb=3 tranto secb=2, nfail=nfail+1 by lamsd;
+(0056):    if secb>1 tranto secb=1, nfail=nfail+1 by lamc + diuact*lamdiu;
+(0057): endif;
+(0058): 
+(0059): (* valve *)
+(0060): 
+(0061): if vlv1>1 then
+(0062):    tranto vlv1=1, nfail=nfail+1 by (1.0-ramjam)*lamv + lamhyd;
+(0063):    tranto vlv1=0, nfail=nfail+1 by ramjam*lamv;
+(0064): endif;
+(0065): 
+(0066): if vlv2>1 then
+(0067):    tranto vlv2=1, nfail=nfail+1 by (1.0-ramjam)*lamv + lamhyd;
+(0068):    tranto vlv2=0, nfail=nfail+1 by ramjam*lamv;
+(0069): endif;
+(0070): 
+
+
+0013 ERRORS.

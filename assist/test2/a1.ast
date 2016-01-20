@@ -1,0 +1,9 @@
+SPACE = (A:ARRAY[1..20] OF 0..1,
+         B:ARRAY[1..20] OF 0..1,
+         C:ARRAY[1..5] OF 0..1,
+         D:0..1,
+         E:ARRAY[1..10] OF 0..1);
+START = (45 OF 1,11 OF 0);
+DEATHIF D=1;
+IF E[8]=0 TRANTO D=1 BY D+E[1]+E[2]+E[3]+E[4]+E[5]+E[6];
+         (* RATE IS ALL 0'S *)

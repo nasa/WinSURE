@@ -1,0 +1,6 @@
+SPACE = (NC, NF);
+START = (6,0);
+DEATHIF NC < 6;
+IF NC > 0 TRANTO (NC-1,NF*2)  BY (NC-NF)*LAMBDA; (* fault arrivals *)
+IF NC > 0+0+1+1 TRANTO (NC-1-1-1, NF-1-1-1) 
+  BY <1/(NF*DELTA),1/(NF*DELTA)>; 

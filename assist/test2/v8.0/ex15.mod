@@ -1,0 +1,11 @@
+NP = 6;
+LAMBDA = 1E-4;
+DELTA = 3.6E3;
+
+
+     2(* 6,6,0 *),     1(* 5,6,1 DEATH  *) = (6+0)*LAMBDA;
+     2(* 6,6,0 *),     1(* 5,6,1 DEATH  *) = (6+0)*LAMBDA;
+
+(* NUMBER OF STATES IN MODEL = 2 *)
+(* NUMBER OF TRANSITIONS IN MODEL = 2 *)
+(* 2 DEATH STATES AGGREGATED INTO STATE 1 *)

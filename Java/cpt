@@ -1,0 +1,6 @@
+#
+cp $sure/test/mod6/$1.MOD $rel/tests/T$2_$1.mod
+ls $sure/test/mod6/*.MOD
+echo "--------------"
+ls $rel/tests
+rit -r $rel/tests/T$2_$1.mod

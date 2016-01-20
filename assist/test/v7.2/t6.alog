@@ -1,0 +1,18 @@
+t6.ast    10/12/99 11:29:40 a.m.                        ASSIST 7.2, NASA LaRC    Page 1
+
+(0001): SPACE = (A,B,C);
+(0002): START = (1,2,3);
+(0003): 
+(0004): IF 1+2 TRANTO A = A+1=2 BY FOOBAR;
+               ^ [ERROR] RELATIONAL OPERATOR MUST FOLLOW NUMERIC QUANTITY IN BOOLEAN 
+                         EXPRESSION: TRANTO
+                             ^ [ERROR] RELATIONAL OPERATOR NOT ALLOWED IN A NUMERIC 
+                                       EXPRESSION: =
+                             ^ [ERROR] RATE EXPRESSION MUST BEGIN WITH KEYWORD "BY": =
+                             ^ [ERROR] IDENTIFIER OR LITERAL EXPECTED: =
+                              ^ [ERROR] EXPRESSION REQUIRED BUT WAS OMITTED: #2
+                              ^ [ERROR] SEMICOLON EXPECTED: #2
+                              ^ [ERROR] NUMBER OF ERRORS/LINE EXCEEDS LIMIT OF: 5
+                              ^ [ERROR] QUITTING COMPILATION !!!
+
+0008 ERRORS.

@@ -1,0 +1,709 @@
+\subsection{Enhancements at version 6.0}
+
+Features added at version 6.0 include:
+\begin{itemize}
+\item New lumping of death states.
+\item Model pruning supported by the \verb'PRUNEIF' statement.
+\item Improvements in efficiently generating large models.
+\item Bit mapping of Boolean variables.
+\item The logical operator \verb'NOT' for use in Boolean expressions.
+\item The concatenation character for use in rate expressions.
+\end{itemize}
+
+These new features are discussed below.
+ 
+\subsubsection{Lumping of Death States}
+ 
+  Versions of ASSIST prior to 6.0 allowed the user to specify that all of the
+death states could be lumped together as one death state.  This significantly
+reduced the size of the model, but was unacceptable for users wishing to
+discern the relative importance of various failure modes of the system.  
+ 
+     ASSIST versions 6.0 and higher lump the death states of the model
+according to the
+\verb'DEATHIF' statement that defined that state to be a death state.  If
+the ASSIST input file contains only one \verb'DEATHIF' statement, then the
+model generated will also contain only one death state, state 1 of the
+model.  However, if the input file contains 5 \verb'DEATHIF' statements,
+then states 1 through 5 of the model will be death states.  State 1 will
+contain all death states satisfying the conditions described by the first
+\verb'DEATHIF' statement.  State 2 will contain all death states satisfying
+\verb'DEATHIF' statement 2 and not satisfying \verb'DEATHIF' statement 1,
+and so on.  Thus, the probability of system failure due to each condition
+specified by a \verb'DEATHIF' statement will be given by the probability of
+being in the corresponding death state.
+ 
+     Lumping of death states in the manner described above is the default in
+ASSIST version 6.0 and higher.
+Users wishing to have all of the death states enumerated
+must specify \verb'ONEDEATH = 0;' in the input file.
+ 
+\subsubsection{Model Pruning}
+ 
+     A model of a system with a large number of components tends to have
+many long paths consisting of one or two failures of each type of component
+before a condition of system failure is reached.  Because the occurrence of
+so many failures is unlikely during a short mission, these long paths
+typically contribute insignificant amounts to the probability of system
+failure.  The dominant failure modes of the system are typically the short
+paths to system failure consisting of failures of like components.  Model
+pruning can be used to eliminate the long paths by conservatively assuming
+that system failure occurs earlier on those paths.
+ 
+     Model pruning is supported in ASSIST by the \verb'PRUNEIF' statement.
+The \verb'PRUNEIF' statement has the same syntax as the \verb'DEATHIF'
+statements:
+\begin{flushleft} 
+~~~~~\verb'PRUNEIF' {\em condition};
+\end{flushleft}
+where {\em condition} is a Boolean expression describing the states to be
+pruned.  For those users that cannot remember the correct spelling of
+\verb'PRUNEIF', the following syntax
+\begin{flushleft}
+     \verb'PRUNIF' {\em condition};
+\end{flushleft}
+is also acceptable.
+ 
+     The pruned states generated are lumped together according to the
+\verb'PRUNEIF' statement they satisfy, just as the death states are.  In a
+model generated from an input file with 3 \verb'DEATHIF' statements and 2
+\verb'PRUNEIF' statements, states 1 through 3 will be death states
+corresponding to the 3 \verb'DEATHIF' statements and states 4 and 5 will be
+pruned states corresponding to the 2 \verb'PRUNEIF' statements.
+ 
+     ASSIST generates a statement in the model file identifying the pruned
+states in the model.  For example, the model with 3 death states and 2
+pruned states would contain the statement
+\begin{verbatim}
+     PRUNESTATES = (4,5);
+\end{verbatim}
+which will be used by SURE version 6 to separately list the prune-state
+probabilities from the death-state probabilities.  Versions of SURE earlier
+than 6.0 will simply list the pruned states as if they were death states.
+ 
+\subsubsection{Efficiency Improvements}
+ 
+     A number of improvements have been made in the efficiency with which
+ASSIST generates and stores the model.  The change that can most be impacted
+by the user is bit mapping of Boolean variables.  Up to 64 state space
+variables specified as having ranges 0..1 (even in arrays) in the input file
+will be stored efficiently as 1-bit Boolean variables rather than as 32-bit
+integers.  When many Boolean variables are used, this greatly decreases the
+memory needed to store each state.  That, in turn, significantly reduces
+model generation time because less page swapping of virtual memory is
+needed, and allows the generation of considerably larger models.  There is no
+effect on the model generated.
+ 
+     To take advantage of this feature, you may want to rethink your model
+description strategies.  Using a different Boolean variable (i.e., range
+0..1) to represent the state of each component of a type may now be more
+efficient than using a single non-Boolean variable to represent the number of
+working components of a type.
+
+\subsubsection{Concatenation Character}
+     The ASSIST program now allows the user to concatenate identifiers or 
+values in the rate expression using the '\verb'^'' character.  For example, the
+following ASSIST statement:
+\begin{verbatim}
+FOR I=1,3;
+   IF xxx TRANTO xxx BY DELTA^I;
+ENDFOR:
+\end{verbatim}
+will result in model transitions such as:
+\begin{verbatim}
+XXX,XXX = DELTA1;
+XXX,XXX = DELTA2;
+XXX,XXX = DELTA3;
+\end{verbatim}
+The concatenation character can be used anywhere in a rate statement.
+When ASSIST encounters this character in a rate expression, it will 
+recognize that the previous identifier name has terminated but will not leave
+a space before printing the next term in the expression.
+
+The following ASSIST input file shows how the concatenation character
+can be used in a model of multiple triads with a pool of cold spares in
+which the different triads have differing reconfiguration rates.
+The expression \verb'BY FAST DELTA^J'
+within the \verb'FOR' loop results in a reconfiguration rate of
+``FAST DELTA1,'' for triad 1, ``FAST DELTA2,'' for triad 2, etc.
+
+ \begin{verbatim}
+(*  MULTIPLE TRIADS WITH POOL OF COLD SPARES *)
+ 
+INPUT N_TRIADS;              (* Number of triads initially *)
+INPUT N_SPARES;              (* Number of spares *)
+LAMBDA = 1E-4;               (* Failure rate of active processors *)
+ 
+SPACE = (NW: ARRAY[1..N_TRIADS] OF 0..3,  (* Number working procs per triad *)
+         NS);                             (* Number of spare processors *)
+START = (N_TRIADS OF 3, N_SPARES);
+ 
+FOR J = 1, N_TRIADS;
+
+      (* Active processor failure *)
+   IF NW[J] > 0 TRANTO NW[J] = NW[J]-1 BY NW[J]*LAMBDA;
+
+      (* Replace failed processor with working spare *)
+   IF (NW[J] < 3) AND (NS > 0) TRANTO NW[J] = NW[J]+1, NS = NS-1 
+      BY FAST DELTA^J;
+ 
+   DEATHIF NW[J] < 2;      (* Two faults in a triad is system failure *)
+ 
+ENDFOR;
+\end{verbatim}
+
+\subsubsection{Logical Operator NOT}
+
+     The logical operator \verb'NOT' can now be used in Boolean expressions.
+Examples of valid uses of this operator are:
+\begin{verbatim}
+if not(s1 <= s2) tranto s1=s1+1 by foo;
+deathif not (s2 = 0 and s3 < 5);
+deathif not s3 < 5 or not (s3 = 0);
+deathif not not s4=4;
+\end{verbatim}
+ 
+\subsubsection{Trimming}
+
+     A new method for reducing the size of semi-Markov reliability models
+was recently developed by Dr. Allan White and Daniel Palumbo of NASA Langley.
+The details of this trimming method and the theorem that this method is
+conservative are given in their paper in RAMS 1990 entitled ``State
+Reduction for Semi-Markov Reliability Models.''  The user is cautioned
+to read this paper to determine the characteristics of systems for which
+this trimming method is guaranteed to be conservative.  Not all systems can
+be trimmed.
+
+   The implementation in ASSIST 6.2 and higher is as follows.  The user has three
+choices.  First, the default (``TRIM=0;'') is no trimming.  The second
+choice is Allan's and Dan's trimming bound.  In this mode, the model is
+altered such that each state in which the system is experiencing a recovery
+has all failure transitions from it that don't go immediately to a death
+state going to an intermediate trim state. 
+There is a transition from that intermediate trim state to a final state
+at rate TRIMOMEGA.  This is invoked by including the statement 
+``TRIM = 1 WITH real'' where real is some real number.  For example,
+\begin{verbatim}
+TRIM = 1 WITH 6e-4;
+\end{verbatim}
+The expression ``WITH real'' is optional.  If this expression is not included,
+the user will be prompted for the value.  In that case, the user is 
+requested to type in the value followed by a semicolon (;).  A constant,
+TRIMOMEGA, will then be set to whatever value was specified by the user.
+
+     The third choice is Allan's and Dan's trimming bound plus an extra
+transition is added from each prune state to another prune state at the
+same rate TRIMOMEGA that was used for the trimming.
+
+     The user is, again, referred to the RAMS paper for the justification 
+for Allan's and Dan's trimming (TRIM=1) to determine if this
+method is valid for his particular class of systems.  
+In order to be conservative,
+the TRIMOMEGA value should be set to be the sum of the failure rates of
+all components in the system.  The justification for the TRIM=2 method
+is as follows.  Each prune state of the model is not a death state of the
+system.  Thus, another failure of some component must occur before system
+failure can occur.  The TRIM=2 feature is simply including this extra
+failure transition before pruning the model.  Again, to be conservative,
+the TRIMOMEGA must be greater than or equal to the sum of the failure
+rates for all components still in the system when any prune state is
+reached.
+
+\subsection{Enhancements at version 7.0}
+
+The ASSIST program was
+completely re-written in ``C'' at version 7.0.   Many new features were
+added to the language.  Among these are:
+\begin{itemize}
+\item 28 character identifier names (First 12 must be unique for constants).
+\item More complete error checking.
+\item Inclusion of an ASSERT statement for invariant tests.
+\item Two kinds of functions, namely the FUNCTION and IMPLICIT.
+\item Set notation on the FOR statement allows greater flexibility.
+\item Users can now specify their own wording for INPUT prompts.
+\item Users can now specify options as ON or OFF as in ``COMMENT OFF;''.
+\item Users can now have ``BOOLEAN'' state-space variables and constants.
+      Strong type checking is performed.   The function ``COUNT'' will
+      change a Boolean to an integer and the expression ``I $<>$ 0'' will
+      change an integer to a Boolean.
+\item Several command line options were added.
+\item Command line options can be placed in the input file
+      with the ``C\_OPTION'' command.
+\item Identifier cross reference listings can be generated.
+\item The state space may now contain nested parentheses.
+\item The DIV and MOD operators perform integer quotient and remainder
+      operations.
+\item The XOR operator performs the Boolean exclusive-or operation.
+\item State-space variables may now be incremented or decremented by one
+      in the destination of a TRANTO with a brief syntax as in ``NWP$--$'' and
+      ``NS$++$''.
+\item Doubly subscripted arrays.
+\item Additional built-in functions:
+      \begin{itemize}
+      \item SUM(list) will compute the sum of all listed parameters.  If arrays
+                      are listed, then each element of each array is summed.
+                      Rows and/or columns of doubly subscripted arrays can also
+                      be summed.
+      \item COUNT(list) will count the number of TRUE entries in all listed
+                        Boolean parameters.   If arrays are listed, then
+                        each TRUE element of each array is counted.
+                      Rows and/or columns of doubly subscripted arrays can also
+                      be counted.
+      \item ANY(list) is the same as (COUNT(list) $>$ 0)
+      \item ALL(list) is TRUE when all elements in the list are TRUE.
+      \item ABS(X) will compute the absolute value of a number.
+      \item GAM(X) will compute the gamma function.
+      \item FACT(N) will compute the factorial of ``n''.
+      \item COMB(N,K) will compute the combinations of ``n'' things taken ``k'' at a time.
+      \item PERM(N,K) will compute the permutations of ``n'' things taken ``k'' at a time.
+      \end{itemize}
+\item Bit mapping of all state-space variables.
+\item Array constants written to model file.   ARR[1,3] is the same as ARR\_1\_3.
+\end{itemize}
+
+\subsubsection{Enhancements at version 7.0.1}
+
+This version of ASSIST changes the input file name prompt to:
+\begin{codeexample}
+Enter ASSIST input file:
+\end{codeexample}
+and increases the maximum number of state-space variables per nesting level
+from 50 to 200.
+\subsubsection{Enhancements at version 7.0.2}
+This version fixes a bug which showed up when attempting to input the
+TRIM option.
+\subsubsection{Enhancements at version 7.0.3}
+\begin{indenteditems}
+\item The CYC operator was added to ASSIST.
+This operator is like MOD but performs
+the operation $1 + ((x-1)$ MOD $y)$.
+\item The SIZE built-in function was added to take the size of an array.
+The size of an array is defined to be the number of elements in the array.
+For example, the size of an array ARRAY[25..27] is 3 and the size of an
+array ARRAY[1..5,1..3] is 5$\times$3 $=$ 15.
+\end{indenteditems}
+
+\subsubsection{Enhancements at version 7.0.4}
+
+This version of ASSIST looks up the new state in the hash table
+before checking for DEATH, PRUNE, ASSERT conformance.   The idea
+is that, if the state already exists, then it has already been
+tested for such conformance and found to be non-lumped.   In the
+special case of ONEDEATH OFF, the state is flagged as death with
+an extra bit and the code will therefore still work correctly.
+
+A model with 9 triads and 5 spares was used to test any speed improvements.
+The model used was:
+\begin{logfileexample}
+(0001): (*  MULTIPLE TRIADS WITH POOL OF SPARES *)
+(0002): 
+(0003): COMMENT OFF;
+(0004): INPUT N_TRIADS;         (* Number of triads initially *)
+N_TRIADS? 9;
+
+(0005): INPUT N_SPARES;         (* Number of spares *)
+N_SPARES? 5;
+
+(0006): N_PROCS = 3;            (* Number of active processors per triad *)
+(0007): LAMBDA_P = 1E-4;        (* Failure rate of active processors *)
+(0008): LAMBDA_S = 1E-5;        (* Failure rate of cold spare processors *)
+(0009): DELTA1 = 3.6E3;         (* Reconfiguration rate to switch in spare *)
+(0010): DELTA2 = 5.1E3;         (* Reconfiguration rate to break up a triad *)
+(0011): 
+(0012): SPACE = (NP: ARRAY[1..N_TRIADS] OF 0..N_PROCS,
+(0013):                              (* Number of processors per triad *)
+(0014):          NFP: ARRAY[1..N_TRIADS] OF 0..N_PROCS,
+(0015):                              (* Number of failed active processors per triad *)
+(0016):          NS,                 (* Number of spare processors *)
+(0017):          NFS,                (* Number of failed spare processors *)
+(0018):          NT: 0..N_TRIADS);   (* Number of non-failed triads *)
+(0019): 
+(0020): START = (N_TRIADS OF N_PROCS, N_TRIADS OF 0, N_SPARES, 0, N_TRIADS);
+(0021): 
+(0022): IF NS > NFS TRANTO NFS++ BY NS*LAMBDA_S;  (* Spare failure *)
+(0023): 
+(0024): FOR J = 1, N_TRIADS;
+(0025):    IF NP[J] > NFP[J] TRANTO NFP[J]++
+(0026):         BY (NP[J]-NFP[J])*LAMBDA_P;  (* Active processor failure *)
+(0027): 
+(0028):    IF NFP[J] > 0 THEN
+(0029):       IF NS > 0 THEN
+(0030):          IF NS > NFS TRANTO NFP[J]--,NS--
+(0031):             BY (1-(NFS/NS))*NFP[J]*DELTA1;
+(0032):             (* Replace failed processor with working spare *)
+(0033): 
+(0034):          IF NFS > 0 TRANTO NS--,NFS-- BY (NFS/NS)*NFP[J]*DELTA1;
+(0035):             (* Replace failed processor with failed spare *)
+(0036): 
+(0037):       ELSE
+(0038):          TRANTO NP[J]=0, NFP[J]=0, NS = NP[J]-NFP[J], NT-- BY DELTA2;
+(0039):             (* Break up a failed triad when no spares available *)
+(0040):       ENDIF;
+(0041):    ENDIF;
+(0042): 
+(0043):    DEATHIF 2 * NFP[J] >= NP[J] AND NP[J] > 0;
+(0044):      (* Two faults in an active triad is system failure *)
+(0045): 
+(0046): ENDFOR;
+(0047): 
+(0048): DEATHIF NT = 0;    (* System failure by exhaustion *)
+\end{logfileexample}
+It was run twice on the same CPU, once using ASSIST 7.0.3 and once
+using ASSIST 7.0.4.
+
+The results for ASSIST 7.0.3 were as follows:
+\begin{center}\begin{tabular}{rl}
+             0.74 & sec to parse the input file \\
+        11,957.02 & sec to generate the model \\
+          125,774 & states \\
+        1,311,537 & transitions \\
+\end{tabular}\end{center}
+
+The results for ASSIST 7.0.4 were as follows:
+\begin{center}\begin{tabular}{rl}
+             0.86 & sec to parse the input file \\
+         8,287.30 & sec to generate the model \\
+          125,774 & states \\
+        1,311,537 & transitions \\
+\end{tabular}\end{center}
+
+In conclusion, the new version with the hash lookup before the
+test for DEATH, PRUNE, ASSERT is faster, even for large models with
+a large number of states.
+
+\subsubsection{Enhancements at version 7.0.5}
+
+This version added the following:
+\begin{indenteditems}
+\item A fix was made to allow the last character in a file to be
+      something other than a new-line character.
+\item A new-line during a prompt resulting from an INPUT statement is
+      now treated as a semicolon terminator unless preceded by a backwards
+      slash character.
+\item Support was added for state space ranges wider than 256.   For example:
+      ``SPACE $=$ (NWP:0..32767);''
+\item Some bugs resulting in extraneous/incorrect error messages appearing
+      when parsing concatenation expressions were fixed.
+\item Some new internals were added in anticipation of future enhancements.
+\end{indenteditems}
+
+\subsubsection{Enhancements at version 7.0.6}
+
+This version introduced some internal changes required to support future
+program development.   It is functionally equivalent to version 7.0.5.
+
+\subsubsection{Enhancements at version 7.0.7}
+
+This version added the following:
+\begin{indenteditems}
+\item A fix was made to allow the user to enter a value for the
+      constant TRIMOMEGA before the TRIM statement.   The user 
+      may now say ``TRIMOMEGA = 5.0*LAMBDA; TRIM ON;'' without
+      an error.   At the previous release, the user had to say
+      ``TRIM ON WITH 5.0*LAMBDA;''.   Both methods are now accepted.
+\item A bug in the expression parser which caused ASSIST to generate error
+      messages about integer overflows with complicated expressions was fixed.
+\item The new version of ASSIST now differentiates between DEATH and PRUNE
+      statements when printing the two warning messages:
+      \begin{itemize}
+          \item MODEL CONTAINS RECOVERY TRANSITIONS DIRECTLY TO DEATH
+                STATE AND THEREFORE MAY NOT BE SUITED TO TRIMMING.
+          \item MODEL CONTAINS RECOVERY TRANSITIONS DIRECTLY TO PRUNE
+                STATE AND THEREFORE MAY NOT BE SUITED TO TRIMMING.
+      \end{itemize}
+      The previous version, when detecting a recovery directly to a PRUNE
+      state printed the death state message.
+\item This version introduced some internal changes required to support future
+      program development.   These changes are functionally equivalent to
+      the version 7.0.6.
+\end{indenteditems}
+
+\subsubsection{Enhancements at version 7.0.8}
+
+This version added the following:
+\begin{indenteditems}
+\item Internal changes were made to support future products.
+\item The counting scheme was modified when the number of transitions
+      processed is written to the standard output/error file during
+      rule generation.    The new algorithm prints a message every
+      100 transitions until 1,000 transitions have been processed
+      at which time a message is printed every
+      1,000 transitions until 10,000 transitions have been processed
+      at which time a message is printed only once every 10,000
+      transitions until all transitions have been processed.
+\end{indenteditems}
+
+\subsubsection{Enhancements at version 7.0.9}
+
+This version made several fixes.   These are:
+\begin{indenteditems}
+\item Internal changes were made to support future products.
+\item The old version of ASSIST was allowing a trailing comma immediately
+      before the closing parenthesis of a SPACE statement.   Although the
+      extraneous comma was being ignored, the language description (BNF)
+      specifically disallowed the syntax.   The new version prints an
+      error message.
+\item The VARIABLE statement was added to the language to define variables
+      which depend upon the state-space values.   See
+      section \ref{sec:VARIABLE} for more details.
+\item Incorrect IMPLICIT and FUNCTION expansion was being printed to the
+      log file when the ``DEBUG\$ EXPAND\$'' statement was present.   This
+      problem was benign since it only effected the log file and not the
+      model file.
+\item The concatenation character was not working right with certain
+      complicated expressions resulting in garbage being written to the
+      model file.   The problem was that the language description (BNF)
+      in the manual was not specific enough, therefore allowing for a more
+      general usage of the concatenation character than was originally
+      intended.   It was determined that it would not be very difficult
+      to allow the extra syntax, so the ASSIST program was upgraded to
+      correspond to the manual.   The old problem arose when the value
+      of a built-in function invocation or the value of an array element
+      reference followed the concatenation character without being enclosed
+      in parentheses.   Concatenation still has high precedence so any
+      expressions to be concatenated must still be enclosed in parentheses.
+\item The default limits for the maximum number of scratch expressions and
+      scratch operands have been tripled.   The user can still control
+      these limits via the ASSIST command line.
+\end{indenteditems}
+
+\subsubsection{Enhancements at version 7.0.10}
+
+This version made several fixes.   These are:
+\begin{indenteditems}
+\item Internal changes were made to support future products.
+\item The new version will allow the user to use up to 16MB of space for
+      parsing an input file.   The old version would allow use of only
+      1MB of space.   This was of consequence only for input files with
+      some very very long expressions or some very big storage requirements
+      requested with the command line options.
+\item The old version of the parser was allowing a VARIABLE definition
+      to specify calling parameters even though calling parameters
+      make no sense with variables and were being ignored during rule
+      generation.   The new version prints an error message when an
+      input file attempts this.
+\item A bug in the expression parser which caused ASSIST to generate error
+      messages about space variables out of range with complicated
+      expressions was fixed.
+\item During rule generation, when a state-space value goes out of bounds
+      due to a transition to an invalid state,
+      an error message is printed.   In addition, the invalid state was
+      supposed to have been treated as a death state.   The new version
+      correctly treats the destination state as a death state.   The
+      model file has always been and still is being flagged as erroneous
+      when an invalid state is encountered.
+\item The MIN and MAX built-in list/array functions were added.   Like SUM,
+      these two functions operate on lists and/or arrays of integers and/or
+      reals and return a result of the same type as being passed.
+\item The old version was complaining about real numbers being invalid
+      in constant array definitions with the ``n OF'' syntax.   For example,
+      ``ARR = [ 2.2, 5 OF 1.1 ];'', was generating an error message that
+      the real number 1.1 was not allowed except in a rate expression.   The
+      problem is now fixed and the syntax is allowed.
+\end{indenteditems}
+
+\subsubsection{Enhancements at version 7.0.11}
+
+This version made several fixes.   These are:
+\begin{indenteditems}
+\item Internal changes were made to support future products.
+\item A new command line option ``-auto'' is used to automatically insert
+      both a ``RUN'' and an ``EXIT'' command at the end of the model file
+      output.   It can be used together with ``-pipe'' when piping output
+      to SURE.
+\end{indenteditems}
+
+\subsubsection{Enhancements at version 7.0.12}
+
+This version made one minor fix:
+\begin{indenteditems}
+\item The old version was computing zero for 2**N where N $>$$=$ 31.   The
+      new version still computes zero but prints an error message
+      that an overflow has occurred.   The model file is flagged as
+      erroneous so that it cannot be solved.
+\end{indenteditems}
+
+\subsubsection{Enhancements at version 7.0.13}
+
+This version made the following minor fixes:
+\begin{indenteditems}
+\item The new version will compile without warnings with
+      version 2.1 of the ``gcc'' compiler.
+\item The new version uses release number 7.0-13 under VMS.
+\item The new version adds a test for command line memory option
+      values which must be multiples of four.   This test is made
+      for all architectures with either 16 or 32 bit integers.
+\end{indenteditems}
+
+\subsubsection{Enhancements at version 7.0.14}
+
+This version made the following minor fixes:
+\begin{indenteditems}
+\item Certain Boolean expressions with embedded comments were being reported
+      as being in error with a message such
+      as ``[ERROR] RELATIONAL OPERATOR MUST FOLLOW NUMERIC
+      QUANTITY IN BOOLEAN EXPRESSION''.   The new version of \acronym{ASSIST}
+      correctly handles all comments including those embedded in Boolean
+      expressions.   Some such expressions
+      are being generated with \acronym{TOTAL}.
+\item The command line option
+      \option{WRAP\_LONG\_CONSTANT\_EXPRESSIONS}
+      (\option{WRAP\_LONG} for short)
+      was added (also with the ``C\_OPTION WRAP\_LONG\_CONSTANT\_EXPRESSIONS;''
+      command) in order to tell \acronym{ASSIST} to write each term of constant
+      expressions on a separate line so that \acronym{SURE}
+      will be able to read in the model.   Such long expressions for TRIMOMEGA
+      are being generated by \acronym{TOTAL}.
+\item Longer and more descriptive warning messages are allowed in order to
+      support \acronym{TOTAL}.
+\item The line number of the transition used to get to the current state
+      is now printed when assertions fail.
+\item Other minor internal changes were made to support \acronym{TOTAL}.
+\end{indenteditems}
+
+\subsubsection{VARIABLE Statement}
+\label{sec:VARIABLE}
+
+The \rw{VARIABLE} statement is used to define a variable which is not part
+of but is dependent upon the state space.   The variable can be either a
+scalar or an array.
+
+Variables oftentimes produce the same results as do implicits.   The difference
+is when the expression evaluation is performed.   With an \rw{IMPLICIT}, the
+expression to the right of the equal sign is not evaluated until it is
+actually used.   With a \rw{VARIABLE} the expression is evaluated once for
+each new state regardless of whether or not the variable is ever referenced.
+There is therefore a performance trade-off.   If the expression is going
+to be referenced inside of a loop or many different times, a \rw{VARIABLE}
+will probably be more efficient than an \rw{IMPLICIT}.   If, however, the
+references to the expression are all protected by \rw{IF} tests which
+hold true for very few states, then an \rw{IMPLICIT} may be more efficient
+than a \rw{VARIABLE}.
+
+Another difference is that a \rw{VARIABLE} can define an array whereas
+an \rw{IMPLICIT} cannot.
+
+For example, if \word{NWP} is a state-space variable representing the number
+of working processors and \word{NI} is a constant denoting the number of
+processors initially, then the declaration:
+\begin{codeexample}
+VARIABLE NFP[NWP] = NI - NWP;
+\end{codeexample}
+defines \word{NFP}, denoting the number of failed processors, to
+be the difference between the number initially and the current
+number of working processors.  The above variable can be
+referenced as illustrated in the following \rw{DEATHIF} statement:
+\begin{codeexample}
+DEATHIF NWP <= NFP;
+\end{codeexample}
+
+The syntax is:
+\begin{syntaxexample}
+\literal{VARIABLE} \bnf{identifier} \literal{[} \bnf{state-space-variable-list} \literal{]} \literal{=} \maybeonce{\literal{BOOLEAN}} \bnf{definition-clause} \literal{;}
+\end{syntaxexample}
+where a definition clause defines either a scalar or an array.  Its syntax is:
+\begin{syntaxexample}
+\bnf{expr}
+\orline{3mm}
+\literal{[} \maybeonce{\bnf{\#} \literal{OF}} \bnf{expr} \manytimes{\literal{,} \maybeonce{\bnf{\#} \literal{OF}} \bnf{expr}} \literal{]}
+\orline{3mm}
+\literal{ARRAY (} \maybeonce{\bnf{\#} \literal{OF}} \bnf{expr} \manytimes{\literal{,} \maybeonce{\bnf{\#} \literal{OF}} \bnf{expr}} \literal{)}
+\end{syntaxexample}
+
+
+The
+\bnf{state-space-variable-list}
+is made up of one or more state-space
+variable name identifiers separated by commas.
+The identifiers must already have been defined in a \rw{SPACE}
+statement.
+All state-space variables that are referenced in the
+definition clause of an \rw{VARIABLE} must be listed in the state-space variable list.
+
+The \bnf{definition-clause} of the \rw{VARIABLE} definition is the expression defining
+the \rw{VARIABLE} as either a variable or an array which is dependent upon the state space.
+Named constants and reserved words may be freely referenced to the right of the equal sign
+and must not be specified with the state-space variables.
+
+The \rw{VARIABLE} may be referenced
+in \rw{TRANTO}, \rw{DEATHIF},
+\rw{PRUNEIF}, \rw{ASSERT}, \rw{IF}, or \rw{FOR}
+statements or in later \rw{VARIABLE}, \rw{IMPLICIT}, or \rw{FUNCTION} definitions in
+exactly the same manner as a constant would be referenced.
+The \rw{VARIABLE} is referenced in the same way as a constant would be.  Square brackets
+are used when the \rw{VARIABLE} is an array.
+
+The following example
+illustrates the definition and use of \rw{VARIABLE}s:
+\begin{codeexample}
+SPACE = (NWP:ARRAY[1..5] OF 0..3); (* Number working in each of five triads *)
+
+VARIABLE NFP[NWP] = [
+                       3 - NWP[1],
+                       3 - NWP[2],
+                       3 - NWP[3]
+                    ];    (* Number failed in each triad *)
+VARIABLE TOTALW[NWP] = SUM(NWP);
+VARIABLE TOTALF[NWP] = 3*5-TOTALW;
+
+FOR III IN [1..5]
+   IF (NFP[III]>0) TRANTO NWP[III]=0 BY 1.E-5;
+ENDFOR;
+DEATHIF TOTALF > 6;
+\end{codeexample}
+In the above example, the variable named \word{NFP} is declared
+to be dependent upon the state-space variable \word{NWP} and to be an array
+with three elements.   The value for each element is
+computed as three minus the current number of
+working processors in the triad corresponding to the array index.
+The variable \word{TOTALW} is also dependent upon the state-space
+variable \word{NWP}.   Its value is
+computed as the sum of the number of working processors in each triad
+over all five triads.   The variable \word{TOTALF} is also
+a dependent upon the state-space variable \word{NWP}.
+The definition of \word{TOTALF} references the value of variable
+\word{TOTALW}.   Since \word{TOTALW} is computed based upon the state-space
+variable \word{NWP}, then \word{NWP} must be listed in the state-space
+variable list for \word{TOTALF} even though it is only referenced
+indirectly.   When \word{NFP} is referenced in the \rw{IF}, the value of
+\word{III} is passed as a subscript to satisfy the array requirements
+as declared in the \word{VARIABLE NFP} line.
+
+
+\subsection{General Comments}
+ 
+Hopefully, you will find that \acronym{ASSIST} versions 7.0 and above 
+generate models considerably faster, use much less physical memory, 
+and thus allow the generation of larger models than previous versions.
+Several model reduction techniques have been
+developed for use with the \acronym{ASSIST} program.  Since the user can reduce the
+model before it is generated by \acronym{ASSIST}, considerably larger and more complex
+systems can now be handled.  The use of these techniques, including the new
+\verb'PRUNEIF' statement, are described in the paper ``Reliability
+Analysis of Large, Complex Systems Using ASSIST,'' Proceedings $8^{th}$ Digital
+Avionics Systems Conference, October 1988.
+
+\section{Warning on associativity of exponentiation}
+
+Please note that the associativity of the exponentiation operator was
+inconsistant between versions of SURE/STEM/PAWS prior to version 7.9.8 and
+FTC version 2.8.2 and the new version of ASSIST.   Users of ASSIST 7.0
+and higher should use SURE/STEM/PAWS 7.9.8 or higher and FTC 2.8.2 or
+higher.
+
+The prior releases of SURE/STEM/PAWS/FTC used left-to-right
+associativity whereas the new versions of these programs and ASSIST 7.0 use
+the more common right-to-left associativity.   For example, consider:
+\begin{seta}
+    VAL = 1.1 ** 1.883 ** 1.448;
+\end{seta}
+In the prior releases of SURE/STEM/PAWS/FTC, this was equivalent to:
+\begin{seta}
+    VAL = (1.1 ** 1.883) ** 1.448;
+\end{seta}
+Whereas in ASSIST 7.0, and the version 7.9.8 of SURE/STEM/PAWS/FTC it
+is equivalent to:
+\begin{seta}
+    VAL = 1.1 ** (1.883 ** 1.448);
+\end{seta}
+

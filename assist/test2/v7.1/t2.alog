@@ -1,0 +1,20 @@
+t2.ast    9/02/97 2:46:51 p.m.                          ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): NP=6;   (* number of processors initially *)
+(0002): "X = 1 TO 50 BY 5;"
+(0003): LAMBDA = 1E-4;  (* fault arrival rate *)
+(0004): DELTA = 3.6E3;  (* recovery rate *)
+(0005): "(* THIS QUOTE IS A COMMENT *)
+(0006): (* THIS IS THE SECOND LINE OF THE COMMENT *)"
+(0007): SPACE = (NC: 0..NP,  NF: 0..NP);
+(0008): START = (NP,0);
+(0009): DEATHIF 2*NF >= NC;
+(0010): ONEDEATH = 1;
+        ^ [ERROR] STATEMENT OUT OF SEQUENCE ... NOT ALLOWED IN RULE SECTION.
+
+(0011): IF NC > 0 TRANTO (NC,NF+1)  BY (NC-NF)*LAMBDA; (* fault arrivals *)
+(0012): IF NF > 0 TRANTO (NC-1, NF-1) BY <1/(NF*DELTA),1/(NF*DELTA)>;
+(0013):     (* system recovery *)
+
+
+0001 ERROR.

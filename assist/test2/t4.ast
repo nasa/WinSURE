@@ -1,0 +1,10 @@
+NP=6;   (* number of processors initially *)
+LAMBDA = 1E-4;  (* fault arrival rate *)
+DELTA = 3.6E3;  (* recovery rate *)
+SPACE = (A,B,C,D,E,F,G); 
+START = (7 OF 1);
+(* DEBUG ALL; *)
+DEATHIF (F=G OR A>B) AND A>C;
+ONEDEATH = 1;
+IF A > 0 TRANTO A = A+1 BY (NC-NF)*LAMBDA; (* fault arrivals *)
+(* ONE TRANSITION, 1,1,1,1,1,1,1 TO 2,1,1,1,1,1,1* *)

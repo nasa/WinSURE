@@ -1,0 +1,86 @@
+test.ast    9/03/97 9:44:42 a.m.                        ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): (* MYPIT.AST *)
+(0002): (* THIS MODEL INSTANEOUSLY RECONFIGURES SENSORS UPON NODE FAILURE *)
+(0003): 
+(0004): ECHO=0;
+(0005): COMMENT=0;
+(0006): TIME=3.0;
+(0007): LIST=2;
+(0008): (*PRUNE=1E-15;*)
+(0009): 
+(0010): 
+(0011): LAMSEN = 10.0E-6;            (* SENSOR FAILURE RATES *)
+(0012): LAMCOM = 15.0E-6;            (* NETWORK NODE FAILURE RATE *)
+(0013): LAMOUT = 56.1E-7;            (* NETWORK TEMPORARY OUTAGE RATE *)
+(0014): LAMDIU = 15.0E-6;            (* DIU FAILURE RATE *)
+(0015): LAMELEC = 20.0E-6;           (* PRIMARY ELECTRICAL SYSTEM FAIL RATE *)
+(0016): RECMEAN = 3.0E-4;            (* SENSOR RECOVERY TIME MEAN *)
+(0017): RECSTD = 1.0E-4;             (* SENSOR RECOVERY TIME STD DEV *)
+(0018): 
+(0019): (* LET PARTS[1] HOLD NODES 1,2 AND PARTS[2] HOLD NODES 3,4 *)
+(0020): (* AND SENSOR[I] IS ATTACHED TO NODE [I]  *)
+(0021): 
+(0022): SPACE = (PARTS: ARRAY[1..2] OF 0..1, (* PARTITIONS *)
+(0023):          NODES: ARRAY[1..4] OF 0..1, (* LOW LEVEL NODES *)
+(0024):          NGPIT: ARRAY[1..4] OF 0..1, (* NO. OF GOOD PITCH *)
+(0025):          NFPIT: ARRAY[1..4] OF 0..2,  (* NO. OF RECOVERING PITCH SENSORS *)
+(0026):          NCF);              (* NO. OF COMPONENT FAILURES FOR PRUNING *)
+(0027): 
+(0028): START = (2 OF 1, 4 OF 1, 4 OF 1, 4 OF 0 , 0);
+(0029): 
+(0030): (* MAJORITY VOTER *)
+(0031): DEATHIF (NGPIT[1] + NGPIT[2] + NGPIT[3] + NGPIT[4]) <=
+(0032):         (NFPIT[1] + NFPIT[2] + NFPIT[3] + NFPIT[4]);
+(0033): 
+(0034): (* EXHAUSTION OF SENSORS *)
+(0035): DEATHIF NGPIT[1] + NGPIT[2] + NGPIT[3] + NGPIT[4] < 1;
+(0036): 
+(0037): (* INTERACTION OF SENSORS AND NETWORK *)
+(0038): DEATHIF (PARTS[1] = 0) AND
+(0039):         (NGPIT[3] + NGPIT[4] - NFPIT[3] - NFPIT[4] <= 0);
+(0040): 
+(0041): DEATHIF (PARTS[2] = 0) AND
+(0042):         (NGPIT[1] + NGPIT[2] - NFPIT[1] - NFPIT[2] <= 0);
+(0043): 
+(0044): (* EXHAUSTION OF PARTITIONS *)
+(0045): DEATHIF (PARTS[1] + PARTS[2]) < 1;
+(0046): 
+(0047): ONEDEATH=1;
+        ^ [ERROR] STATEMENT OUT OF SEQUENCE ... NOT ALLOWED IN RULE SECTION.
+
+(0048): 
+(0049): PRUNEIF NFPIT[1]+NFPIT[2]+NFPIT[3]+NFPIT[4] + NCF > 2;
+(0050): PRUNEIF NCF >= 3; (* PRUNE AT THE 3 COMPONENT FAILURE LEVEL *)
+(0051): 
+(0052): FOR I = 1,4;
+(0053):    IF NGPIT[I] = 1 TRANTO NGPIT[I] = 0, NCF = NCF + 1,
+(0054):                                NFPIT[I] = 1 BY LAMSEN;
+(0055): 
+test.ast    9/03/97 9:44:42 a.m.                        ASSIST 7.1, NASA LaRC    Page 2
+
+(0056):    IF NODES[I] =1 THEN
+(0057):       IF I=1 OR I=2     TRANTO NODES[I] = 0, NCF=NCF+1,
+(0058):                         NGPIT[I] = 0, NFPIT[I] = 0,
+(0059):                         PARTS[1] = 0
+(0060):                         BY (LAMCOM + LAMDIU + LAMELEC);
+(0061): 
+(0062):       IF I=3 OR I=4     TRANTO NODES[I] = 0, NCF=NCF+1,
+(0063):                         NGPIT[I] = 0, NFPIT[I] = 0,
+(0064):                         PARTS[2] = 0
+(0065):                         BY (LAMCOM + LAMDIU + LAMELEC);
+(0066): ENDIF;
+(0067): 
+(0068):    IF NFPIT[I] = 1 TRANTO NFPIT[I] = 0 BY FAST 1.0/RECMEAN;
+(0069): 
+(0070): 
+(0071): ENDFOR;
+(0072): 
+(0073): FOR J = 1,2;
+(0074):     IF PARTS[J] = 1 TRANTO PARTS[J] = 0 BY LAMOUT;
+(0075):     IF PARTS[J] = 0 TRANTO PARTS[J] = 1 BY FAST 1.0/RECMEAN;
+(0076): ENDFOR;
+(0077): 
+
+
+0001 ERROR.

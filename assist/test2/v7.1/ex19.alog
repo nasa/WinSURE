@@ -1,0 +1,25 @@
+ex19.ast    9/02/97 2:46:28 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): NP=6;   (* number of processors initially *)
+(0002): NA=3;
+(0003): MINUSTEN=-10;
+(0004): LAMBDA = 1E-4;  (* fault arrival rate *)
+(0005): DELTA = 3.6E3;  (* recovery rate *)
+(0006): SPACE = (NC: ARRAY[1..NA] OF MINUSTEN..NP,  NF: ARRAY[1..NA] OF MINUSTEN..NP);
+                                           <-^ [ERROR] NEGATIVE VALUES NOT ALLOWED. 
+                                                       USE A WHOLE NUMBER:  -10 IS THE 
+                                                       COMPUTED VALUE.
+        [ERROR] NEGATIVE VALUES NOT ALLOWED. USE A WHOLE NUMBER:  -10 IS THE  <-^
+                COMPUTED VALUE.
+
+(0007): START = (6,6,6,0,0,0);
+(0008): DEATHIF NC[1] <= 0;
+(0009): DEATHIF NC[2] <= 0;
+(0010): DEATHIF NC[3] <= 0;
+(0011): FOR I = 1,3;
+(0012): IF NC[I] > 0 TRANTO
+(0013):    (NC[1]-I,NC[2]-I,NC[3]-I,I,I,I) BY I;
+(0014): ENDFOR;
+
+
+0002 ERRORS.

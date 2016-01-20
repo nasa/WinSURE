@@ -1,0 +1,4 @@
+#!/bin/sh
+# java -cp bin gov.nasa.larcfm.Reliab/bSURE $* 
+
+java -cp lib/WinSURE.jar gov.nasa.larcfm.Reliab/bSURE $*

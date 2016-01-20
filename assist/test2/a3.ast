@@ -1,0 +1,4 @@
+SPACE = (A,B,C,D);
+START = (2 OF 3,1 OF 2,1);
+IF C = 2 TRANTO C = C+1 BY A+B+C+D;
+DEATHIF C>2;

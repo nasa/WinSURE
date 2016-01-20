@@ -1,0 +1,18 @@
+ex1.ast    11/16/15 9:20:17 a.m.                  ASSIST ***7.4***, NASA LaRC    Page 1
+
+(0001): NP=6;   (* number of processors initially *)
+(0002): "LAMBDA = 1E-8 TO* 1E-4;"  (* fault arrival rate *)
+(0003): "INPUT DELTA;"  (* recovery rate *)
+(0004): SPACE = (NC: 0..NP,  NF: 0..NP);
+(0005): START = (NP,0);
+(0006): DEATHIF 2*NF >= NC;
+(0007): IF NC <> 0 TRANTO (NC,NF+1)  BY (NC-NF)*LAMBDA; (* fault arrivals *)
+(0008): IF NF <> 0 TRANTO (NC-1, NF-1) BY <1/(NF*DELTA),1/(NF*DELTA)>;
+(0009):     (* systen recovery *)
+
+PARSING TIME = 0.00 sec.
+RULE GENERATION TIME = 0.00 sec.
+NUMBER OF STATES IN MODEL = 12
+NUMBER OF TRANSITIONS IN MODEL = 17
+5 DEATH STATES AGGREGATED INTO STATE 1
+

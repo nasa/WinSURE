@@ -1,0 +1,31 @@
+ex7.ast    9/02/97 2:46:37 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): NP = 6;   (* number of processors initially *)
+(0002): LAMBDA = 1E-4;  (* fault arrival rate *)
+(0003): DELTA = 3.6E3;  (* recovery rate *)
+(0004): TWICENP = NP * 2;
+(0005): DELTASQ = DELTA * DELTA;
+(0006): SPACE = (NC: 0..NP,  NF: 0..NP);
+(0007): START = (NP,0);
+(0008): DEATHIF 2*NF >= NC;
+(0009): FRED = NF;
+        ^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of FRED = 
+                  <expr>)
+               <-^ [ERROR] VARIABLES NOT ALLOWED IN CONSTANT DEFINITION EXPRESSION.   
+                           CONSIDER THE USE OF A FUNCTION OR IMPLICIT: NF
+                 ^ [ERROR] STATE-SPACE VARIABLE DOES NOT HAVE A VALUE UNTIL AFTER 
+                           PARSING IS COMPLETE AND RULE GENERATION HAS STARTED.
+
+(0010): LUCY = NC;
+        ^ [ERROR] STATEMENT NOT VALID IN THIS SECTION: (constant definition of LUCY = 
+                  <expr>)
+               <-^ [ERROR] VARIABLES NOT ALLOWED IN CONSTANT DEFINITION EXPRESSION.   
+                           CONSIDER THE USE OF A FUNCTION OR IMPLICIT: NC
+                 ^ [ERROR] STATE-SPACE VARIABLE DOES NOT HAVE A VALUE UNTIL AFTER 
+                           PARSING IS COMPLETE AND RULE GENERATION HAS STARTED.
+
+(0011): IF NC > 0 TRANTO (NC,NF+1)  BY (NC-NF)*LAMBDA; (* fault arrivals *)
+(0012): IF NF > 0 TRANTO (NC-1, NF-1) BY NF*DELTA;     (* systen recovery*)
+
+
+0006 ERRORS.

@@ -1,0 +1,4 @@
+SPACE = (X:0..4);
+START = (0);
+IF X<4 TRANTO (X+1) BY X+1;
+IF X>0 TRANTO (X-1) BY X/2;

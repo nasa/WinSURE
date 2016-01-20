@@ -1,0 +1,154 @@
+
+                         (***************************)
+                         (***************************)
+                         (***                     ***)
+                         (***   RATE  CONSTANTS   ***)
+                         (***                     ***)
+                         (***************************)
+                         (***************************)
+
+L_P_triad    = 1.e-4;   (* Arrival rate of permanent fault for "triad" *)
+DEL_hot      = 7.011e6; (* Rate to reconfigure "hot" spare into "triad" *)
+DEL_warm     = 6.802e6; (* Rate to reconfigure "warm" spare into "triad" *)
+DEL_cold     = 2.114e6; (* Rate to reconfigure "cold" spare into "triad" *)
+
+LAM_hot      = 1.2e-4;  (* Arrival rate of permanent "hot" spare faults *)
+LAM_warm     = 1.0e-8;  (* Arrival rate of permanent "warm" spare faults *)
+
+                         (***************************)
+                         (***************************)
+                         (***                     ***)
+                         (***   SPACE CONSTANTS   ***)
+                         (***                     ***)
+                         (***************************)
+                         (***************************)
+
+NI_triad     = 3;   (* Redundancy count for "triad" *)
+NSI_hot      = 2;   (* Initial pool size for "hot" *)
+NSI_warm     = 5;   (* Initial pool size for "warm" *)
+NSI_cold     = 10;  (* Initial pool size for "cold" *)
+                    (* total number of components initially *)
+
+                       (*******************************)
+                       (*******************************)
+                       (***                         ***)
+                       (***   STATE SPACE DEFINED   ***)
+                       (***                         ***)
+                       (*******************************)
+                       (*******************************)
+
+SPACE =
+  (
+   NW_triad     : 0..NI_triad, (* Count of working in "triad" *)
+   NWS_hot      : 0..NSI_hot,  (* Working spares count, HOT pool "hot" *)
+   NFS_hot      : 0..NSI_hot,  (* Failed spares count, HOT pool "hot" *)
+   NWS_warm     : 0..NSI_warm, (* Working spares count, WARM pool "warm" *)
+   NFS_warm     : 0..NSI_warm, (* Failed spares count, WARM pool "warm" *)
+   NS_cold      : 0..NSI_cold  (* Spares count, COLD pool "cold" *)
+  );
+
+IMPLICIT TFA_triad[NW_triad] = (* Total active failed in "triad" *)
+         NI_triad - NW_triad;
+IMPLICIT TWA_triad[NW_triad] = (* Total active working in "triad" *)
+         NW_triad;
+IMPLICIT TA_triad[] = NI_triad;
+IMPLICIT NS_triad[NWS_hot,NFS_hot,NWS_warm,NFS_warm,NS_cold] =
+         (* Total spares available to "triad" *)
+         NWS_hot + NFS_hot + NWS_warm + NFS_warm + NS_cold;
+
+IMPLICIT NS_hot[NWS_hot,NFS_hot] = NWS_hot + NFS_hot;
+IMPLICIT PRW_hot[NWS_hot,NFS_hot] = NWS_hot / NS_hot;
+IMPLICIT PRF_hot[NWS_hot,NFS_hot] = NFS_hot / NS_hot;
+
+IMPLICIT NS_warm[NWS_warm,NFS_warm] = NWS_warm + NFS_warm;
+IMPLICIT PRW_warm[NWS_warm,NFS_warm] = NWS_warm / NS_warm;
+IMPLICIT PRF_warm[NWS_warm,NFS_warm] = NFS_warm / NS_warm;
+
+START =
+  (
+   NI_triad,      (* Count of working in "triad" *)
+   NSI_hot,       (* Working spares count, HOT pool "hot" *)
+   0,             (* Failed spares count, HOT pool "hot" *)
+   NSI_warm,      (* Working spares count, WARM pool "warm" *)
+   0,             (* Failed spares count, WARM pool "warm" *)
+   NSI_cold       (* Spares count, COLD pool "cold" *)
+  );
+
+                       (*******************************)
+                       (*******************************)
+                       (***                         ***)
+                       (***   COMPONENT:  "triad"   ***)
+                       (***                         ***)
+                       (*******************************)
+                       (*******************************)
+
+
+IF (NW_triad > 0)
+   TRANTO NW_triad--
+          BY NW_triad*L_P_triad;  (* Permanent fault arrival *)
+
+IF (TFA_triad > 0) THEN  (* Faults present *)
+   IF (NS_hot > 0) THEN   (* Try primary spare pool "hot" first *)
+      IF (NWS_hot > 0)
+         TRANTO NWS_hot--,NW_triad++
+                BY FAST PRW_hot*DEL_hot;
+      IF (NFS_hot > 0)
+         TRANTO NFS_hot--
+                BY FAST PRF_hot*DEL_hot;
+   ELSE IF (NS_warm > 0) THEN   (* Try secondary spare pool "warm" next *)
+      IF (NWS_warm > 0)
+         TRANTO NWS_warm--,NW_triad++
+                BY FAST PRW_warm*DEL_warm;
+      IF (NFS_warm > 0)
+         TRANTO NFS_warm--
+                BY FAST PRF_warm*DEL_warm;
+   ELSE IF (NS_cold > 0) THEN   (* Try tertiary spare pool "cold" last *)
+      TRANTO NS_cold--,NW_triad++ BY FAST DEL_cold;
+   ENDIF; ENDIF; ENDIF;
+ENDIF;
+
+                        (*****************************)
+                        (*****************************)
+                        (***                       ***)
+                        (***   SPARE POOL: "hot"   ***)
+                        (***                       ***)
+                        (*****************************)
+                        (*****************************)
+
+ASSERT (NWS_hot + NFS_hot) <= NSI_hot;
+
+IF (NWS_hot > 0)   (* Arrival of permanent "hot" spare fault *)
+   TRANTO NWS_hot--,NFS_hot++ BY NWS_hot*LAM_hot;
+
+                       (*******************************)
+                       (*******************************)
+                       (***                         ***)
+                       (***   SPARE POOL:  "warm"   ***)
+                       (***                         ***)
+                       (*******************************)
+                       (*******************************)
+
+ASSERT (NWS_warm + NFS_warm) <= NSI_warm;
+
+IF (NWS_warm > 0)   (* Arrival of permanent "warm" spare fault *)
+   TRANTO NWS_warm--,NFS_warm++ BY NWS_warm*LAM_warm;
+
+                       (*******************************)
+                       (*******************************)
+                       (***                         ***)
+                       (***   SPARE POOL:  "cold"   ***)
+                       (***                         ***)
+                       (*******************************)
+                       (*******************************)
+
+ASSERT NS_cold <= NSI_cold;
+
+                       (*******************************)
+                       (*******************************)
+                       (***                         ***)
+                       (***   MISC. DEATH & PRUNE   ***)
+                       (***                         ***)
+                       (*******************************)
+                       (*******************************)
+
+DEATHIF TFA_triad >= TWA_triad;

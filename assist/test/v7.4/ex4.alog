@@ -1,0 +1,49 @@
+ex4.ast    11/16/15 9:20:17 a.m.                  ASSIST ***7.4***, NASA LaRC    Page 1
+
+(0001): (* MONITORED SENSOR FAILURE MODEL *)
+(0002): 
+(0003): LAMBDA_S = 10E-6;       (* Failure rate of sensors *)
+(0004): LAMBDA_M = 1E-6;        (* Failure rate of monitors *)
+(0005): MEAN_1 = 3E-4;          (* Mean recovery time for first fault *)
+(0006): SD_1 = 1E-4;            (* S.D. of recovery time for first fault *)
+(0007): MEAN_2 = 1E-4;          (* Mean recovery time for second fault *)
+(0008): SD_2 = 2E-5;            (* S.D. of recovery time for second fault *)
+(0009): COV_2 = .98;            (* Coverage for second failure *)
+(0010): 
+(0011): SPACE = (NS: 0..3,      (* Number of active sensors *)
+(0012):          NFS: 0..3,     (* Number of failed active sensors *)
+(0013):          NM: 0..3);     (* Number of working monitors *)
+(0014): START = (3, 0, 3);
+(0015): 
+(0016): DEATHIF NFS >= NS;      (* All sensors failed *)
+(0017): DEATHIF NFS > 1;        (* 2/3 sensors failed *)
+(0018): DEATHIF NS=2 AND NM<2 AND NFS=1;
+(0019):    (* Half of the sensors fail and less than 2 monitors working *)
+(0020): 
+(0021): IF NS>0 TRANTO NFS = NFS+1 BY (NS-NFS)*LAMBDA_S;        (* Sensor failure *)
+(0022): IF NM>1 TRANTO NM = NM-1 BY NM*LAMBDA_M;                (* Monitor failure *)
+(0023): 
+(0024):    (* First failure recovery *)
+(0025): IF NS>2 AND NFS>0 THEN
+(0026):    IF NM>1 TRANTO (NS-1, NFS-1, NM-1) BY <MEAN_1,SD_1,(NM/NS)>;
+(0027):         (* Loss of monitored sensor *)
+(0028):    IF NM>1 AND NS>NM TRANTO (NS-1, NFS-1, NM) BY <MEAN_1,SD_1,(NS-NM)/NS>;
+(0029):         (* Loss of unmonitored sensor *)
+(0030):    IF NM<2 TRANTO (NS-1, NFS-1, NM) BY <MEAN_1,SD_1>;
+(0031):         (* Loss of either of 2 unmonitored sensors *)
+(0032): ENDIF;
+(0033): 
+(0034):    (* Second failure recovery *)
+(0035): IF NS=2 AND NM=2 AND NFS>0 THEN
+(0036):    TRANTO (NS-1, NFS-1, NM) BY <MEAN_2,SD_2,COV_2>;
+(0037):         (* Successfully removed failed sensor *)
+(0038):    TRANTO (NS-1,NFS,NM) BY <MEAN_2,SD_2,1.0-COV_2>;
+(0039):         (* Mistakenly removed nonfaulty sensor *)
+(0040): ENDIF;
+
+PARSING TIME = 0.00 sec.
+RULE GENERATION TIME = 0.00 sec.
+NUMBER OF STATES IN MODEL = 14
+NUMBER OF TRANSITIONS IN MODEL = 24
+9 DEATH STATES AGGREGATED INTO STATES 1 - 3
+

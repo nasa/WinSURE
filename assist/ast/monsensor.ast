@@ -1,0 +1,37 @@
+(* MONITORED SENSOR FAILURE MODEL *)
+
+LAMBDA_S = 10E-6; (* Failure rate of sensors *)
+LAMBDA_M = 1E-6;  (* Failure rate of monitors *)
+MU_1 = 3E-4;      (* Mean recovery time for first fault *)
+SIG_1 = 1E-4;     (* S.D. of recovery time for first fault *)
+MU_2 = 1E-4;      (* Mean recovery time for second fault *)
+SIG_2 = 2E-5;     (* S.D. of recovery time for second fault *)
+COV_2 = .98;      (* Coverage for second failure *)
+
+SPACE = (NS: 0..3,  (* Number of active sensors *)
+         NFS: 0..3, (* Number of failed active sensors *)
+         NM: 0..3); (* Number of working monitors *)
+START = (3, 0, 3);
+
+DEATHIF 2*NFS > NS; (* Majority of sensors failed *)
+DEATHIF 2*NFS = NS AND NM < NS;
+   (* Half of the sensors fail and the number of monitors *)
+   (*   working is less than the number of active sensors *)
+
+IF NS>0 TRANTO NFS++ BY (NS-NFS)*LAMBDA_S; (* Sensor failure *)
+IF NM>1 TRANTO NM-- BY NM*LAMBDA_M;        (* Monitor failure *)
+
+IF NS>2*NFS AND NFS>0 THEN   (* First fault recovery *)
+   IF NM>0 TRANTO NS--,NFS--,NM-- BY <MU_1,SIG_1,(NM/NS)>;
+           (* Loss of monitored sensor *)
+   IF NM<NS TRANTO NS--,NFS-- BY <MU_1,SIG_1,(NS-NM)/NS>;
+           (* Loss of unmonitored sensor *)
+ENDIF;
+
+
+IF NS=2*NFS AND NFS>0 THEN   (* Second fault recovery *)
+   TRANTO NS--,NFS-- BY <MU_2,SIG_2,COV_2>;
+          (* Successfully removed failed sensor *)
+   TRANTO NS-- BY <MU_2,SIG_2,1.0-COV_2>;
+          (* Mistakenly removed nonfaulty sensor *)
+ENDIF;

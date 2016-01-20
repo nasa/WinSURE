@@ -1,0 +1,17 @@
+z1.ast    10/12/99 11:29:40 a.m.                        ASSIST 7.2, NASA LaRC    Page 1
+
+(0001): lambda = 1e-5;
+(0002): gamma = 10 * lambda;
+(0003): space = (a);
+(0004): start = (1);
+(0005): deathif (a > 1 + a < 5);
+                           ^ [ERROR] TRIPLE INEQUALITY NOT SUPPORTED.  USE "A<B AND 
+                                     B<C" INSTEAD OF "A<B<C", ETC: <
+                           ^ [ERROR] ARITHMETIC OPERATOR IN A BOOLEAN EXPRESSION: <
+                           ^ [ERROR] RIGHT ")" EXPECTED: <
+                           ^ [ERROR] SEMICOLON EXPECTED: <
+                             ^ [ERROR] SKIPPING EXTRANEOUS TOKENS: #5
+        ^ [ERROR] PROGRAM MUST CONTAIN AT LEAST ONE TRANSITION.
+
+
+0006 ERRORS.

@@ -1,0 +1,15 @@
+f7.ast    10/12/99 11:29:36 a.m.                        ASSIST 7.2, NASA LaRC    Page 1
+
+(0001): 
+(0002): SPACE = (AF: ARRAY[1..3] OF 0..1,       (* Actuators failed *)
+(0003):          NF: 0..15,
+(0004):          foo);                  (* Number of component failures *)
+(0005): 
+(0006): START = (5 OF 0);
+(0007): 
+(0008): deathIF NF > 6;
+(0009): 
+        ^ [ERROR] PROGRAM MUST CONTAIN AT LEAST ONE TRANSITION.
+
+
+0001 ERROR.

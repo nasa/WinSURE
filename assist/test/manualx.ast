@@ -1,0 +1,38 @@
+(*  Quad with 4 sensors and 3 actuators *)
+
+LAM_C = 1E-4;		(* Computer failure rate *)
+LAM_S1 = 2E-5;		(* Type 1 sensor failure rate *)
+LAM_S2 = 1.5E-5;	(* Type 2 sensor failure rate *)
+LAM_A1 = 3.6E-5;	(* Actuator failure rate *)
+
+SPACE = (CF: ARRAY[1..4] OF 0..1,	(* Computers failed *)
+         SF: ARRAY[1..4] OF 0..1,	(* Sensors failed *)
+         AF: ARRAY[1..3] OF 0..1);	(* Actuators failed *)
+START = (11 OF 0);
+
+DEATHIF CF[1] + CF[2] + CF[3] + CF[4] >= 3;  
+   (* 3/4 computers failed *)
+
+DEATHIF (CF[1] + SF[1] > 0) AND (CF[2] + SF[2] > 0) AND (CF[3] + SF[3] > 0);
+DEATHIF (CF[1] + SF[1] > 0) AND (CF[2] + SF[2] > 0) AND (CF[4] + SF[4] > 0);
+DEATHIF (CF[1] + SF[1] > 0) AND (CF[3] + SF[3] > 0) AND (CF[4] + SF[4] > 0);
+DEATHIF (CF[2] + SF[2] > 0) AND (CF[3] + SF[3] > 0) AND (CF[4] + SF[4] > 0);
+   (* 3/4 sensor sets failed *)
+
+DEATHIF (CF[1] + AF[1] > 0) OR (CF[2] + AF[2] > 0) OR (AF[3] > 0);
+   (* 2/3 actuator sets failed *)
+
+FOR I = 1,4;
+   IF CF[I]=0 TRANTO CF[I] = CF[I]+1 BY LAM_C;
+      (* Computer failures *)
+ENDFOR;
+
+FOR J = 1,3;
+   IF SF[J]=0 TRANTO SF[J] = SF[J]+1 BY LAM_S1;
+      (* Type 1 sensor failures *)
+   IF AF[J]=0 TRANTO AF[J] = AF[J]+1 BY LAM_A1;
+      (* Actuator failures *)
+ENDFOR;
+
+IF SF[4]=0 TRANTO SF[3] = SF[3]+1 BY LAM_S2;
+   (* Type 2 sensor failures *)

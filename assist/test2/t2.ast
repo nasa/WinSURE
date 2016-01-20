@@ -1,0 +1,13 @@
+NP=6;   (* number of processors initially *)
+"X = 1 TO 50 BY 5;"
+LAMBDA = 1E-4;  (* fault arrival rate *)
+DELTA = 3.6E3;  (* recovery rate *)
+"(* THIS QUOTE IS A COMMENT *)
+(* THIS IS THE SECOND LINE OF THE COMMENT *)"
+SPACE = (NC: 0..NP,  NF: 0..NP); 
+START = (NP,0);
+DEATHIF 2*NF >= NC;
+ONEDEATH = 1;
+IF NC > 0 TRANTO (NC,NF+1)  BY (NC-NF)*LAMBDA; (* fault arrivals *)
+IF NF > 0 TRANTO (NC-1, NF-1) BY <1/(NF*DELTA),1/(NF*DELTA)>; 
+    (* system recovery *)

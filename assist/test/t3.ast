@@ -1,0 +1,4 @@
+SPACE = (A,B,C);
+START = (1,2,3);
+DEATHIF A+B<>C;
+IF A < 10 TRANTO A = A+1 BY FOOBAR;

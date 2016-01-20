@@ -1,0 +1,35 @@
+(* 2 TRIADS OF COMPUTERS WITH 1 TRIAD OF POWER SUPPLIES        *)
+(* CONNECTED SO THAT 1 COMPUTER IN EACH TRIAD IS CONNECTED TO  *)
+(* EACH POWER SUPPLY.  THUS, IF A POWER SUPPLY FAILS, THEN ONE *)
+(* COMPUTER IN EACH TRIAD FAILS.  THE SYSTEM FAILS IF EITHER   *)
+(* TRIAD OF COMPUTERS FAILS.                                   *)
+
+LAM_S = 1E-6;	(* Failure rate of power supplies *)
+LAM_C = 1E-5;	(* Failure rate of computers *)
+
+SPACE = (NFP: ARRAY[1..2] OF 0..3,  (* Number of failed computers *)
+ 				    (*       in each triad        *)
+         NFS: 0..3,		    (* Number of failed power supplies *)
+         FLAG:0..1);	(* set to 1 if 2 failed computers are on    *)
+                        (*    different power supplies, 0 otherwise *)
+START = (0, 0, 0, 0);
+
+DEATHIF NFP[1]>1 OR NFP[2]>1;
+
+   IF NFP[1]<3 THEN
+      TRANTO NFP[1] = NFP[1]+1,FLAG = NFP[2] 
+         BY (2-NFP[1])*LAM_C + (1-NFP[2])*LAM_C;
+      TRANTO NFP[1] = NFP[1]+1 BY NFP[2]*LAM_C;
+   ENDIF;
+   IF NFP[2]<3 THEN
+      TRANTO NFP[2] = NFP[2]+1,FLAG = NFP[1] 
+         BY (2-NFP[2])*LAM_C + (1-NFP[1])*LAM_C;
+      TRANTO NFP[2] = NFP[2]+1 BY NFP[1]*LAM_C;
+   ENDIF;
+
+IF (NFP[1]=0 AND NFP[2]=0) THEN
+   TRANTO (NFP[1]+1, NFP[2]+1, NFS+1, 0) BY 3*LAM_S;
+ELSE 
+   TRANTO (2,2,2,1) BY (2+FLAG)*LAM_S;
+   TRANTO (1, 1, 1, 0) BY (1-FLAG)*LAM_S;
+ENDIF;

@@ -1,0 +1,66 @@
+package gov.nasa.larcfm.Reliab;
+
+
+
+import gov.nasa.larcfm.Util.Pair;
+import gov.nasa.larcfm.Util.ParameterData;
+import gov.nasa.larcfm.Util.ParameterFrame;
+import gov.nasa.larcfm.Util.ParameterPanel;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+
+public class SureParameterFrame extends ParameterFrame {
+
+	private static final long serialVersionUID = 1L;
+	
+	public SureParameterFrame() {
+		JButton runButton = new JButton("Run Simulation");
+		ActionListener run = new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				//vExecDet.vis.runSimVisualization();
+				update();
+			}
+		};
+		runButton.addActionListener(run);
+
+		JButton prevB2 = new JButton("Previous");
+		prevB2.requestFocus();
+		prevB2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				//vExecDet.vis.movePickBackward();
+			}
+		});
+
+		JButton nextB2 = new JButton("Next");
+		nextB2.requestFocus();
+		nextB2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				//vExecDet.vis.movePickForward();
+			}
+		});
+
+		
+		ArrayList<JComponent> blist = new ArrayList<JComponent>();
+		blist.add(runButton);	
+		//blist.add(newfile);	
+		blist.add(prevB2);	
+		blist.add(nextB2);	
+		
+		
+		Pair<ParameterPanel,ParameterData> ppp = Pair.make((ParameterPanel)(new SureParameterPanel()), vSURE.getParameters());
+		List<Pair<ParameterPanel,ParameterData>> l1 = new ArrayList<Pair<ParameterPanel,ParameterData>>();
+		l1.add(ppp);
+		init(l1, blist);
+	}
+
+	public void update() {
+		//update(ExecDet.getParameters());
+	}
+
+}

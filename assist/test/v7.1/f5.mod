@@ -1,0 +1,8 @@
+
+
+     2(* 1,2,0,1 *),     3(* 2,2,1,0 *)        = 1+(2+0)+1;
+
+(* NUMBER OF STATES IN MODEL = 3 *)
+(* NUMBER OF TRANSITIONS IN MODEL = 1 *)
+(* 0 DEATH STATES AGGREGATED INTO STATE 1 *)
+(* 0001 WARNING *)

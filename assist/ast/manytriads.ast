@@ -1,0 +1,49 @@
+(*  MULTIPLE TRIADS WITH POOL OF SPARES *)
+
+INPUT N_TRIADS;         (* Number of triads initially *)
+INPUT N_SPARES;         (* Number of spares *)
+N_PROCS = 3;            (* Number of active processors per triad *)
+LAMBDA_P = 1E-4;        (* Failure rate of active processors *)
+LAMBDA_S = 1E-5;        (* Failure rate of cold spare processors *)
+DELTA = 3.6E3;          (* Reconfiguration rate to switch in spare *)
+OMEGA = 5.1E3;          (* Reconfiguration rate to break up a triad *)
+
+SPACE = (NP: ARRAY[1..N_TRIADS] OF 0..N_PROCS, (* processors each triad *)
+         NFP: ARRAY[1..N_TRIADS] OF 0..N_PROCS, (* active each triad *)
+         NS,                 (* Number of spare processors *)
+         NFS,                (* Number of failed spare processors *)
+         NT: 0..N_TRIADS);   (* Number of non-failed triads *)
+
+START = (N_TRIADS OF N_PROCS,
+         N_TRIADS OF 0,
+         N_SPARES,
+         0,
+         N_TRIADS);
+
+IF NS > NFS TRANTO NFS = NFS+1 BY NS*LAMBDA_S;  (* Spare failure *)
+
+FOR J IN [1..N_TRIADS];
+   IF NP[J] > NFP[J] TRANTO NFP[J]++
+        BY (NP[J]-NFP[J])*LAMBDA_P;  (* Active processor failure *)
+
+   IF NFP[J] > 0 THEN
+      IF NS > 0 THEN 
+         IF NS > NFS TRANTO NFP[J]--,NS--
+            BY (1-(NFS/NS))*NFP[J]*DELTA;  
+            (* Replace failed processor with working spare *)
+
+         IF NFS > 0 TRANTO NS--,NFS-- BY (NFS/NS)*NFP[J]*DELTA;
+            (* Replace failed processor with failed spare *)
+
+      ELSE
+         TRANTO NP[J]=0,NFP[J]=0,NS=NP[J]-NFP[J],NT-- BY OMEGA;
+            (* Break up a failed triad when no spares available *)
+      ENDIF;
+   ENDIF;
+
+   DEATHIF 2 * NFP[J] >= NP[J] AND NP[J] > 0;
+     (* Two faults in an active triad is system failure *)
+
+ENDFOR;
+
+DEATHIF NT = 0;    (* System failure by exhaustion *)

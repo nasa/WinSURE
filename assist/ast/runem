@@ -1,0 +1,9 @@
+assist deg_imit_faults.ast
+assist dualtriad_better.ast
+assist dualtriad_w_ps.ast
+assist intermittent_faults.ast
+assist manytriads.ast
+assist monsensor.ast
+assist quad_tsien.ast
+assist tertiary_spare_pools.ast
+assist triadcold.ast

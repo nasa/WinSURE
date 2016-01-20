@@ -1,0 +1,29 @@
+z2.ast    9/03/97 9:44:42 a.m.                          ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): lambda = 1e-5;
+(0002): gamma = 10 * lambda;
+(0003): space = (a);
+(0004): start = (1);
+(0005): DEATHIF A+3+4<A OR A<A AND A<3;
+(0006): DEATHIF A>3+4;
+(0007): DEATHIF A+1<A+2 AND A<3 AND A>4 OR A=5;
+(0008): deathif (a > 1 + a < 5);
+                           ^ [ERROR] TRIPLE INEQUALITY NOT SUPPORTED.  USE "A<B AND 
+                                     B<C" INSTEAD OF "A<B<C", ETC: <
+                           ^ [ERROR] ARITHMETIC OPERATOR IN A BOOLEAN EXPRESSION: <
+                           ^ [ERROR] RIGHT ")" EXPECTED: <
+                           ^ [ERROR] SEMICOLON EXPECTED: <
+                             ^ [ERROR] SKIPPING EXTRANEOUS TOKENS: #5
+
+(0009): DEATHIF A+7 OR A>5;
+                    ^ [ERROR] RELATIONAL OPERATOR MUST FOLLOW NUMERIC QUANTITY IN 
+                              BOOLEAN EXPRESSION: OR
+                    ^ [ERROR] SKIPPING EXTRANEOUS TOKENS: OR
+
+(0010): DEATHIF A>5 OR A+7 ;
+                           ^ [ERROR] RELATIONAL OPERATOR MUST FOLLOW NUMERIC QUANTITY 
+                                     IN BOOLEAN EXPRESSION: ;
+        ^ [ERROR] PROGRAM MUST CONTAIN AT LEAST ONE TRANSITION.
+
+
+0009 ERRORS.

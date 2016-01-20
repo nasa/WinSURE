@@ -1,0 +1,9 @@
+lambda = 1e-5;
+gamma = 10 * lambda;
+F1 = 7.85623E-12;
+F2 = F1*LAMBDA;
+space = (a);
+F3 = A*LAMBDA;
+F4 = A*LAMBDA + GAMMA;
+start = (1);
+deathif (a > 1 + a);

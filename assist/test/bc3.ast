@@ -1,0 +1,30 @@
+
+
+
+
+          
+
+          LAMBDA = 1E-4;		(* Permanent fault arrival rate *)
+          GAMMA = 10*LAMBDA;		(* Transient fault arrival rate *)
+          W = .5;			(* Transient fault disappearance rate *)
+          DELTA = 3.6E3;		(* Reconfiguration rate *)
+          
+          SPACE = (NW, 		(* Number of working processors *)
+                   NFP, 	(* Active procs. with permanent faults *)
+                   NFT);	(* Active procs. with transient faults *)
+          
+          START = (10, 0, 0);
+          
+          IF NW>0 TRANTO NW = NW-1, NFP = NFP+1 BY NW*LAMBDA; 
+             (* 1. Permanent fault arrival *)
+          IF NW>0 TRANTO NW = NW-1, NFT = NFT+1 BY NW*GAMMA;  
+             (* 2. Transient fault arrival *)
+          IF NFT>0 TRANTO NW = NW+1, NFT = NFT-1 BY FAST NFT*W;
+             (* 3. Transient fault disappearance *)
+          IF NFP>0 TRANTO NFP = NFP-1 BY FAST NFP*DELTA;  
+             (* 4A. Permanent fault reconfiguration *)
+          IF NFT>0 TRANTO NFT = NFT-1 BY FAST NFT*DELTA; 
+             (* 4B. Transient fault reconfiguration *)
+
+          DEATHIF NFP+NFT >= NW;  
+             (* 5. System failure *)

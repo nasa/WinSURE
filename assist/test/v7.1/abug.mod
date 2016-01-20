@@ -1,0 +1,8 @@
+NSI = 1;
+LAMBDA = 5E-4;
+GAMMA = 5E-4;
+MU = .400/3600;
+
+CANNOT RUN DUE TO ERRORS !!!!!
+
+(* 0025 ERRORS *)

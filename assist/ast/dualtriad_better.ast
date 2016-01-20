@@ -1,0 +1,54 @@
+(* 2 TRIADS OF COMPUTERS WITH 1 TRIAD OF POWER SUPPLIES        *)
+(* CONNECTED SO THAT 1 COMPUTER IN EACH TRIAD IS CONNECTED TO  *)
+(* EACH POWER SUPPLY.  THUS, IF A POWER SUPPLY FAILS, THEN ONE *)
+(* COMPUTER IN EACH TRIAD FAILS.  THE SYSTEM FAILS IF EITHER   *)
+(* TRIAD OF COMPUTERS FAILS.                                   *)
+
+LAM_PS = 1E-6;  (* Failure rate of power supplies *)
+LAM_C = 1E-5;   (* Failure rate of computers *)
+
+SPACE = (NFP: ARRAY[1..2] OF 0..3, (* Count of failed computers each triad *)
+         NFS: 0..3,                (* Count of failed power supplies *)
+         SAME:BOOLEAN);            (* Set if all failed computers fall
+                                      on same power supply *)
+
+FUNCTION OTHER(II) = 3-II;
+
+START = (2 OF 0,
+         0,
+         TRUE);
+
+FOR IX IN [1..2]
+   DEATHIF NFP[IX]>1;
+   IF (NFP[OTHER(IX)] > 0) THEN  (* Other triad has a failed computer *)
+      TRANTO NFP[IX]++ BY LAM_C;
+         (* Failure of computer on same power supply as other failed one *)
+      TRANTO NFP[IX]++,SAME=FALSE BY (2-NFP[IX])*LAM_C;
+         (* Failures of computers on different power *)
+         (* supplies than the other failed one       *)
+   ELSE
+      TRANTO NFP[IX]++ BY (3-NFP[IX])*LAM_C;
+         (* Failures of computers when other triad has no failures yet *)
+   ENDIF;
+ENDFOR;
+
+IF (SUM(NFP) = 0) THEN
+   TRANTO NFP[1]++,NFP[2]++,NFS++,SAME=TRUE BY 3*LAM_PS;
+      (* Power supply failures when no previous *)
+      (* computer failures have occurred.       *)
+ELSE 
+   IF (SAME) THEN
+      TRANTO (2,2,2,FALSE) BY (2-NFS)*LAM_PS;
+         (* Failure of a power supply not connected to another  *)
+         (* previously failed computer.  NOTE: State (2,2,2,F)  *)
+         (* is an aggregation of several death states.          *)
+      TRANTO (1,1,1,TRUE) BY LAM_PS;
+         (* Failed power supply connected to *)
+         (* a previously failed computer.    *)
+   ELSE
+      TRANTO (2,2,2,FALSE) BY (3-NFS)*LAM_PS;
+         (* Failure of a power supply not connected to another  *)
+         (* previously failed computer.  NOTE: State (2,2,2,F)  *)
+         (* is an aggregation of several death states.          *)
+   ENDIF;
+ENDIF;

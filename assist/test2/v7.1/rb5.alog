@@ -1,0 +1,17 @@
+rb5.ast    9/02/97 2:46:42 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): SPACE = (XX:-1000..0,YY:-1..1);
+                       <-^ [ERROR] NEGATIVE VALUES NOT ALLOWED. USE A WHOLE NUMBER:  
+                                   -1000 IS THE COMPUTED VALUE.
+                                <-^ [ERROR] NEGATIVE VALUES NOT ALLOWED. USE A WHOLE 
+                                            NUMBER:  -1 IS THE COMPUTED VALUE.
+
+(0002): START = (0,0);
+(0003): IF XX*YY=0 TRANTO (YY,XX+1) BY (XX+1)*(YY+1);
+(0004): IF XX+YY=0 TRANTO (-100,XX+YY) BY 100-XX;
+(0005): IF XX*YY=0 TRANTO (0,XX+100) BY 3.14159;
+        ^ [WARNING] PROGRAM DOES NOT CONTAIN ANY DEATHIF STATEMENTS.
+
+
+0002 ERRORS.
+0001 WARNING.

@@ -1,0 +1,14 @@
+f4.ast    9/03/97 9:44:37 a.m.                          ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): SPACE = (A,B,c: 0..1, d: 0..1);
+(0002): START = (1,2,0,1);
+(0003): 
+(0004): deathif b > 2;
+(0005): IF A = 1 TRANTO (A + 2, B + 1, 1, 0) BY a+b+C+D;
+
+PARSING TIME = 0.01 sec.
+RULE GENERATION TIME = 0.00 sec.
+NUMBER OF STATES IN MODEL = 2
+NUMBER OF TRANSITIONS IN MODEL = 1
+1 DEATH STATES AGGREGATED INTO STATE 1
+

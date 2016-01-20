@@ -1,0 +1,24 @@
+t10.ast    10/12/99 11:38:43 a.m.                       ASSIST 7.2, NASA LaRC    Page 1
+
+(0001): LAMBDA = 1E-4;  (* fault arrival rate *)
+(0002): DELTA = 3.6E3;  (* recovery rate *)
+(0003): SPACE = (A,B,C,D,E);
+(0004): START = (6,6,6,6,6);
+(0005): ONEDEATH = 1;
+(0006): DEATHIF A < 5;
+(0007): IF A = 6 TRANTO (A-1,B,C,D,200) BY FOONESS;
+(0008): IF A=6 THEN
+(0009):    IF B=6 THEN
+(0010):       TRANTO A=A-1 BY FOO1;
+(0011):       TRANTO A=A-1,B=B-1 BY FOO2;
+(0012):    ENDIF
+(0013): ELSE
+        ^ [ERROR] MISSING TOKEN INSERTED BY PARSER: ;
+
+(0014):    IF B < 6 TRANTO A=A-2,C=C-1 BY FOO3;
+(0015):    TRANTO A=A-3,D=D-1 BY FOO4;
+(0016): ENDIF;
+(0017): (* FOONESS *)
+
+
+0001 ERROR.

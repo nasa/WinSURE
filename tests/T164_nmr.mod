@@ -1,0 +1,10 @@
+LAMBDA = 1E-4;                       (* NMR.MOD, EX. 11, PP. 62-63 *)
+N = 3 TO 15 BY 2;
+1,2 = N*LAMBDA;
+IF N > 2 THEN 2,3 = (N-1)*LAMBDA;
+IF N > 4 THEN 3,4 = (N-2)*LAMBDA;
+IF N > 6 THEN 4,5 = (N-3)*LAMBDA;
+IF N > 8 THEN 5,6 = (N-4)*LAMBDA;
+IF N > 10 THEN 6,7 = (N-5)*LAMBDA;
+IF N > 12 THEN 7,8 = (N-6)*LAMBDA;
+IF N > 14 THEN 8,9 = (N-7)*LAMBDA;

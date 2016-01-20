@@ -1,0 +1,59 @@
+bc2.ast    10/06/99 12:56:04 p.m.                       ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): 
+(0002): 
+(0003): 
+(0004): 
+(0005): 
+(0006):           (*  THREE TRIADS WITH SPARES POOL *)
+(0007): 
+(0008):           N_TRIADS = 3;         (* Number of triads initially *)
+(0009):           INPUT N_SPARES;       (* Number of spares *)
+N_SPARES? 3;
+
+(0010):           N_PROCS = 3;          (* Number of active processors per triad *)
+(0011):           LAMBDA_P = 1E-4;      (* Failure rate of active processors *)
+(0012):           LAMBDA_S = 1E-5;      (* Failure rate of cold spare processors *)
+(0013):           DELTA1 = 3.6E3;               (* Reconfig. rate to switch in spare *)
+(0014):           DELTA2 = 5.1E3;               (* Reconfig. rate to break up a triad *)
+(0015): 
+(0016):           SPACE = (NP: ARRAY[1..N_TRIADS] OF 0..N_PROCS,
+(0017):                                        (* Number of processors per triad *)
+(0018):                    NFP: ARRAY[1..N_TRIADS] OF 0..N_PROCS,
+(0019):                                        (* Number of failed procs. per triad *)
+(0020):                    NS,                 (* Number of spare processors *)
+(0021):                    NFS,                (* Number of failed spare processors *)
+(0022):                    NT: 0..N_TRIADS);   (* Number of non-failed triads *)
+(0023):           START = (N_TRIADS OF N_PROCS, N_TRIADS OF 0, N_SPARES, 0, N_TRIADS);
+(0024): 
+(0025):                (* Two faults in an active triad is system failure *)
+(0026):           DEATHIF 2 * NFP[1] >= NP[1] AND NP[1] > 0;
+(0027):           DEATHIF 2 * NFP[2] >= NP[2] AND NP[2] > 0;
+(0028):           DEATHIF 2 * NFP[3] >= NP[3] AND NP[3] > 0;
+(0029):           DEATHIF NT = 0;    (* System failure by exhaustion *)
+(0030): 
+(0031):           IF NS > NFS TRANTO NFS = NFS+1 BY NS*LAMBDA_S;  (* Spare failure *)
+(0032): 
+(0033):           FOR I = 1, N_TRIADS;
+(0034):              IF NP[I]>NFP[I] TRANTO NFP[I] = NFP[I]+1
+(0035):                   BY (NP[I]-NFP[I])*LAMBDA_P;  (* active processor failure *)
+(0036):              IF NFP[I] > 0 THEN
+(0037):                 IF NS > 0 THEN
+(0038):                    IF NS > NFS TRANTO NFP[I] = NFP[I]-1, NS = NS-1
+(0039):                       BY (1-(NFS/NS))*NFP[I]*DELTA1;
+(0040):                       (* Replace failed processor with working spare *)
+(0041):                    IF NFS>0 TRANTO NS=NS-1,NFS=NFS-1 BY (NFS/NS)*NFP[I]*DELTA1;
+(0042):                       (* Replace failed processor with failed spare *)
+(0043):                 ELSE
+(0044):                    TRANTO NP[I]=0, NFP[I]=0, NS=NP[I]-NFP[I], NT=NT-1 BY DELTA2;
+(0045):                       (* Break up a failed triad when no spares available *)
+(0046):                 ENDIF;
+(0047):              ENDIF;
+(0048):           ENDFOR;
+
+PARSING TIME = 100.00 sec.
+RULE GENERATION TIME = 700.00 sec.
+NUMBER OF STATES IN MODEL = 192
+NUMBER OF TRANSITIONS IN MODEL = 783
+213 DEATH STATES AGGREGATED INTO STATES 1 - 4
+

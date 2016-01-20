@@ -1,0 +1,5 @@
+SPACE = (A,B,c: 0..1, d: 0..1);
+START = (1,2,0,1);
+
+deathif b > 2;
+IF A = 1 TRANTO (A + 2, B + 1, 1, 0) BY a+b+C+D;

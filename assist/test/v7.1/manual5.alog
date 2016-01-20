@@ -1,0 +1,47 @@
+manual5.ast    9/03/97 9:44:41 a.m.                     ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): (* MONITORED SENSOR FAILURE MODEL *)
+(0002): 
+(0003): LAMBDA_S = 10E-6;       (* Failure rate of sensors *)
+(0004): LAMBDA_M = 1E-6;        (* Failure rate of monitors *)
+(0005): MEAN_1 = 3E-4;          (* Mean recovery time for first fault *)
+(0006): SD_1 = 1E-4;            (* S.D. of recovery time for first fault *)
+(0007): MEAN_2 = 1E-4;          (* Mean recovery time for second fault *)
+(0008): SD_2 = 2E-5;            (* S.D. of recovery time for second fault *)
+(0009): COV_2 = .98;            (* Coverage for second failure *)
+(0010): 
+(0011): SPACE = (NS: 0..3,      (* Number of active sensors *)
+(0012):          NFS: 0..3,     (* Number of failed active sensors *)
+(0013):          NM: 0..3);     (* Number of working monitors *)
+(0014): START = (3, 0, 3);
+(0015): 
+(0016): DEATHIF 2*NFS > NS;     (* Majority of sensors failed *)
+(0017): DEATHIF 2*NFS = NS AND NM < NS;
+(0018):    (* Half of the sensors fail and the number of monitors *)
+(0019):    (*   working is less than the number of active sensors *)
+(0020): 
+(0021): IF NS>0 TRANTO NFS = NFS+1 BY (NS-NFS)*LAMBDA_S;        (* Sensor failure *)
+(0022): IF NM>1 TRANTO NM = NM-1 BY NM*LAMBDA_M;                (* Monitor failure *)
+(0023): 
+(0024):    (* First fault recovery *)
+(0025): IF NS>2*NFS AND NFS>0 THEN
+(0026):    IF NM>0 TRANTO (NS-1, NFS-1, NM-1) BY <MEAN_1,SD_1,(NM/NS)>;
+(0027):         (* Loss of monitored sensor *)
+(0028):    IF NM<NS TRANTO (NS-1, NFS-1, NM) BY <MEAN_1,SD_1,(NS-NM)/NS>;
+(0029):         (* Loss of unmonitored sensor *)
+(0030): ENDIF;
+(0031): 
+(0032):    (* Second fault recovery *)
+(0033): IF NS=2*NFS AND NFS>0 THEN
+(0034):    TRANTO (NS-1, NFS-1, NM) BY <MEAN_2,SD_2,COV_2>;
+(0035):         (* Successfully removed failed sensor *)
+(0036):    TRANTO (NS-1,NFS,NM) BY <MEAN_2,SD_2,1.0-COV_2>;
+(0037):         (* Mistakenly removed nonfaulty sensor *)
+(0038): ENDIF;
+
+PARSING TIME = 0.02 sec.
+RULE GENERATION TIME = 0.00 sec.
+NUMBER OF STATES IN MODEL = 14
+NUMBER OF TRANSITIONS IN MODEL = 26
+10 DEATH STATES AGGREGATED INTO STATES 1 - 2
+

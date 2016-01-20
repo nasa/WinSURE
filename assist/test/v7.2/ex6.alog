@@ -1,0 +1,56 @@
+ex6.ast    10/12/99 11:29:35 a.m.                       ASSIST 7.2, NASA LaRC    Page 1
+
+(0001): (* 2 TRIADS OF COMPUTERS WITH 1 TRIAD OF POWER SUPPLIES        *)
+(0002): (* CONNECTED SO THAT 1 COMPUTER IN EACH TRIAD IS CONNECTED TO  *)
+(0003): (* EACH POWER SUPPLY.  THUS, IF A POWER SUPPLY FAILS, THEN ONE *)
+(0004): (* COMPUTER IN EACH TRIAD FAILS.  THE SYSTEM FAILS IF EITHER   *)
+(0005): (* TRIAD OF COMPUTERS FAILS.                                   *)
+(0006): 
+(0007): LAM_S = 1E-6;   (* Failure rate of power supplies *)
+(0008): LAM_C = 1E-5;   (* Failure rate of computers *)
+(0009): 
+(0010): SPACE = (NFP: ARRAY[1..2] OF 0..3,  (* Number of failed computers *)
+(0011):                                     (*       in each triad        *)
+(0012):          NFS: 0..3,                 (* Number of failed power supplies *)
+(0013):          SAME:0..1);    (* Set to 0 if 2 failed computers are on    *)
+(0014):                         (*    different power supplies, 1 otherwise *)
+(0015): START = (0, 0, 0, 1);
+(0016): 
+(0017): DEATHIF NFP[1]>1 OR NFP[2]>1;  (* The system fails if 2/3 of the   *)
+(0018):                                (*   computers in either triad fail *)
+(0019): 
+(0020): FOR I=1,2
+(0021):    IF NFP[I]<3 THEN
+(0022):       IF NFP[3-I]=1 THEN  (* Other triad has a failed processor *)
+(0023):          TRANTO NFP[I] = NFP[I]+1 BY LAM_C;
+(0024):            (* Failure of processor on same power supply as other failed one *)
+(0025):          TRANTO NFP[I] = NFP[I]+1, SAME = 0 BY (2-NFP[I])*LAM_C;
+(0026):            (* Failure of processor on different power *)
+(0027):            (*   supply than the other failed one      *)
+(0028):       ELSE
+(0029):          TRANTO NFP[I] = NFP[I]+1 BY (3-NFP[I])*LAM_C;
+(0030):            (* Failure of processor when other triad has no failures yet *)
+(0031):       ENDIF;
+(0032):    ENDIF;
+(0033): ENDFOR;
+(0034): 
+(0035): IF (NFP[1]=0 AND NFP[2]=0) THEN
+(0036):    TRANTO (NFP[1]+1, NFP[2]+1, NFS+1, 1) BY 3*LAM_S;
+(0037):      (* Power supply failures when no previous *)
+(0038):      (*   processor failures have occurred     *)
+(0039): ELSE
+(0040):    TRANTO (2, 2, 2, 0) BY (3-SAME)*LAM_S;
+(0041):      (* Failure of a power supply not connected to another    *)
+(0042):      (*   previously failed processor.  NOTE: State (2,2,2,0) *)
+(0043):      (*   is an aggregation of several death states           *)
+(0044):    IF SAME = 1 TRANTO (1, 1, 1, 1) BY LAM_S;
+(0045):      (* Failed power supply connected to *)
+(0046):      (*   a previously failed processor  *)
+(0047): ENDIF;
+
+PARSING TIME = 100.00 sec.
+RULE GENERATION TIME = 300.00 sec.
+NUMBER OF STATES IN MODEL = 7
+NUMBER OF TRANSITIONS IN MODEL = 30
+19 DEATH STATES AGGREGATED INTO STATE 1
+

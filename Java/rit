@@ -1,0 +1,15 @@
+#!/bin/sh
+
+arch=`uname -s | awk '{print tolower(substr($0,0,6))}' -`
+case $arch in
+     darwin) myarch=macos;;
+     linux)  myarch=linux;;
+     cygwin) myarch=cygwin;;
+     *)      echo "Only run under Darwin, Linux, and Cygwin";exit 1
+esac
+
+if [[ "$myarch" == 'cygwin' ]]; then
+java -cp bin gov.nasa.larcfm.Reliab/bSURE $* 
+else
+java -cp bin gov.nasa.larcfm.Reliab/bSURE $* 
+fi

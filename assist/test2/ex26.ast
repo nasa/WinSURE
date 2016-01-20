@@ -1,0 +1,14 @@
+(* THIS FILE POINTS OUT TWO BUGS IN ASSIST --
+   A3 WON'T TAKE THE -6 IN THE START STATEMENT, (LOOPS FOREVER!!)
+   AND WHEN THE -6 IS REPLACED BY NP, IT SAYS NOT IN DEFINED SPACE,
+   BUT, IF THE DEFAULT SPACE IS USED, THEN THE BUGS WORK OUT OKAY. *)
+
+NP = -6;   (* number of processors initially *)
+LAMBDA = 1E-4;  (* fault arrival rate *)
+DELTA = 3.6E3;  (* recovery rate *)
+SPACE = (NC: -6..0,  NF: -6..0);  
+START = (-6,0);
+DEATHIF 2*NF <= NC;
+IF NC < 0 TRANTO (NC,NF-1)  BY (NF-(NC))*LAMBDA; (* fault arrivals *)
+IF NF < 0 TRANTO (NC+1, NF+1) BY <1/(-(NF)*DELTA),1/(-(NF)*DELTA)>; 
+    (* systen recovery *)

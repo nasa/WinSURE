@@ -1,0 +1,27 @@
+z3.ast    9/03/97 9:44:42 a.m.                          ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): lambda = 1e-5;
+(0002): gamma = 10 * lambda;
+(0003): F1 = 7.85623E-12;
+(0004): F2 = F1*LAMBDA;
+(0005): space = (a);
+(0006): F3 = A*LAMBDA;
+                   <-^ [ERROR] VARIABLES NOT ALLOWED IN CONSTANT DEFINITION EXPRESSION.
+                               CONSIDER THE USE OF A FUNCTION OR IMPLICIT: A
+                     ^ [ERROR] STATE-SPACE VARIABLE DOES NOT HAVE A VALUE UNTIL AFTER 
+                               PARSING IS COMPLETE AND RULE GENERATION HAS STARTED.
+
+(0007): F4 = A*LAMBDA + GAMMA;
+                           <-^ [ERROR] VARIABLES NOT ALLOWED IN CONSTANT DEFINITION 
+                                       EXPRESSION.   CONSIDER THE USE OF A FUNCTION OR 
+                                       IMPLICIT: A
+                             ^ [ERROR] STATE-SPACE VARIABLE DOES NOT HAVE A VALUE 
+                                       UNTIL AFTER PARSING IS COMPLETE AND RULE 
+                                       GENERATION HAS STARTED.
+
+(0008): start = (1);
+(0009): deathif (a > 1 + a);
+        ^ [ERROR] PROGRAM MUST CONTAIN AT LEAST ONE TRANSITION.
+
+
+0005 ERRORS.

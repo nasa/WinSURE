@@ -1,0 +1,6 @@
+LAMBDA = 1E-4;
+1,2 = LAMBDA;
+2,1 = 0.5/LAMBDA;
+2,4 = 0.5/LAMBDA;
+4,5 = LAMBDA;
+2,3 = LAMBDA;

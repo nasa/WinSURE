@@ -1,0 +1,16 @@
+LBFACT = -1;
+L = 1E-4;
+MU = 1E-4; SIG = 1E-4;
+1,2 = L;
+1,3 = <MU,SIG>;
+LIST=2;
+RI = SQRT(MU);
+LB3 = 1 - MU*L - (MU*MU+SIG*SIG)/(RI*RI);
+UB3 = 1;
+SJ = SQRT(MU);
+SHOW SJ;
+LB2 = L*[MU - L*(MU*MU+SIG*SIG)/2.0 - (MU*MU+SIG*SIG)/SJ];
+TMOM = (MU*MU+SIG*SIG);
+LBX = L*[MU - TMOM*(L/2.0 + 1/SJ)];
+SHOW LB2,LBX;
+SHOW LB3,UB3;

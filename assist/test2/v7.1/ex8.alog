@@ -1,0 +1,17 @@
+ex8.ast    9/02/97 2:46:38 p.m.                         ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): NP = 6;   (* number of processors initially *)
+(0002): ET = -2;
+(0003): LAMBDA = 1E-4;  (* fault arrival rate *)
+(0004): DELTA = 3.6E3;  (* recovery rate *)
+(0005): SPACE = (NC,NF);
+(0006): START = (7,ET);
+                   <-^ [ERROR] NEGATIVE VALUES NOT ALLOWED. USE A WHOLE NUMBER:  -2 IS 
+                               THE COMPUTED VALUE.
+
+(0007): DEATHIF 2*NF >= NC;
+(0008): IF NC > 0 TRANTO (NC,NF+1)  BY (NC-NF)*LAMBDA; (* fault arrivals *)
+(0009): IF NF > 0 TRANTO (NC-1, NF-1) BY NF*DELTA;     (* systen recovery*)
+
+
+0001 ERROR.

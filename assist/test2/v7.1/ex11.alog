@@ -1,0 +1,18 @@
+ex11.ast    9/02/97 2:46:25 p.m.                        ASSIST 7.1, NASA LaRC    Page 1
+
+(0001):    NP = 6;   (* number of processors initially *)
+(0002):    E = 3.6E3;  (* recovery rate *)
+(0003):                                 SPACE = (NC: 0..NP,  NF: 0..NP);
+(0004):         START = (NP,0);
+(0005):    DEATHIF 2*NF >= NC;
+(0006):    IF NC > 0 TRANTO (NC,NF+1)  BY (* comment *)
+(0007):         (NC-NF)*1E-4;
+(0008):    IF NF > 0 TRANTO (NC-1, NF-1) BY <1/(NF*3.6E3),(* MEAN *)
+(0009):         1/(NF*E) (* STANDARD DEVIATION *)  >;  (* COMMENT *)
+
+PARSING TIME = 0.07 sec.
+RULE GENERATION TIME = 0.01 sec.
+NUMBER OF STATES IN MODEL = 12
+NUMBER OF TRANSITIONS IN MODEL = 17
+5 DEATH STATES AGGREGATED INTO STATE 1
+

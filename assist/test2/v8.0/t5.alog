@@ -1,0 +1,23 @@
+t5.ast    10/12/99 11:38:44 a.m.                        ASSIST 7.2, NASA LaRC    Page 1
+
+(0001): N_P=6;   (* number of processors initially *)
+(0002): foo_1_=1;
+(0003): foo_2_=2;
+(0004): INPUT LAMB_D_A;  (* fault arrival rate *)
+LAMB_D_A? 1e-4;
+
+(0005): DEL_TA_ = 3.6E3;  (* recovery rate *)
+(0006): SPACE = (N_C: array[1..2] of 0..N_P,  N_F: 0..N_P);
+(0007): START = (N_P,n_p,0);
+(0008): DEATHIF 2*N_F >= N_C[foo_1_];
+(0009): ONEDEATH = 1;
+        ^ [ERROR] STATEMENT OUT OF SEQUENCE ... NOT ALLOWED IN RULE SECTION.
+
+(0010): IF N_C[foo_2_] > 0 TRANTO (N_C[foo_1_],n_c[foo_2_],N_F+1)
+(0011):    BY (N_C[foo_1_]-N_F)*LAMB_D_A; (* fault arrivals *)
+(0012): IF N_F > 0 TRANTO (N_C[foo_1_]-1,n_c[foo_2_]-1, N_F-1)
+(0013):    BY <1/(N_F*DEL_TA_),1/(N_F*DEL_TA_)>;
+(0014):     (* system recovery *)
+
+
+0001 ERROR.

@@ -1,0 +1,99 @@
+
+                         (***************************)
+                         (***************************)
+                         (***                     ***)
+                         (***   RATE  CONSTANTS   ***)
+                         (***                     ***)
+                         (***************************)
+                         (***************************)
+
+R_D_triad    = 1.414e3; (* Rate to degrade for "triad" *)
+L_I_triad    = 0.707e4; (* Arrival rate of intermittent fault for "triad" *)
+ALP_triad    = 2.718281e3; (* Rate benign "triad" intermittent goes active *)
+BET_triad    = 3.141592e3; (* Rate active "triad" intermittent goes benign *)
+
+                         (***************************)
+                         (***************************)
+                         (***                     ***)
+                         (***   SPACE CONSTANTS   ***)
+                         (***                     ***)
+                         (***************************)
+                         (***************************)
+
+NI_triad     = 3;   (* Redundancy count for "triad" *)
+NTOT = NI_triad;    (* total number of components initially *)
+
+                       (*******************************)
+                       (*******************************)
+                       (***                         ***)
+                       (***   STATE SPACE DEFINED   ***)
+                       (***                         ***)
+                       (*******************************)
+                       (*******************************)
+
+SPACE =
+  (
+   NW_triad     : 0..NI_triad, (* Count of working in "triad" *)
+   NFA_triad    : 0..NI_triad, (* Count of active failed in "triad" *)
+   NFB_triad    : 0..NI_triad  (* Count of benign failed in "triad" *)
+  );
+
+IMPLICIT TFA_triad[NFA_triad] = (* Total active failed in "triad" *)
+         NFA_triad;
+IMPLICIT TWA_triad[NW_triad,NFB_triad] = (* Total active working in "triad" *)
+         NW_triad + NFB_triad;
+IMPLICIT TA_triad[NW_triad,NFB_triad,NFA_triad] = (* Total active in "triad" *)
+         TFA_triad + TWA_triad;
+
+START =
+  (
+   NI_triad,      (* Count of working in "triad" *)
+   0,             (* Count of active failed in "triad" *)
+   0              (* Count of benign failed in "triad" *)
+  );
+
+                       (*******************************)
+                       (*******************************)
+                       (***                         ***)
+                       (***   COMPONENT:  "triad"   ***)
+                       (***                         ***)
+                       (*******************************)
+                       (*******************************)
+
+ASSERT (TWA_triad + TFA_triad) <= NI_triad;
+
+
+IF (NW_triad > 0)
+   TRANTO NW_triad--,NFA_triad++
+          BY NW_triad*L_I_triad;  (* Intermittent fault arrival *)
+
+IF (NFB_triad > 0)
+   TRANTO NFB_triad--,NFA_triad++
+          BY FAST ALP_triad;   (* Benign fault goes active *)
+
+IF (NFA_triad > 0) THEN  (* Active Intermittent faults *)
+   TRANTO NFA_triad--,NFB_triad++
+          BY FAST BET_triad;   (* Active fault goes benign *)
+   IF ((NW_triad + NFB_triad) = 2) THEN (* degrade to simplex *)
+      IF (NW_triad = 2) THEN
+         TRANTO NFA_triad--,NW_triad=1 BY FAST R_D_triad;
+      ELSE IF (NW_triad = 0) THEN
+         TRANTO NFA_triad--,NFB_triad=1 BY FAST R_D_triad;
+      ELSE
+         TRANTO NFA_triad--,NW_triad=0 BY FAST 0.5*R_D_triad;
+         TRANTO NFA_triad--,NFB_triad=0 BY FAST 0.5*R_D_triad;
+      ENDIF; ENDIF;
+   ELSE (* degrade by one *)
+      TRANTO NFA_triad-- BY FAST R_D_triad;
+   ENDIF;
+ENDIF;
+
+                       (*******************************)
+                       (*******************************)
+                       (***                         ***)
+                       (***   MISC. DEATH & PRUNE   ***)
+                       (***                         ***)
+                       (*******************************)
+                       (*******************************)
+
+DEATHIF TFA_triad >= TWA_triad;

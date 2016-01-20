@@ -1,0 +1,14 @@
+t1.ast    9/03/97 9:44:42 a.m.                          ASSIST 7.1, NASA LaRC    Page 1
+
+(0001): SPACE = (A,B,C);
+(0002): START = (1,2,3);
+(0003): DEATHIF NOT A+B=C;
+                    ^ [ERROR] TYPE MISMATCH: A
+                    ^ [ERROR] EXPRESSION REQUIRED BUT WAS OMITTED: A
+                    ^ [ERROR] SEMICOLON EXPECTED: A
+                     ^ [ERROR] SKIPPING EXTRANEOUS TOKENS: +
+
+(0004): IF A < 10 TRANTO A = A+1 BY FOOBAR;
+
+
+0004 ERRORS.

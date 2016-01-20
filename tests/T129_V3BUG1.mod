@@ -1,0 +1,14 @@
+A = 3;
+EA = EXP(A) - A;
+Y = SQRT(EA - 1);
+SHOW Y;
+CLEAR;
+A = 4;
+EA = EXP(A) - A;
+Y = SQRT(EA - 1);
+SHOW Y;
+CLEAR;
+A = 3 TO 4;
+EA = EXP(A) - A;
+Y = SQRT(EA - 1);
+SHOW Y;

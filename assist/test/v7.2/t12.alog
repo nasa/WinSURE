@@ -1,0 +1,16 @@
+t12.ast    10/12/99 11:29:40 a.m.                       ASSIST 7.2, NASA LaRC    Page 1
+
+(0001): LAMOUT = 561.0E-6;
+(0002): LAMOUTS = 561;
+(0003): SPACE = (A,B,C);
+(0004): START = (1,2,3);
+(0005): DEATHIF NOT A+B=C;
+                    ^ [ERROR] TYPE MISMATCH: A
+                    ^ [ERROR] EXPRESSION REQUIRED BUT WAS OMITTED: A
+                    ^ [ERROR] SEMICOLON EXPECTED: A
+                     ^ [ERROR] SKIPPING EXTRANEOUS TOKENS: +
+
+(0006): IF A < 10 TRANTO (A+1,B,C) BY LAMOUT;
+
+
+0004 ERRORS.

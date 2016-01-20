@@ -1,0 +1,5 @@
+
+space = (a);
+start = (0);
+deathif a>2;
+if a<5 tranto (a+1) by FAST a;
